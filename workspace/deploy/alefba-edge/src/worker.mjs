@@ -154,7 +154,7 @@ async function handleStatsGet(env) {
   );
 }
 
-async function handleInterestPost(request, env, ctx) {
+async function handleInterestPost(request, env) {
   const data = await readJson(request);
   const lane = ["invest", "participate", "donate"].includes(data?.lane) ? data.lane : "participate";
   const row = {
@@ -206,31 +206,6 @@ async function handleInterestPost(request, env, ctx) {
   const d1Stats = await buildStatsFromD1(env);
   const railwayStats = await fetchRailwayStats(env);
   const stats = mergeStats(railwayStats, d1Stats) || d1Stats;
-
-  if (ctx && !isTest) {
-    const backupBody = JSON.stringify({
-      lane: row.lane,
-      name: row.name,
-      email: row.email,
-      role: row.role,
-      amount: row.amount,
-      note: row.note,
-      tier: row.tier,
-      lang: row.lang,
-      ref: row.ref,
-      showOnWall: row.showOnWall,
-    });
-    ctx.waitUntil(
-      proxyToRailway(
-        new Request(request.url, {
-          method: "POST",
-          headers: { "content-type": "application/json", "x-alefba-edge": "standalone" },
-          body: backupBody,
-        }),
-        env
-      )
-    );
-  }
 
   return json({
     ok: true,
@@ -332,7 +307,7 @@ async function handleWorkerApi(request, env, ctx) {
     return handleStatsGet(env);
   }
   if (url.pathname === "/api/interest" && request.method === "POST") {
-    return handleInterestPost(request, env, ctx);
+    return handleInterestPost(request, env);
   }
   return proxyToRailway(request, env);
 }

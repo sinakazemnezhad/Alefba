@@ -111,10 +111,10 @@ export function mergeStats(railwayStats, d1Stats) {
   if (!d1Stats) return railwayStats;
 
   const counts = {
-    invest: Math.max(railwayStats.counts?.invest ?? 0, d1Stats.counts?.invest ?? 0),
-    participate: Math.max(railwayStats.counts?.participate ?? 0, d1Stats.counts?.participate ?? 0),
-    donate: Math.max(railwayStats.counts?.donate ?? 0, d1Stats.counts?.donate ?? 0),
-    total: Math.max(railwayStats.counts?.total ?? 0, d1Stats.counts?.total ?? 0),
+    invest: (railwayStats.counts?.invest ?? 0) + (d1Stats.counts?.invest ?? 0),
+    participate: (railwayStats.counts?.participate ?? 0) + (d1Stats.counts?.participate ?? 0),
+    donate: (railwayStats.counts?.donate ?? 0) + (d1Stats.counts?.donate ?? 0),
+    total: (railwayStats.counts?.total ?? 0) + (d1Stats.counts?.total ?? 0),
   };
 
   const wallKeys = new Set();
@@ -127,12 +127,12 @@ export function mergeStats(railwayStats, d1Stats) {
   }
   wall.sort((a, b) => String(b.at || "").localeCompare(String(a.at || "")));
 
-  const pledgedUsd = Math.max(railwayStats.pledgedUsd ?? 0, d1Stats.pledgedUsd ?? 0);
+  const pledgedUsd = (railwayStats.pledgedUsd ?? 0) + (d1Stats.pledgedUsd ?? 0);
   const goalUsd = d1Stats.goalUsd ?? railwayStats.goalUsd ?? DONATE_GOAL_USD;
 
   return {
     counts,
-    pledgedUsd,
+    pledgedUsd: Math.round(pledgedUsd),
     goalUsd,
     progressPct:
       pledgedUsd <= 0 ? 0 : Math.max(1, Math.min(100, Math.round((pledgedUsd / goalUsd) * 100))),
