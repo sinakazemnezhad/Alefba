@@ -1,33 +1,29 @@
 {
   "class": "PROGRESS",
-  "effect": "Alefbâ v0.2.8 — G1 fertility receipt, corpus shards, API v1 stub, paper theme parity, deploy preflight",
+  "effect": "Alefbâ v0.2.8 public edge on CF Workers — GHA deploy green, canonical URL cutover",
   "version": "0.2.8",
-  "sha": "local-publish-check",
-  "baseUrl": "http://127.0.0.1:5293",
-  "verifiedAtUtc": "2026-08-16T07:00:00.000Z",
-  "verifiedAtVancouver": "2026-08-16T00:00:00-07:00",
+  "sha": "d10cb82a30c4a4509176412f10fc17b55c64696d",
+  "deploySha": "d10cb82",
+  "baseUrl": "https://alefba.sina-kazemnezhad-ca.workers.dev",
+  "railwayOrigin": "https://alefba-production.up.railway.app",
+  "verifiedAtUtc": "2026-08-16T09:57:00.000Z",
+  "verifiedAtVancouver": "2026-08-16T02:57:00-07:00",
   "checks": {
-    "e2e": "pending local run",
-    "e2e": "108/108 GREEN",
-    "g1Harness": "GREEN — tokenizer train + fertility + probes",
-    "g1Gate": "pass — live BLOOM-560m HF tokenizer receipt",
-    "smokeProdLocal": "13/13 GREEN",
-    "gatesHonest": "G1 pass (HF baseline) · G2–G4 pending",
-    "ui": "FA paper on home, subpages, white paper"
+    "ghaCfDeploy": "GREEN run 31940301536",
+    "ghaE2e": "GREEN run 31932711759",
+    "e2e": "128/128 local",
+    "smokeProdLive": "13/13 GREEN Railway",
+    "releaseSha": "d10cb82a30c4a4509176412f10fc17b55c64696d",
+    "g1Gate": "pass — BLOOM-560m HF baseline",
+    "gatesHonest": "G1 pass · G2 in_progress · G3–G4 pending"
   },
   "tools": [
-    "workspace/scripts/tokenizer-train-v1.mjs",
-    "workspace/scripts/tokenizer-fertility-v1.mjs",
-    "workspace/data/corpus/shards/",
-    "workspace/public/api.html",
-    "workspace/src/server.mjs",
-    "workspace/scripts/ship-preflight.mjs",
-    ".gitignore"
+    "CF Worker alefba (0d0b967b77e2e5535455d39ff3dae72c)",
+    "D1 alefba-g3",
+    "Railway alefba-production (persist origin)"
   ],
   "productionPending": [
-    "git init + push → green GHA",
-    "Railway volume on workspace/data",
-    "Cloudflare DNS",
-    "ALEFBA_BASE_URL smoke:prod"
+    "Google Search Console property for workers.dev edge URL",
+    "Custom domain on Alefbâ-only CF zone (optional)"
   ]
 }

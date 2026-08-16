@@ -60,7 +60,7 @@ gh variable set CLOUDFLARE_ACCOUNT_ID -R sinakazemnezhad/Alefba --body 0d0b967b7
 | Variable | Value |
 |----------|--------|
 | `RAILWAY_ORIGIN` (Worker var) | `https://alefba-production.up.railway.app` |
-| `ALEFBA_PUBLIC_ORIGIN` (Railway) | same |
+| `ALEFBA_PUBLIC_ORIGIN` (Railway) | `https://alefba.sina-kazemnezhad-ca.workers.dev` |
 
 Worker proxies `/api/interest`, `/api/stats`, receipts, sitemap, etc. to Railway. Edge serves `/api/v1/health` and `/api/v1/status` locally.
 

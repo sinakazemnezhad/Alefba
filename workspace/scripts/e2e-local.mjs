@@ -90,7 +90,7 @@ async function main() {
   record("wp mobile TOC complete", ["#genesis", "#pattern", "#mix", "#gates", "#fail", "#glossary", "#cta"].every((a) => wp.text.includes(`href="${a}"`)));
   record("favicon linked both", home.text.includes("favicon.svg") && wp.text.includes("favicon.svg"));
   record("og:image both", home.text.includes("og-share.svg") && wp.text.includes("og-share.svg"));
-  record("home canonical SEO", home.text.includes("rel=\"canonical\"") && home.text.includes("alefba-production.up.railway.app"));
+  record("home canonical SEO", home.text.includes("rel=\"canonical\"") && home.text.includes("alefba.sina-kazemnezhad-ca.workers.dev"));
   record("home JSON-LD", home.text.includes("application/ld+json") && home.text.includes("WebSite"));
   record("home foot nav", home.text.includes("foot-nav") && home.text.includes("/corpus.html"));
   record("home no receipt-before-claim meta", !home.text.includes("رسید قبل از ادعا"));

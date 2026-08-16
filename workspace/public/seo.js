@@ -1,6 +1,6 @@
 /** Alefbâ public SEO helpers — canonical origin + bilingual meta sync */
 (function () {
-  const SITE_ORIGIN = "https://alefba-production.up.railway.app";
+  const SITE_ORIGIN = "https://alefba.sina-kazemnezhad-ca.workers.dev";
 
   function abs(path) {
     const p = path.startsWith("/") ? path : `/${path}`;

@@ -41,7 +41,7 @@ const BUILD_SHA = process.env.ALEFBA_SHA || "local";
 const ADMIN_TOKEN = process.env.ALEFBA_ADMIN_TOKEN || "";
 const PUBLIC_ORIGIN = process.env.ALEFBA_PUBLIC_ORIGIN || "";
 const SITE_ORIGIN =
-  PUBLIC_ORIGIN || "https://alefba-production.up.railway.app";
+  PUBLIC_ORIGIN || "https://alefba.sina-kazemnezhad-ca.workers.dev";
 const N8N_INTEREST_WEBHOOK = process.env.ALEFBA_N8N_INTEREST_WEBHOOK || "";
 
 const SITEMAP_PAGES = [
