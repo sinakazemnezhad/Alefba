@@ -136,8 +136,11 @@ const I18N = {
     "thermo.title": "Community fuel goal",
     "thermo.note": "Only donate pledges with an amount count toward the bar.",
     "wall.title": "Supporter wall",
-    "wall.empty": "Be the first name on the wall.",
+    "wall.empty": "No names yet — you can be the first.",
     "wall.founding": "Founding",
+    "wall.laneInvest": "Capital",
+    "wall.laneParticipate": "Crew",
+    "wall.laneDonate": "Donor",
     "sample.kicker": "Growing conversations",
     "sample.title": "Watch the model learn — step by step.",
     "sample.lede": "Each stage is a short conversation — like real teaching, not a slogan deck.",
@@ -546,9 +549,9 @@ const I18N = {
     "founder.name": "سینا کاظم‌نژاد",
     "founder.note":
       "من سینا هستم. الفبا را می‌سازم چون فارسی باید از ادبیات خودش یاد بگیرد. از مولوی و حافظ تا فردوسی، نه از لایهٔ نازک انگلیسی.",
-    "proof.kicker": "افراد واقعی",
-    "proof.title": "عدد ساختگی نداریم.",
-    "proof.lede": "هرکس که اینجا ثبت کند همین‌جا شمارش می‌شود. صفر یعنی هنوز اول راهیم، راستش بهت می‌گیم.",
+    "proof.kicker": "جمع واقعی",
+    "proof.title": "هر عدد از ثبت واقعی است.",
+    "proof.lede": "هرکس که اینجا ثبت کند، همین‌جا شمارش می‌شود. صفر یعنی هنوز اول راهیم — راستش می‌گوییم.",
     "proof.colophon": "ردیف‌های تست روی دیوار عمومی نمی‌آیند.",
     "roster.capital": "سرمایه",
     "roster.capitalD": "مسیر GPU",
@@ -566,8 +569,11 @@ const I18N = {
     "thermo.title": "هدف حمایت جمعی",
     "thermo.note": "فقط حمایت‌هایی که مبلغ دارند اینجا حساب می‌شوند.",
     "wall.title": "دیوار حامیان",
-    "wall.empty": "اولین نفر باش.",
-    "wall.founding": "حامی اول",
+    "wall.empty": "هنوز نامی اینجا نیست — می‌توانید نخستین باشید.",
+    "wall.founding": "حامی نخست",
+    "wall.laneInvest": "سرمایه",
+    "wall.laneParticipate": "همراه",
+    "wall.laneDonate": "حامی",
     "sample.kicker": "یک گفتگو واقعی",
     "sample.title": "مدل چطور فارسی یاد می‌گیرد؟",
     "sample.lede": "روی هر مرحله کلیک کن، مثل کلاس، نه مقالهٔ دانشگاهی.",
@@ -747,11 +753,11 @@ const I18N = {
     "ask.roleAmb": "معرف",
     "ask.amount": "مبلغ (اختیاری)",
     "ask.amountPh": "مثلاً ۵۰۰ دلار حمایت یا گفتگوی ۵۰ هزار دلار",
-    "ask.wall": "اسم کوچکم روی دیوار حامیان باشه",
+    "ask.wall": "نام کوچکم روی دیوار حامیان باشد",
+    "ask.thanks": "ثبت شد. اگر دیوار را انتخاب کردید، نامتان پس از بازبینی کوتاه نشان داده می‌شود.",
     "ask.note": "چرا الفبا؟",
     "ask.notePh": "دو خط بنویس، سرمایه، مهارت یا حمایت؟",
     "ask.submit": "ثبت کن",
-    "ask.thanks": "ثبت شد! به‌زودی برمی‌گردیم.",
     "foot.line": "مدل فارسی، سرمایه، همراهی، حمایت",
     "products.kicker": "نردبان محصول",
     "products.title": "چه می‌فروشیم، چهار مسیر درآمد",
@@ -991,6 +997,15 @@ function setLane(lane, extras = {}) {
   });
 }
 
+function laneLabel(lane, lang) {
+  const map = {
+    invest: I18N[lang]["wall.laneInvest"],
+    participate: I18N[lang]["wall.laneParticipate"],
+    donate: I18N[lang]["wall.laneDonate"],
+  };
+  return map[lane] || lane;
+}
+
 function renderStats(stats) {
   const lang = getLang();
   const c = stats?.counts || { invest: 0, participate: 0, donate: 0 };
@@ -1022,9 +1037,11 @@ function renderStats(stats) {
   wall.innerHTML = rows
     .map((w) => {
       const badge = w.founding ? `<span class="wall-badge">${escapeHtml(I18N[lang]["wall.founding"])}</span>` : "";
-      return `<li>${escapeHtml(w.name)}${badge}<em>${escapeHtml(w.lane)}</em></li>`;
+      const lane = laneLabel(w.lane, lang);
+      return `<li><span class="wall-name">${escapeHtml(w.name)}</span>${badge}<em class="wall-lane">${escapeHtml(lane)}</em></li>`;
     })
     .join("");
+  wall.classList.toggle("wall--populated", rows.length > 0);
 }
 
 function captureUtm() {

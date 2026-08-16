@@ -181,8 +181,10 @@ function isTestRecord(r) {
   const email = String(r.email || "").toLowerCase();
   const name = String(r.name || "").toLowerCase();
   if (email.endsWith("@alefba.local")) return true;
-  if (email.includes("e2e") || email.includes("test")) return true;
+  if (email.endsWith("@example.com")) return true;
+  if (email.includes("e2e") || email.includes("test") || email.includes("smoke") || email.includes("runtime-gate") || email.includes("persist-probe")) return true;
   if (name === "e2e" || name.startsWith("polish") || name === "narrative" || name === "smoke test") return true;
+  if (name.includes("runtime") || name.includes("persist probe") || name.includes("smoke")) return true;
   return false;
 }
 

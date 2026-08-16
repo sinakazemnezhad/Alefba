@@ -75,6 +75,8 @@ async function main() {
   record("home products + charter bar", home.text.includes('id="products"') && home.text.includes('id="charter-bar"'));
   record("home four-door package", home.text.includes('id="audiences"') && home.text.includes("audience-grid"));
   record("home society roster", home.text.includes("society-roster") && home.text.includes("society-role"));
+  record("home founding wall live", home.text.includes("supporter-wall") && home.text.includes("aria-live=\"polite\""));
+  record("home wall lane labels", appJs.text.includes("wall.laneParticipate") && appJs.text.includes("wall.laneInvest"));
   record("home receipts link", home.text.includes("/receipts.html") && home.text.includes("nav-panel"));
   record("home masters section", home.text.includes('id="masters"') && home.text.includes("masters.rumiT"));
   record("home literature refs", home.text.includes('id="literature"') && home.text.includes("science.refsTitle"));
@@ -112,7 +114,7 @@ async function main() {
   let statsOk = false;
   try {
     const j = JSON.parse(stats.text);
-    statsOk = typeof j === "object" && j !== null;
+    statsOk = typeof j === "object" && j !== null && Array.isArray(j.wall) && j.counts;
   } catch {
     statsOk = false;
   }

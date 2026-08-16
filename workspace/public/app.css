@@ -1477,19 +1477,48 @@ html[data-lang="fa"] .founder-in-why {
 }
 
 .wall li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   padding: 0.45rem 0.75rem;
   border: 1px solid rgba(158, 182, 200, 0.25);
   background: rgba(5, 13, 24, 0.55);
   font-size: 0.88rem;
 }
 
-.wall li em {
+.wall-name {
+  font-weight: 600;
+}
+
+.wall li em,
+.wall-lane {
   font-style: normal;
   color: var(--gold);
-  margin-inline-start: 0.35rem;
+  margin-inline-start: auto;
   font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+html[dir="rtl"] .wall-lane {
+  text-transform: none;
+}
+
+html[dir="ltr"] .wall-lane {
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.wall--populated {
+  animation: wall-fade 0.35s ease;
+}
+
+@keyframes wall-fade {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .wall-empty {
