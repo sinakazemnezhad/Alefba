@@ -22,7 +22,9 @@
     "ship:preflight": "node scripts/ship-preflight.mjs",
     "smoke:prod": "node scripts/smoke-production.mjs",
     "cf:verify": "node scripts/cf-phase0-wire.mjs verify",
-    "cf:railway-only": "node scripts/cf-phase0-wire.mjs railway-only"
+    "cf:railway-only": "node scripts/cf-phase0-wire.mjs railway-only",
+    "cf:edge:dev": "cd deploy/alefba-edge && npm run dev",
+    "cf:edge:deploy": "cd deploy/alefba-edge && npm run deploy"
   },
   "engines": {
     "node": ">=22"

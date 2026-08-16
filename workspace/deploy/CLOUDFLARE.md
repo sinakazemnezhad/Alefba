@@ -1,10 +1,12 @@
-# Cloudflare edge for Alefbâ (Railway origin → G3 Workers)
+# Cloudflare edge for Alefbâ (standalone)
 
-**Account:** sina.kazemnezhad.ca@gmail.com — see [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md).
+**Law:** [STANDALONE.md](./STANDALONE.md) — Alefbâ CF account only (sina.kazemnezhad.ca@gmail.com). **Not** Noetfield / SourceB / PLR.
 
-**Current:** Railway origin · Option D canonical URL. **G3 target:** CF Pages + Workers + D1. Spike: [g3-cloudflare/README.md](./g3-cloudflare/README.md).
+**Deploy:** [alefba-edge/README.md](./alefba-edge/README.md) — Pages + Worker project `alefba`. Railway = `RAILWAY_ORIGIN` for persist APIs.
 
-**Wire script:** `node scripts/cf-phase0-wire.mjs verify` | `wire --hostname …`
+Account runbook: [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md). G3 D1: [g3-cloudflare/](./g3-cloudflare/README.md).
+
+**Wire script (custom domain on Alefbâ zone only):** `node scripts/cf-phase0-wire.mjs verify`
 
 ## DNS
 

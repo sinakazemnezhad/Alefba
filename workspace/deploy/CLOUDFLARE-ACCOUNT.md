@@ -1,66 +1,63 @@
-# Cloudflare · sina.kazemnezhad.ca@gmail.com account
+# Cloudflare · Alefbâ standalone account
 
-**Founder choice:** Option **D** — canonical URL stays Railway:
+**Account:** sina.kazemnezhad.ca@gmail.com  
+**Law:** Alefbâ only — **not** Noetfield · **not** SourceB · **not** PLR. See [STANDALONE.md](./STANDALONE.md).
 
-`https://alefba-production.up.railway.app`
+## Stack
 
-Search Console + sitemap already on this URL. **No custom domain purchase required.**
+| Piece | Project name | Role |
+|-------|--------------|------|
+| **Workers + Pages** | `alefba` | Public charter + edge API ([alefba-edge/](./alefba-edge/README.md)) |
+| **Railway** | `alefba` | Origin for lead persist + science JSON (`RAILWAY_ORIGIN`) |
+| **D1** | `alefba-g3` | G3 instruct leads (schema in [g3-cloudflare/schema.sql](./g3-cloudflare/schema.sql)) |
 
-## What Cloudflare cannot do on Option D
-
-Cloudflare cannot proxy `*.up.railway.app` — Railway owns that zone. Orange-cloud only works on a **hostname you control** in your Cloudflare account (e.g. `alefba.yourdomain.com`).
-
-So Phase 0 for **D** = Railway production is complete. Cloudflare is **optional until you add a hostname** on a zone in this account.
-
-## Current token check (this shell)
-
-Run:
+## Deploy standalone edge
 
 ```bash
-cd workspace
-node scripts/cf-phase0-wire.mjs verify
+cd workspace/deploy/alefba-edge
+npm install
+# Add account_id to wrangler.jsonc (CF dashboard → Workers & Pages)
+npm run deploy
 ```
 
-Observed on 2026-08-16:
+### API token permissions (this account only)
 
-| Item | Status |
-|------|--------|
-| `CLOUDFLARE_API_TOKEN` | Valid |
-| Zones listed | `sourceb.ca` only |
-| DNS edit on zone | **Blocked** (token needs Zone → DNS → Edit) |
+Create token on **sina.kazemnezhad.ca@gmail.com**:
 
-To wire Alefbâ on this CF account, create an API token in the dashboard for **sina.kazemnezhad.ca@gmail.com**:
+- Account → **Workers Scripts:Edit**
+- Account → **Cloudflare Pages:Edit**
+- (Optional) Account → **D1:Edit** for G3
 
-1. Cloudflare → My Profile → API Tokens → Create Token  
-2. Template: **Edit zone DNS** (or custom: Zone:Read, DNS:Edit)  
-3. Zone resources: **Include** → the zone you will use for Alefbâ (or all zones on this account)  
-4. Store as `CLOUDFLARE_API_TOKEN` in shell / GitHub secret `CLOUDFLARE_API_TOKEN` on `sinakazemnezhad/Alefba`
+Store:
 
-**Do not** commit the token to git.
+```bash
+gh secret set CLOUDFLARE_API_TOKEN -R sinakazemnezhad/Alefba
+gh secret set CLOUDFLARE_ACCOUNT_ID -R sinakazemnezhad/Alefba
+```
 
-## When you add a custom hostname later
+**Do not** reuse Noetfield or SourceB zone tokens for Alefbâ deploy.
 
-1. Add zone to this CF account (or pick subdomain on an existing zone).  
-2. `node scripts/cf-phase0-wire.mjs wire --hostname alefba.YOURDOMAIN.com --zone YOURDOMAIN.com`  
-3. `railway domain alefba.YOURDOMAIN.com`  
-4. `railway variables --set ALEFBA_PUBLIC_ORIGIN=https://alefba.YOURDOMAIN.com`  
-5. Update `seo.js` / sitemap `SITE_ORIGIN` + redeploy  
-6. New Search Console property + sitemap submit  
-
-## Railway production (Option D — live)
+## Railway origin (optional but live today)
 
 | Variable | Value |
 |----------|--------|
-| `ALEFBA_PUBLIC_ORIGIN` | `https://alefba-production.up.railway.app` |
-| `RAILWAY_PUBLIC_DOMAIN` | `alefba-production.up.railway.app` |
+| `RAILWAY_ORIGIN` (Worker var) | `https://alefba-production.up.railway.app` |
+| `ALEFBA_PUBLIC_ORIGIN` (Railway) | same |
 
-Verify:
+Worker proxies `/api/interest`, `/api/stats`, receipts, sitemap, etc. to Railway. Edge serves `/api/v1/health` and `/api/v1/status` locally.
+
+## Custom domain (later, Alefbâ-only zone)
+
+When you add a zone on **this** CF account (not another product’s zone):
 
 ```bash
-curl -fsS https://alefba-production.up.railway.app/api/health
-node scripts/cf-phase0-wire.mjs railway-only
+node scripts/cf-phase0-wire.mjs wire --hostname alefba.YOURDOMAIN.com --zone YOURDOMAIN.com
 ```
 
-## G3 (later)
+Then attach route in `alefba-edge/wrangler.jsonc` or CF dashboard → Worker route.
 
-Workers + D1 spike lives in [g3-cloudflare/](./g3-cloudflare/README.md) — deploy to **this same CF account** when Gate 3 instruct API ships.
+## Verify token
+
+```bash
+cd workspace && npm run cf:verify
+```

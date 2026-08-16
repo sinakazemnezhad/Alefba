@@ -5,40 +5,37 @@
 Aligned to **G1→G4 gates** and the **18‑month commercial roadmap** in `governance/COMMERCIAL_SCIENTIFIC_PLAN.md`.
 
 ```text
-STATIC + RECEIPTS  → cheap edge (CF Pages / GitHub Pages for PLR only)
-LIGHT API + LEADS  → small origin (Railway) — current phase
-INSTRUCT API (G3)  → CF Workers + D1 + GPU elsewhere
-PRODUCT (G4)       → edge API + billing + optional Private VPC
+STANDALONE ALEFBÂ ONLY — not Noetfield · not SourceB · not PLR hosting
+
+CF Pages + Workers (alefba)  → public charter + edge API
+Railway (alefba)             → lead persist + science JSON origin (until D1)
 ```
 
-| Phase | Months | Gate | Charter / API host | Persistence | Inference |
-|-------|--------|------|-------------------|-------------|-----------|
-| **P0 Charter** | 0–3 | G1 | **Railway** Node | Volume `PERSIST_DIR` | — |
-| **P1 Science** | 3–8 | G2 | Railway or CF Pages + Railway API | Volume + R2 backups | External GPU |
-| **P2 Instruct** | 8–12 | G3 | **CF Pages** + **Workers** | **D1** | Workers AI / rented API |
-| **P3 Vertical** | 12–18 | G4 | CF Pages + Workers | D1 + usage metering | Dedicated GPU if justified |
-| **Private (G4)** | 12+ | G4 | Customer VPC | Customer store | Customer or dedicated |
+See [STANDALONE.md](./STANDALONE.md).
 
-### Phase 0 · Now (G1 pass · G2 in progress) — **Option D selected**
+| Phase | Months | Gate | Public edge | Persist / API origin |
+|-------|--------|------|-------------|----------------------|
+| **P0 Charter** | 0–3 | G1 | **CF Pages + Worker** + Railway URL fallback | Railway volume |
+| **P1 Science** | 3–8 | G2 | CF Pages + Worker | Railway + R2 backups |
+| **P2 Instruct** | 8–12 | G3 | CF Pages + Worker + **D1** | D1 leads; Railway optional |
+| **P3 Vertical** | 12–18 | G4 | CF Pages + Worker | D1 + billing |
 
-**Canonical URL:** `https://alefba-production.up.railway.app` (no custom domain required).
+### Phase 0 · Now (deploy standalone edge)
 
-| Do now | Why |
-|--------|-----|
-| Keep `ALEFBA_PUBLIC_ORIGIN` = Railway URL | Already set on production |
-| Search Console on Railway URL | Sitemap submitted · 7 pages |
-| CF account runbook | [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md) · `node scripts/cf-phase0-wire.mjs verify` |
+| Step | Command / doc |
+|------|----------------|
+| Standalone law | [STANDALONE.md](./STANDALONE.md) |
+| CF Pages + Worker | [alefba-edge/README.md](./alefba-edge/README.md) |
+| Railway origin (persist) | [RAILWAY.md](./RAILWAY.md) — `RAILWAY_ORIGIN` in Worker |
+| CF account | [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md) |
 
-**Cloudflare note:** CF cannot proxy `*.up.railway.app`. Edge on **sina.kazemnezhad.ca@gmail.com** CF account applies when you add a hostname on a zone you own (`wire` mode). Until then, Railway-only is correct for Option D.
+```bash
+cd workspace/deploy/alefba-edge && npm install && npm run deploy
+```
 
-Optional before custom hostname:
+Public URL becomes `https://alefba.<account>.workers.dev` (standalone). Railway stays origin for `/api/interest` until D1.
 
-| Do now | Why |
-|--------|-----|
-| CF API token with **DNS Edit** on target zone | Enables `cf-phase0-wire.mjs wire` |
-| Nightly lead backup → R2 | Survives origin migration |
-
-**Do not:** buy a domain or rewrite to D1 until you choose a hostname or G3 ships.
+Search Console today: Railway URL. After CF cutover: new property on workers.dev or Alefbâ-only custom domain.
 
 ### Phase 1 · G2 base score card (M8)
 

@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alefba",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2025-03-01",
+  "workers_dev": true,
+  // Standalone Alefbâ — NOT Noetfield / NOT SourceB / NOT PLR hosting.
+  // Set account_id from Cloudflare dashboard (sina.kazemnezhad.ca@gmail.com account).
+  // "account_id": "YOUR_CF_ACCOUNT_ID",
+  "assets": {
+    "directory": "../../public",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "ALEFBA_VERSION": "0.2.8",
+    "INSTRUCT_MVP": "not_live",
+    "RAILWAY_ORIGIN": "https://alefba-production.up.railway.app"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "alefba-g3",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
