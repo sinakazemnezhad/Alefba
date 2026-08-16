@@ -1,6 +1,5 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm ci"
 
 [deploy]
 startCommand = "node src/server.mjs"

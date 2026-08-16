@@ -9,7 +9,9 @@ import { createHash } from "node:crypto";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "../public");
-const DATA_DIR = path.resolve(__dirname, "../data");
+const DATA_DIR = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(__dirname, "../data");
 const INTEREST_FILE = path.join(DATA_DIR, "interest.jsonl");
 const RECEIPTS_FILE = path.join(DATA_DIR, "receipts.json");
 const MANIFEST_FILE = path.join(DATA_DIR, "content-manifest.json");

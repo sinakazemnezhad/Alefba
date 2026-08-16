@@ -38,5 +38,5 @@ ALEFBA_BASE_URL=https://your-host ALEFBA_ADMIN_TOKEN=... npm run smoke:prod
 
 | Gate | Status |
 |------|--------|
-| G1 | `in_progress` — probe + fertility receipt on disk |
+| G1 | `pass` — probe + live BLOOM-560m HF fertility receipt |
 | G2–G4 | `pending` |
