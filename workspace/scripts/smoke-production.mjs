@@ -188,14 +188,27 @@ async function main() {
     const rj = JSON.parse(receipts.text);
     const gates = rj.gates || [];
     const g1Gate = gates.find((g) => g.id === "G1");
-    const rest = gates.filter((g) => g.id !== "G1");
+    const g2Gate = gates.find((g) => g.id === "G2");
+    const rest = gates.filter((g) => g.id !== "G1" && g.id !== "G2");
     gatesHonest =
       g1Gate?.status === "pass" &&
       g1Gate?.hfBaselineReport &&
+      g2Gate?.status === "in_progress" &&
+      g2Gate?.scoreCard === "data/g2-score-card.json" &&
       rest.every((g) => g.status === "pending") &&
-      (rj.scoreCards?.length || 0) >= 1;
+      (rj.scoreCards?.length || 0) >= 2;
   } catch {}
-  record("gates honest G1 pass + HF receipt", gatesHonest);
+  record("gates honest G1 pass + G2 card", gatesHonest);
+
+  const g2Score = await get("/api/g2-score-card");
+  let g2Published = false;
+  let g2ScoreVal = "";
+  try {
+    const g2j = JSON.parse(g2Score.text);
+    g2Published = g2j.published === true && g2j.pass === true;
+    g2ScoreVal = String(g2j.score ?? "");
+  } catch {}
+  record("G2 score card live", g2Score.res.ok && g2Published, g2ScoreVal ? `${g2ScoreVal}%` : "");
 
   const corpus = await get("/api/corpus-inventory");
   record("corpus inventory API", corpus.res.ok && corpus.text.length > 200, `${corpus.text.length}b`);

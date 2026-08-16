@@ -62,11 +62,47 @@ function main() {
   const orthoLines = orthoExists
     ? fs.readFileSync(orthoPath, "utf8").split("\n").filter((l) => l.trim()).length
     : 0;
+  const morphPath = path.join(ROOT, "data/eval-probes/morphology-probes.fa.jsonl");
+  const readingPath = path.join(ROOT, "data/eval-probes/reading-probes.fa.jsonl");
+  const morphLines = fs.existsSync(morphPath)
+    ? fs.readFileSync(morphPath, "utf8").split("\n").filter((l) => l.trim()).length
+    : 0;
+  const readingLines = fs.existsSync(readingPath)
+    ? fs.readFileSync(readingPath, "utf8").split("\n").filter((l) => l.trim()).length
+    : 0;
   results.push({
     id: "orthography_probes_indexed",
     gate: "G2",
     pass: orthoExists && orthoLines >= 5,
     probeLines: orthoLines,
+  });
+  results.push({
+    id: "morphology_probes_indexed",
+    gate: "G2",
+    pass: morphLines >= 5,
+    probeLines: morphLines,
+  });
+  results.push({
+    id: "reading_probes_indexed",
+    gate: "G2",
+    pass: readingLines >= 5,
+    probeLines: readingLines,
+  });
+
+  const g2CardPath = path.join(ROOT, "data/g2-score-card.json");
+  let g2Published = false;
+  if (fs.existsSync(g2CardPath)) {
+    try {
+      const g2 = readJson(g2CardPath);
+      g2Published = g2.published === true && g2.pass === true;
+    } catch {
+      g2Published = false;
+    }
+  }
+  results.push({
+    id: "g2_score_card_published",
+    gate: "G2",
+    pass: g2Published,
   });
 
   const allPass = results.every((r) => r.pass);

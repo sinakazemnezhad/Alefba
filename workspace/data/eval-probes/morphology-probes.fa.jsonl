@@ -1,0 +1,6 @@
+{"id":"m01","class":"morphology","text":"کتاب‌ها","base":"کتاب","probe":"plural_zwnj"}
+{"id":"m02","class":"morphology","text":"دانشمندان","base":"دانشمند","probe":"plural_an"}
+{"id":"m03","class":"morphology","text":"می‌رود","base":"رفت","probe":"present_habitual"}
+{"id":"m04","class":"morphology","text":"خوانده‌اند","base":"خواند","probe":"past_participle"}
+{"id":"m05","class":"morphology","text":"درختان","base":"درخت","probe":"plural_an"}
+{"id":"m06","class":"morphology","text":"رفته‌ام","base":"رفت","probe":"affix_chain"}

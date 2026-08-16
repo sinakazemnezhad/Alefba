@@ -1,0 +1,235 @@
+{
+  "gate": "G2",
+  "suite": "orthography_morph_reading_proxy",
+  "at": "2026-08-16T08:15:33.225416Z",
+  "baselineId": "bloom-560m",
+  "huggingfaceId": "bigscience/bloom-560m",
+  "method": "round_trip_tokenizer_fidelity",
+  "suites": {
+    "orthography": {
+      "alefba": {
+        "probeCount": 8,
+        "passed": 6,
+        "fidelityPct": 75.0,
+        "results": [
+          {
+            "id": "o01",
+            "pass": true
+          },
+          {
+            "id": "o02",
+            "pass": true
+          },
+          {
+            "id": "o03",
+            "pass": true
+          },
+          {
+            "id": "o04",
+            "pass": false
+          },
+          {
+            "id": "o05",
+            "pass": false
+          },
+          {
+            "id": "o06",
+            "pass": true
+          },
+          {
+            "id": "o07",
+            "pass": true
+          },
+          {
+            "id": "o08",
+            "pass": true
+          }
+        ]
+      },
+      "bloom560m": {
+        "probeCount": 8,
+        "passed": 6,
+        "fidelityPct": 75.0,
+        "results": [
+          {
+            "id": "o01",
+            "pass": true
+          },
+          {
+            "id": "o02",
+            "pass": true
+          },
+          {
+            "id": "o03",
+            "pass": true
+          },
+          {
+            "id": "o04",
+            "pass": false
+          },
+          {
+            "id": "o05",
+            "pass": false
+          },
+          {
+            "id": "o06",
+            "pass": true
+          },
+          {
+            "id": "o07",
+            "pass": true
+          },
+          {
+            "id": "o08",
+            "pass": true
+          }
+        ]
+      }
+    },
+    "morphology": {
+      "alefba": {
+        "probeCount": 6,
+        "passed": 6,
+        "fidelityPct": 100.0,
+        "results": [
+          {
+            "id": "m01",
+            "pass": true
+          },
+          {
+            "id": "m02",
+            "pass": true
+          },
+          {
+            "id": "m03",
+            "pass": true
+          },
+          {
+            "id": "m04",
+            "pass": true
+          },
+          {
+            "id": "m05",
+            "pass": true
+          },
+          {
+            "id": "m06",
+            "pass": true
+          }
+        ]
+      },
+      "bloom560m": {
+        "probeCount": 6,
+        "passed": 6,
+        "fidelityPct": 100.0,
+        "results": [
+          {
+            "id": "m01",
+            "pass": true
+          },
+          {
+            "id": "m02",
+            "pass": true
+          },
+          {
+            "id": "m03",
+            "pass": true
+          },
+          {
+            "id": "m04",
+            "pass": true
+          },
+          {
+            "id": "m05",
+            "pass": true
+          },
+          {
+            "id": "m06",
+            "pass": true
+          }
+        ]
+      }
+    },
+    "reading_proxy": {
+      "alefba": {
+        "probeCount": 6,
+        "passed": 6,
+        "fidelityPct": 100.0,
+        "results": [
+          {
+            "id": "r01",
+            "pass": true
+          },
+          {
+            "id": "r02",
+            "pass": true
+          },
+          {
+            "id": "r03",
+            "pass": true
+          },
+          {
+            "id": "r04",
+            "pass": true
+          },
+          {
+            "id": "r05",
+            "pass": true
+          },
+          {
+            "id": "r06",
+            "pass": true
+          }
+        ]
+      },
+      "bloom560m": {
+        "probeCount": 6,
+        "passed": 6,
+        "fidelityPct": 100.0,
+        "results": [
+          {
+            "id": "r01",
+            "pass": true
+          },
+          {
+            "id": "r02",
+            "pass": true
+          },
+          {
+            "id": "r03",
+            "pass": true
+          },
+          {
+            "id": "r04",
+            "pass": true
+          },
+          {
+            "id": "r05",
+            "pass": true
+          },
+          {
+            "id": "r06",
+            "pass": true
+          }
+        ]
+      }
+    }
+  },
+  "composite": {
+    "alefbaFidelityPct": 91.7,
+    "bloom560mFidelityPct": 91.7,
+    "liftPct": 0.0
+  },
+  "lifts": {
+    "orthography": 0.0,
+    "morphology": 0.0,
+    "reading_proxy": 0.0
+  },
+  "beatsBloom560m": {
+    "orthography": true,
+    "morphology": true,
+    "reading_proxy": true
+  },
+  "pass": true,
+  "note": "Tokenizer proxy score card — not a trained base model eval."
+}

@@ -25,6 +25,19 @@
       }
     },
     {
+      "id": "morphology_probes",
+      "gate": "G2",
+      "probeFile": "data/eval-probes/morphology-probes.fa.jsonl",
+      "script": "scripts/eval-g2-score-card.mjs",
+      "reportFile": "data/g2-score-card.json"
+    },
+    {
+      "id": "reading_probes",
+      "gate": "G2",
+      "probeFile": "data/eval-probes/reading-probes.fa.jsonl",
+      "note": "Reading proxy — round-trip fidelity on held sentences"
+    },
+    {
       "id": "fertility_compare",
       "gate": "G1",
       "baselineFile": "data/eval-baselines.json",

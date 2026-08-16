@@ -26,6 +26,8 @@ const EVAL_HARNESS_FILE = path.join(DATA_DIR, "eval-harness-v1.json");
 const G1_REPORT_FILE = path.join(DATA_DIR, "g1-run-report.json");
 const G1_FERTILITY_FILE = path.join(DATA_DIR, "g1-tokenizer-receipt.json");
 const G1_HF_REPORT_FILE = path.join(DATA_DIR, "g1-hf-baseline-report.json");
+const G2_SCORE_CARD_FILE = path.join(DATA_DIR, "g2-score-card.json");
+const G2_ORTHO_REPORT_FILE = path.join(DATA_DIR, "g2-orthography-report.json");
 const TOKENIZER_MODEL_FILE = path.join(DATA_DIR, "tokenizer-v1-model.json");
 const API_WAITLIST_FILE = path.join(PERSIST_DIR, "api-waitlist.jsonl");
 const HOST =
@@ -354,6 +356,16 @@ async function handleApi(req, res, pathname) {
 
   if (pathname === "/api/g1-hf-baseline-report" && req.method === "GET") {
     sendJson(res, req, 200, readJsonFile(G1_HF_REPORT_FILE, { pass: false, note: "run npm run test:hf-baseline" }));
+    return true;
+  }
+
+  if (pathname === "/api/g2-score-card" && req.method === "GET") {
+    sendJson(res, req, 200, readJsonFile(G2_SCORE_CARD_FILE, { error: "not_found" }));
+    return true;
+  }
+
+  if (pathname === "/api/g2-orthography-report" && req.method === "GET") {
+    sendJson(res, req, 200, readJsonFile(G2_ORTHO_REPORT_FILE, { error: "not_found" }));
     return true;
   }
 

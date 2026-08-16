@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-13T03:45:00.000Z",
+  "updatedAt": "2026-08-16",
   "law": "Named checkpoints only — scores live in receipts.json scoreCards, not here.",
   "usage": "G1 fertility compare · G2 ortho/morph/QA · same Persian splits every run",
   "baselines": [
@@ -16,7 +16,9 @@
       "license": "bigscience-bloom-rail-1.0",
       "status": "hf_tokenizer_run",
       "charsPerToken": 1.825,
-      "hfRunAt": "2026-08-16T06:57:46.936490Z"
+      "hfRunAt": "2026-08-16T06:57:46.936490Z",
+      "g2ProxyRunAt": "2026-08-16T08:15:33.225416Z",
+      "g2CompositeFidelityPct": 91.7
     },
     {
       "id": "bloom-1b7",

@@ -1,6 +1,6 @@
 {
   "version": "0.2.8",
-  "updatedAt": "2026-08-16T06:57:46.936490Z",
+  "updatedAt": "2026-08-16T08:15:33.225416Z",
   "law": "No capability claim without a dated score card. Capital spends only after gates.",
   "gates": [
     {
@@ -17,9 +17,13 @@
     {
       "id": "G2",
       "name": "Base model",
-      "status": "pending",
+      "status": "in_progress",
       "criteria": "Published Persian score card (ortho/morph/QA)",
-      "target": "M8 milestone"
+      "target": "M8 milestone",
+      "scoreCard": "data/g2-score-card.json",
+      "orthographyReport": "data/g2-orthography-report.json",
+      "probeStatus": "tokenizer_proxy_published",
+      "note": "Tokenizer proxy score card published on held probes. Base model ortho/morph/reading lift vs fair baseline still pending M8."
     },
     {
       "id": "G3",
@@ -48,6 +52,19 @@
       "baselineScore": 1.825,
       "baselineMethod": "hf_autotokenizer",
       "notes": "Alefbâ v1 vs live BLOOM-560m tokenizer on held probes"
+    },
+    {
+      "date": "2026-08-16",
+      "gate": "G2",
+      "modelHash": "e37ed5e755f270dd",
+      "split": "public_eval_probes_ortho_morph_reading",
+      "metric": "composite_fidelity_pct",
+      "score": 91.7,
+      "baseline": "bloom-560m",
+      "baselineScore": 91.7,
+      "baselineMethod": "hf_autotokenizer_round_trip",
+      "liftPct": 0.0,
+      "notes": "First G2 score card — orthography/morphology/reading proxy on held probes. Base model lift pending M8."
     }
   ],
   "agentAttribution": {

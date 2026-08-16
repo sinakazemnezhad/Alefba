@@ -256,6 +256,32 @@ async function main() {
   record("G1 pass + HF score card", receiptsApi.res.ok && g1Honest);
 
   const recPage = await get("/receipts.html");
+
+  const g2Card = await get("/api/g2-score-card");
+  let g2Ok = false;
+  try {
+    const g2j = JSON.parse(g2Card.text);
+    g2Ok = g2j.published === true && g2j.pass === true && g2j.gate === "G2";
+  } catch {
+    g2Ok = false;
+  }
+  record("G2 score card published", g2Card.res.ok && g2Ok);
+
+  let g2GateOk = false;
+  try {
+    const rj = JSON.parse(receiptsApi.text);
+    const g2 = rj.gates?.find((g) => g.id === "G2");
+    const g2CardEntry = (rj.scoreCards || []).find((c) => c.gate === "G2");
+    g2GateOk =
+      g2?.status === "in_progress" &&
+      g2?.scoreCard === "data/g2-score-card.json" &&
+      Boolean(g2CardEntry);
+  } catch {
+    g2GateOk = false;
+  }
+  record("G2 gate in_progress + score card", receiptsApi.res.ok && g2GateOk);
+
+  record("receipts G2 section", recPage.text.includes("g2-root") && recPage.text.includes("g2-science"));
   record("receipts page root", recPage.text.includes("receipts-root") && recPage.text.includes("pages.js"));
   record("receipts G1 section", recPage.text.includes("g1-root") && recPage.text.includes("g1-science"));
 

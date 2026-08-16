@@ -1,0 +1,37 @@
+{
+  "version": "0.2.8",
+  "gate": "G2",
+  "date": "2026-08-16",
+  "at": "2026-08-16T08:15:33.225416Z",
+  "split": "public_eval_probes_ortho_morph_reading",
+  "modelId": "alefba-tokenizer-v1",
+  "modelHash": "e37ed5e755f270dd",
+  "baseline": "bloom-560m",
+  "baselineMethod": "hf_autotokenizer_round_trip",
+  "metric": "composite_fidelity_pct",
+  "score": 91.7,
+  "baselineScore": 91.7,
+  "liftPct": 0.0,
+  "suites": {
+    "orthography": {
+      "alefbaPct": 75.0,
+      "bloom560mPct": 75.0,
+      "liftPct": 0.0
+    },
+    "morphology": {
+      "alefbaPct": 100.0,
+      "bloom560mPct": 100.0,
+      "liftPct": 0.0
+    },
+    "reading_proxy": {
+      "alefbaPct": 100.0,
+      "bloom560mPct": 100.0,
+      "liftPct": 0.0
+    }
+  },
+  "class": "tokenizer_proxy",
+  "published": true,
+  "pass": true,
+  "note": "First G2 score card — orthography/morphology/reading proxy on held probes. Base model lift pending M8.",
+  "report": "data/g2-orthography-report.json"
+}

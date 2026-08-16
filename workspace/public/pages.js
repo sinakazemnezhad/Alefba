@@ -25,6 +25,10 @@
       "receipts.g1Baselines": "Baseline checkpoints",
       "receipts.g1Harness": "Eval harness v1",
       "receipts.g1Run": "Last G1 probe run",
+      "receipts.g2Title": "G2 · Persian score card",
+      "receipts.g2Lede": "Orthography · morphology · reading proxy vs BLOOM-560m on held probes.",
+      "receipts.g2Card": "G2 score card",
+      "receipts.g2Report": "G2 orthography report",
       "corpus.kicker": "Training rain · licensed bookshelf",
       "corpus.title": "Corpus & curriculum",
       "corpus.lede": "Persian-first stages from alphabet primers through books. Every shard needs provenance, license class, and quality grade.",
@@ -150,6 +154,10 @@
       "receipts.g1Baselines": "چک‌پوینت‌های خط مبنا",
       "receipts.g1Harness": "هارنس ارزیابی v1",
       "receipts.g1Run": "آخرین اجرای G1",
+      "receipts.g2Title": "G2 · کارت نمرهٔ فارسی",
+      "receipts.g2Lede": "املاء · صرف · درک مطلب (پروکسی) در برابر BLOOM-560m روی آزمون‌های نگه‌داشته.",
+      "receipts.g2Card": "کارت نمره G2",
+      "receipts.g2Report": "گزارش املا G2",
       "corpus.kicker": "باران آموزش · قفسهٔ مجوزدار",
       "corpus.title": "پیکره و برنامهٔ درسی",
       "corpus.lede":
@@ -350,7 +358,11 @@
       } else {
         html += `<h3>${lang === "fa" ? "کارت‌های نمره" : "Score cards"}</h3><table class="receipt-table"><thead><tr><th>${thDate}</th><th>${thModel}</th><th>${thSplit}</th><th>${thNotes}</th></tr></thead><tbody>`;
         for (const c of cards) {
-          html += `<tr><td>${c.date || "—"}</td><td>${c.modelHash || "—"}</td><td>${c.split || "—"}</td><td>${c.notes || "—"}</td></tr>`;
+          const metric = c.metric ? `${c.metric}: ${c.score ?? "—"}` : "";
+          const baseline = c.baselineScore != null ? ` · ${c.baseline}: ${c.baselineScore}` : "";
+          const lift = c.liftPct != null ? ` · lift ${c.liftPct}%` : "";
+          const detail = [metric, baseline, lift, c.notes || ""].filter(Boolean).join(" ");
+          html += `<tr><td>${c.date || "—"}</td><td>${c.gate || "—"} · ${c.modelHash || "—"}</td><td>${c.split || "—"}</td><td>${detail}</td></tr>`;
         }
         html += "</tbody></table>";
       }
@@ -482,6 +494,35 @@
     }
   }
 
+  async function renderG2() {
+    const root = document.getElementById("g2-root");
+    if (!root) return;
+    const lang = document.documentElement.dataset.lang || "fa";
+    const dict = dictFor(lang);
+    try {
+      const card = await fetch("/api/g2-score-card").then((r) => r.json());
+      if (!card.published) {
+        root.innerHTML = `<p class="colophon">${lang === "fa" ? "کارت نمره G2 هنوز منتشر نشده." : "G2 score card not published yet."}</p>`;
+        return;
+      }
+      let html = `<ul class="doc-list">`;
+      html += `<li><a href="/api/g2-score-card">${dict["receipts.g2Card"]}</a><span>${card.score}% ${lang === "fa" ? "وفاداری" : "fidelity"} · ${card.baseline} ${card.baselineScore}%</span></li>`;
+      html += `<li><a href="/api/g2-orthography-report">${dict["receipts.g2Report"]}</a><span>${card.class || "—"}</span></li>`;
+      html += `</ul>`;
+      if (card.suites) {
+        html += `<table class="receipt-table"><thead><tr><th>${lang === "fa" ? "سوئیت" : "Suite"}</th><th>الفبا</th><th>BLOOM</th><th>${lang === "fa" ? "فاصله" : "Lift"}</th></tr></thead><tbody>`;
+        for (const [name, row] of Object.entries(card.suites)) {
+          html += `<tr><td><code>${name}</code></td><td>${row.alefbaPct}%</td><td>${row.bloom560mPct}%</td><td>${row.liftPct}%</td></tr>`;
+        }
+        html += "</tbody></table>";
+      }
+      html += `<p class="colophon">${card.note || ""}</p>`;
+      root.innerHTML = html;
+    } catch {
+      root.innerHTML = `<p class="colophon">${lang === "fa" ? "G2 در دسترس نیست." : "G2 bundle unavailable."}</p>`;
+    }
+  }
+
   function initPressCopy() {
     document.getElementById("copy-boilerplate")?.addEventListener("click", () =>
       navigator.clipboard?.writeText(document.getElementById("press-boilerplate")?.textContent || "")
@@ -497,6 +538,7 @@
   initPressCopy();
   renderInventory();
   renderG1();
+  renderG2();
   document.getElementById("lang-btn")?.addEventListener("click", () => {
     const cur = document.documentElement.dataset.lang || "fa";
     applyLang(cur === "en" ? "fa" : "en");
