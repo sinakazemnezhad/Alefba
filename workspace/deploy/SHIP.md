@@ -31,8 +31,12 @@ See [RAILWAY.md](./RAILWAY.md). Required:
 ## Live smoke
 
 ```bash
-ALEFBA_BASE_URL=https://your-host ALEFBA_ADMIN_TOKEN=... npm run smoke:prod
+ALEFBA_BASE_URL=https://your-host npm run smoke:prod
 ```
+
+Post-deploy gate (GHA `deploy-railway.yml`): `railway up` → `smoke:prod` with `PROD_HEALTH_WAIT_SEC=300`.
+
+**Deploy path:** push `main` → GHA only. Do not manually deploy from Railway dashboard.
 
 ## Honest gates (v0.2.8)
 

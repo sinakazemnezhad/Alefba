@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-/** Production smoke — run against live BASE URL after deploy */
+/** Production runtime gate — live URL after deploy (health + critical path) */
 
 const BASE = (process.env.ALEFBA_BASE_URL || process.env.ALEFBA_BASE || "").replace(/\/$/, "");
 const ADMIN = process.env.ALEFBA_ADMIN_TOKEN || "";
 const MIN_HTML = 1500;
+const WAIT_SEC = Number(process.env.PROD_HEALTH_WAIT_SEC || 0);
+const WAIT_INTERVAL_MS = 5000;
 
 if (!BASE) {
   console.error("Set ALEFBA_BASE_URL (e.g. https://alefba.example)");
@@ -17,14 +19,48 @@ function record(name, ok, detail = "") {
   console.log(ok ? "PASS" : "RED", name, detail ? `— ${detail}` : "");
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function get(path) {
   const res = await fetch(`${BASE}${path}`);
   const text = await res.text();
   return { res, text };
 }
 
+async function waitForHealth() {
+  if (!WAIT_SEC) return true;
+  const attempts = Math.ceil(WAIT_SEC / (WAIT_INTERVAL_MS / 1000));
+  console.log(`Waiting for health (max ${WAIT_SEC}s)…\n`);
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const health = await get("/api/health");
+      if (health.res.ok) {
+        const j = JSON.parse(health.text);
+        if (j.version === "0.2.8" && j.ok) {
+          record("health ready after deploy", true, `${(i + 1) * (WAIT_INTERVAL_MS / 1000)}s`);
+          return true;
+        }
+      }
+    } catch {
+      /* retry */
+    }
+    await sleep(WAIT_INTERVAL_MS);
+  }
+  record("health ready after deploy", false, `timeout ${WAIT_SEC}s`);
+  return false;
+}
+
 async function main() {
-  console.log(`Alefbâ production smoke → ${BASE}\n`);
+  console.log(`Alefbâ production runtime gate → ${BASE}\n`);
+
+  if (WAIT_SEC) {
+    const ready = await waitForHealth();
+    if (!ready) {
+      process.exit(1);
+    }
+  }
 
   const health = await get("/api/health");
   let healthJ = {};
@@ -33,6 +69,13 @@ async function main() {
   } catch {}
   record("health 200", health.res.ok, `${healthJ.version || ""}`);
   record("health version 0.2.8", healthJ.version === "0.2.8");
+
+  const v1Health = await get("/api/v1/health");
+  let v1H = {};
+  try {
+    v1H = JSON.parse(v1Health.text);
+  } catch {}
+  record("v1 health 200", v1Health.res.ok && v1H.ok, v1H.instructMvp || "");
 
   const release = await get("/api/release.json");
   let relJ = {};
@@ -45,6 +88,20 @@ async function main() {
     const p = await get(path);
     record(`page ${path}`, p.res.ok && p.text.length >= MIN_HTML, `${p.text.length}b`);
   }
+
+  const home = await get("/");
+  record(
+    "frontend bundle linked",
+    home.text.includes("/app.js") && home.text.includes("data-i18n"),
+    "app.js + i18n"
+  );
+
+  const statsBefore = await get("/api/stats");
+  let statsBeforeJ = { counts: { total: 0 } };
+  try {
+    statsBeforeJ = JSON.parse(statsBefore.text);
+  } catch {}
+  record("stats API (frontend wall)", statsBefore.res.ok, `total=${statsBeforeJ.counts?.total ?? "?"}`);
 
   const exportNoAuth = await get("/api/interest/export.json");
   let exportJ = {};
@@ -64,33 +121,84 @@ async function main() {
     record("export ok with admin token", expAuth.status === 200, String(expAuth.status));
   }
 
+  const probeEmail = `runtime-gate-${Date.now()}@example.com`;
   const post = await fetch(`${BASE}/api/interest`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       lane: "participate",
-      name: "Smoke Test",
-      email: `smoke-${Date.now()}@alefba.local`,
+      name: "Runtime Gate",
+      email: probeEmail,
       lang: "fa",
       showOnWall: false,
     }),
   });
-  record("interest POST", post.status === 201, String(post.status));
+  record("interest POST (critical path)", post.status === 201, String(post.status));
+
+  const statsAfter = await get("/api/stats");
+  let statsAfterJ = {};
+  try {
+    statsAfterJ = JSON.parse(statsAfter.text);
+  } catch {}
+  const totalAfter = statsAfterJ.counts?.total ?? 0;
+  const totalBefore = statsBeforeJ.counts?.total ?? 0;
+  record(
+    "interest persisted (stats delta)",
+    totalAfter > totalBefore,
+    `${totalBefore} → ${totalAfter}`
+  );
+
+  const statsRefresh = await get("/api/stats");
+  let statsRefreshJ = {};
+  try {
+    statsRefreshJ = JSON.parse(statsRefresh.text);
+  } catch {}
+  record(
+    "interest persists on refresh",
+    statsRefreshJ.counts?.total === totalAfter,
+    `total=${statsRefreshJ.counts?.total ?? "?"}`
+  );
+
+  const waitlist = await fetch(`${BASE}/api/v1/waitlist`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: `waitlist-${probeEmail}`,
+      name: "Runtime Gate",
+      lane: "builder",
+    }),
+  });
+  let waitJ = {};
+  try {
+    waitJ = JSON.parse(await waitlist.text());
+  } catch {}
+  record("waitlist POST", waitlist.status === 201 && waitJ.ok, waitJ.message || String(waitlist.status));
+
+  const v1Status = await get("/api/v1/status");
+  let statusJ = {};
+  try {
+    statusJ = JSON.parse(v1Status.text);
+  } catch {}
+  const g1 = (statusJ.gates || []).find((g) => g.id === "G1");
+  record("v1 status gates", v1Status.res.ok && g1?.status === "pass", `G1=${g1?.status || "?"}`);
 
   const receipts = await get("/api/receipts");
   let gatesHonest = false;
   try {
     const rj = JSON.parse(receipts.text);
     const gates = rj.gates || [];
-    const g1 = gates.find((g) => g.id === "G1");
+    const g1Gate = gates.find((g) => g.id === "G1");
     const rest = gates.filter((g) => g.id !== "G1");
     gatesHonest =
-      g1?.status === "pass" &&
-      g1?.hfBaselineReport &&
+      g1Gate?.status === "pass" &&
+      g1Gate?.hfBaselineReport &&
       rest.every((g) => g.status === "pending") &&
       (rj.scoreCards?.length || 0) >= 1;
   } catch {}
   record("gates honest G1 pass + HF receipt", gatesHonest);
+
+  const corpus = await get("/api/corpus-inventory");
+  record("corpus inventory API", corpus.res.ok && corpus.text.length > 200, `${corpus.text.length}b`);
 
   const failed = results.filter((r) => !r.ok);
   console.log(`\n${failed.length ? "RED" : "GREEN"}  ${results.length - failed.length}/${results.length} pass`);
