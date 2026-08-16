@@ -11,6 +11,24 @@
 | **Railway** | `alefba` | Origin for lead persist + science JSON (`RAILWAY_ORIGIN`) |
 | **D1** | `alefba-g3` | G3 instruct leads (schema in [g3-cloudflare/schema.sql](./g3-cloudflare/schema.sql)) |
 
+## Dashboard (this account)
+
+| Surface | Link |
+|---------|------|
+| **Home** | https://dash.cloudflare.com/0d0b967b77e2e5535455d39ff3dae72c/home |
+| **Workers & Pages** | https://dash.cloudflare.com/0d0b967b77e2e5535455d39ff3dae72c/workers-and-pages |
+| **Worker `alefba`** | https://dash.cloudflare.com/0d0b967b77e2e5535455d39ff3dae72c/workers/services/view/alefba/production |
+| **D1 `alefba-g3`** | https://dash.cloudflare.com/0d0b967b77e2e5535455d39ff3dae72c/workers/d1 |
+
+
+| | |
+|---|---|
+| **URL** | https://alefba.sina-kazemnezhad-ca.workers.dev |
+| **Account** | `0d0b967b77e2e5535455d39ff3dae72c` |
+| **D1** | `alefba-g3` · schema applied |
+
+Railway remains origin for `/api/interest` and science JSON (`RAILWAY_ORIGIN`).
+
 ## Deploy standalone edge
 
 ```bash
@@ -32,7 +50,7 @@ Store:
 
 ```bash
 gh secret set CLOUDFLARE_API_TOKEN -R sinakazemnezhad/Alefba
-gh secret set CLOUDFLARE_ACCOUNT_ID -R sinakazemnezhad/Alefba
+gh variable set CLOUDFLARE_ACCOUNT_ID -R sinakazemnezhad/Alefba --body 0d0b967b77e2e5535455d39ff3dae72c
 ```
 
 **Do not** reuse Noetfield or SourceB zone tokens for Alefbâ deploy.

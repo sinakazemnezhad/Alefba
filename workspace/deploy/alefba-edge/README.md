@@ -30,7 +30,13 @@ cd workspace/deploy/alefba-edge
 npm run deploy
 ```
 
-Produces a **workers.dev** URL like `https://alefba.<subdomain>.workers.dev` — use as standalone public URL or attach a custom domain later on **this** CF account only.
+Produces a **workers.dev** URL — **live:**
+
+**https://alefba.sina-kazemnezhad-ca.workers.dev**
+
+Account ID: `0d0b967b77e2e5535455d39ff3dae72c` · D1 `alefba-g3` (`35ac9849-4fb3-42df-ac65-c1ddb90cb532`).
+
+Or attach a custom domain later on **this** CF account only.
 
 ### Required secrets (GitHub or shell)
 

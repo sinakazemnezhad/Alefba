@@ -5,8 +5,7 @@
   "compatibility_date": "2025-03-01",
   "workers_dev": true,
   // Standalone Alefbâ — NOT Noetfield / NOT SourceB / NOT PLR hosting.
-  // Set account_id from Cloudflare dashboard (sina.kazemnezhad.ca@gmail.com account).
-  // "account_id": "YOUR_CF_ACCOUNT_ID",
+  "account_id": "0d0b967b77e2e5535455d39ff3dae72c",
   "assets": {
     "directory": "../../public",
     "binding": "ASSETS"
@@ -20,7 +19,7 @@
     {
       "binding": "DB",
       "database_name": "alefba-g3",
-      "database_id": "00000000-0000-0000-0000-000000000000"
+      "database_id": "35ac9849-4fb3-42df-ac65-c1ddb90cb532"
     }
   ]
 }
