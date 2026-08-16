@@ -1,7 +1,7 @@
 {
   "harness": "Alefbâ Eval Harness v1",
   "version": "1.0.0",
-  "at": "2026-08-16T08:15:33.362Z",
+  "at": "2026-08-16T10:01:24.896Z",
   "results": [
     {
       "id": "alphabet_coverage",
@@ -45,7 +45,7 @@
   "g1Detail": {
     "suite": "alphabet_coverage",
     "gate": "G1",
-    "at": "2026-08-16T08:15:33.359Z",
+    "at": "2026-08-16T10:01:24.892Z",
     "specVersion": "1.0.0",
     "probeCount": 15,
     "letterCoveragePct": 100,

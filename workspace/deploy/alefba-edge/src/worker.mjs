@@ -59,6 +59,58 @@ function json(data, status = 200) {
   });
 }
 
+async function readJson(request) {
+  try {
+    return await request.json();
+  } catch {
+    return null;
+  }
+}
+
+async function handleWaitlistPost(request, env) {
+  const data = await readJson(request);
+  if (!data?.email) {
+    return json({ ok: false, error: "email_required" }, 400);
+  }
+  const row = {
+    name: String(data.name || "").trim().slice(0, 120),
+    email: String(data.email || "").trim().slice(0, 180),
+    use_case: String(data.useCase || data.role || "").trim().slice(0, 200),
+    lang: String(data.lang || "").trim().slice(0, 8),
+  };
+  if (!env.DB) {
+    return json({
+      ok: true,
+      message: "waitlist_accepted_stub",
+      instructMvp: env.INSTRUCT_MVP || "not_live",
+      persisted: false,
+      row,
+    }, 201);
+  }
+  try {
+    await env.DB.prepare(
+      `INSERT INTO api_waitlist (name, email, use_case, lang)
+       VALUES (?1, ?2, ?3, ?4)
+       ON CONFLICT(email) DO UPDATE SET
+         name = excluded.name,
+         use_case = excluded.use_case,
+         lang = excluded.lang`
+    )
+      .bind(row.name || null, row.email, row.use_case || null, row.lang || null)
+      .run();
+    return json({
+      ok: true,
+      message: "waitlist_saved",
+      instructMvp: env.INSTRUCT_MVP || "not_live",
+      migration: env.MIGRATION_PHASE || "g3_waitlist_d1",
+      persisted: true,
+      surface: "alefba-standalone-edge",
+    }, 201);
+  } catch (err) {
+    return json({ ok: false, error: String(err.message || err) }, 500);
+  }
+}
+
 async function proxyToRailway(request, env) {
   const origin = (env.RAILWAY_ORIGIN || "https://alefba-production.up.railway.app").replace(/\/$/, "");
   const url = new URL(request.url);
@@ -94,11 +146,22 @@ async function handleV1Health(env) {
 }
 
 async function handleV1Status(env) {
+  let waitlistRows = null;
+  if (env.DB) {
+    try {
+      const row = await env.DB.prepare("SELECT COUNT(*) AS n FROM api_waitlist").first();
+      waitlistRows = row?.n ?? 0;
+    } catch {
+      waitlistRows = null;
+    }
+  }
   return json({
     version: env.ALEFBA_VERSION || VERSION,
     surface: "alefba-standalone-edge",
     instructMvp: env.INSTRUCT_MVP || "not_live",
     apiAlpha: "waitlist",
+    waitlistRows,
+    migration: env.MIGRATION_PHASE || "g3_waitlist_d1",
     gates: [
       { id: "G1", status: "pass" },
       { id: "G2", status: "in_progress" },
@@ -121,6 +184,9 @@ async function handleWorkerApi(request, env) {
   }
   if (url.pathname === "/api/v1/status" && request.method === "GET") {
     return handleV1Status(env);
+  }
+  if (url.pathname === "/api/v1/waitlist" && request.method === "POST") {
+    return handleWaitlistPost(request, env);
   }
   return proxyToRailway(request, env);
 }

@@ -16,8 +16,8 @@
       "license": "bigscience-bloom-rail-1.0",
       "status": "hf_tokenizer_run",
       "charsPerToken": 1.825,
-      "hfRunAt": "2026-08-16T06:57:46.936490Z",
-      "g2ProxyRunAt": "2026-08-16T08:15:33.225416Z",
+      "hfRunAt": "2026-08-16T10:01:24.741403Z",
+      "g2ProxyRunAt": "2026-08-16T10:00:56.543306Z",
       "g2CompositeFidelityPct": 91.7
     },
     {
@@ -79,7 +79,7 @@
       "license": "proprietary_research",
       "status": "fertility_receipt_hf",
       "charsPerToken": 3.888,
-      "modelHash": "205839eb015478e7"
+      "modelHash": "97e64b332d98a533"
     }
   ],
   "externalEvalOnly": [

@@ -13,6 +13,7 @@
   "vars": {
     "ALEFBA_VERSION": "0.2.8",
     "INSTRUCT_MVP": "not_live",
+    "MIGRATION_PHASE": "g3_waitlist_d1",
     "RAILWAY_ORIGIN": "https://alefba-production.up.railway.app",
     "ALEFBA_PUBLIC_ORIGIN": "https://alefba.sina-kazemnezhad-ca.workers.dev"
   },

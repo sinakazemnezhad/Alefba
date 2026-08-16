@@ -1,7 +1,7 @@
 {
   "gate": "G2",
   "suite": "orthography_morph_reading_proxy",
-  "at": "2026-08-16T08:15:33.225416Z",
+  "at": "2026-08-16T10:00:56.543306Z",
   "baselineId": "bloom-560m",
   "huggingfaceId": "bigscience/bloom-560m",
   "method": "round_trip_tokenizer_fidelity",

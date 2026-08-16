@@ -1,7 +1,7 @@
 {
   "suite": "alphabet_coverage",
   "gate": "G1",
-  "at": "2026-08-16T06:57:47.114Z",
+  "at": "2026-08-16T10:01:24.892Z",
   "specVersion": "1.0.0",
   "probeCount": 15,
   "letterCoveragePct": 100,
