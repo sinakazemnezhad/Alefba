@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-13T03:45:00.000Z",
+  "law": "Named checkpoints only — scores live in receipts.json scoreCards, not here.",
+  "usage": "G1 fertility compare · G2 ortho/morph/QA · same Persian splits every run",
+  "baselines": [
+    {
+      "id": "bloom-560m",
+      "family": "multilingual",
+      "huggingfaceId": "bigscience/bloom-560m",
+      "persianPosture": "thin_slice",
+      "roles": [
+        "G1_fertility",
+        "G2_proxy"
+      ],
+      "license": "bigscience-bloom-rail-1.0",
+      "status": "hf_tokenizer_run",
+      "charsPerToken": 1.825,
+      "hfRunAt": "2026-08-16T06:57:46.936490Z"
+    },
+    {
+      "id": "bloom-1b7",
+      "family": "multilingual",
+      "huggingfaceId": "bigscience/bloom-1b7",
+      "persianPosture": "thin_slice",
+      "roles": [
+        "G1_fertility",
+        "G2_proxy"
+      ],
+      "license": "bigscience-bloom-rail-1.0",
+      "status": "listed_not_run"
+    },
+    {
+      "id": "llama-3.2-3b",
+      "family": "multilingual",
+      "huggingfaceId": "meta-llama/Llama-3.2-3B",
+      "persianPosture": "secondary_script",
+      "roles": [
+        "G2_ortho",
+        "G2_reading",
+        "G3_instruct"
+      ],
+      "license": "llama-3.2-community",
+      "status": "listed_not_run"
+    },
+    {
+      "id": "gemma-2-2b",
+      "family": "multilingual",
+      "huggingfaceId": "google/gemma-2-2b",
+      "persianPosture": "secondary_script",
+      "roles": [
+        "G2_proxy"
+      ],
+      "license": "gemma-terms",
+      "status": "listed_not_run"
+    },
+    {
+      "id": "mGPT-1.3b",
+      "family": "multilingual",
+      "huggingfaceId": "ai-forever/mGPT",
+      "persianPosture": "multilingual_mixed",
+      "roles": [
+        "G1_fertility",
+        "G2_proxy"
+      ],
+      "license": "check_hf_card",
+      "status": "listed_not_run"
+    },
+    {
+      "id": "alefba-tokenizer-v1",
+      "family": "alefba",
+      "huggingfaceId": null,
+      "persianPosture": "native_first",
+      "roles": [
+        "G1_target"
+      ],
+      "license": "proprietary_research",
+      "status": "fertility_receipt_hf",
+      "charsPerToken": 3.888,
+      "modelHash": "205839eb015478e7"
+    }
+  ],
+  "externalEvalOnly": [
+    {
+      "id": "parse-benchmark",
+      "name": "PARSE",
+      "role": "eval_only",
+      "note": "Persian reading — cite split on score card"
+    },
+    {
+      "id": "farstail",
+      "name": "FarsTail",
+      "role": "eval_only",
+      "note": "FA entailment — eval harness v1 indexes; train only with license check"
+    },
+    {
+      "id": "persianmedqa",
+      "name": "PersianMedQA",
+      "role": "eval_only",
+      "note": "Domain QA — held-out eval lane"
+    }
+  ]
+}

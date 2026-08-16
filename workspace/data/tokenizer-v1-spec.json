@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "gate": "G1",
+  "status": "spec_ready",
+  "updatedAt": "2026-08-13T03:45:00.000Z",
+  "name": "Alefbâ Tokenizer v1",
+  "algorithm": {
+    "family": "BPE",
+    "fallback": "Unigram",
+    "implementation": "SentencePiece-class or HuggingFace tokenizers",
+    "vocabSizeTarget": 32000,
+    "specialTokens": ["<pad>", "<bos>", "<eos>", "<unk>", "<zwnj>"]
+  },
+  "persianFirst": {
+    "latinSecondary": true,
+    "minPersianCharCoveragePct": 100,
+    "minJoiningFormCoveragePct": 95,
+    "zwnjRequired": true,
+    "arabicYeKehNormalization": "persian_standard"
+  },
+  "alphabet": {
+    "letters": [
+      "ا", "ب", "پ", "ت", "ث", "ج", "چ", "ح", "خ", "د",
+      "ذ", "ر", "ز", "ژ", "س", "ش", "ص", "ض", "ط", "ظ",
+      "ع", "غ", "ف", "ق", "ک", "گ", "ل", "م", "ن", "و",
+      "ه", "ی"
+    ],
+    "extended": ["آ", "ء", "ئ", "ة", "ك", "ي", "ۀ", "ٔ"],
+    "digits": ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"],
+    "latinDigits": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    "punctuation": [".", ",", "؛", "؟", "!", ":", "«", "»", "-", "—", "…"],
+    "zwnj": "\u200c"
+  },
+  "fertility": {
+    "metric": "characters_per_token",
+    "probeFile": "data/eval-probes/alphabet-probes.fa.jsonl",
+    "baselineCompare": "eval-baselines.json",
+    "targetVsBloom560m": "lower_or_equal_chars_per_token_on_fa_probes"
+  },
+  "gateCriteria": {
+    "alphabetCoveragePct": 100,
+    "joiningFormCoveragePct": 95,
+    "zwnjInVocab": true,
+    "fertilityReceiptRequired": true,
+    "baselineNamedOnReceipt": true
+  },
+  "trainingCorpusShards": ["a0-primer-probes-v1", "a0-joining-forms-v1"],
+  "receiptArtifact": "data/g1-tokenizer-receipt.json",
+  "law": "No G1 pass without dated fertility receipt vs named baseline on held probe split."
+}

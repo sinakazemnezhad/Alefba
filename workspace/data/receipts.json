@@ -1,0 +1,65 @@
+{
+  "version": "0.2.8",
+  "updatedAt": "2026-08-16T06:57:46.936490Z",
+  "law": "No capability claim without a dated score card. Capital spends only after gates.",
+  "gates": [
+    {
+      "id": "G1",
+      "name": "Tokenizer",
+      "status": "pass",
+      "criteria": "Alphabet coverage probes pass + fertility receipt vs named baseline (tokenizer-v1-spec.json)",
+      "target": "data/tokenizer-v1-spec.json · scripts/g1-verify.mjs",
+      "harness": "scripts/eval-harness-v1.mjs",
+      "probeStatus": "hf_baseline_run",
+      "fertilityReceipt": "data/g1-tokenizer-receipt.json",
+      "hfBaselineReport": "data/g1-hf-baseline-report.json"
+    },
+    {
+      "id": "G2",
+      "name": "Base model",
+      "status": "pending",
+      "criteria": "Published Persian score card (ortho/morph/QA)",
+      "target": "M8 milestone"
+    },
+    {
+      "id": "G3",
+      "name": "Instruct",
+      "status": "pending",
+      "criteria": "Human rubrics + 3 design partners on API",
+      "target": "M12 milestone"
+    },
+    {
+      "id": "G4",
+      "name": "Product",
+      "status": "pending",
+      "criteria": "Paying vertical contract or Private usage",
+      "target": "M18 milestone"
+    }
+  ],
+  "scoreCards": [
+    {
+      "date": "2026-08-16",
+      "gate": "G1",
+      "modelHash": "e37ed5e755f270dd",
+      "split": "public_eval_probes",
+      "metric": "chars_per_token",
+      "score": 3.888,
+      "baseline": "bloom-560m",
+      "baselineScore": 1.825,
+      "baselineMethod": "hf_autotokenizer",
+      "notes": "Alefbâ v1 vs live BLOOM-560m tokenizer on held probes"
+    }
+  ],
+  "agentAttribution": {
+    "repo": "PLUS ONE",
+    "product": "DIS BRAND",
+    "namespace": "dis-brand-agent",
+    "tag": "DIS-PLUSONE-ALEFBA-WORKSPACE-DATA-RECEIPTS-JSON",
+    "fileTag": "DIS-PLUSONE-ALEFBA-WORKSPACE-DATA-RECEIPTS-JSON",
+    "name": "DIS BRAND Governed Agent",
+    "agent": "DIS-PLUSONE-GOV-AGENT",
+    "action": "edit",
+    "at": "2026-08-09T20:27:26.317Z",
+    "file": "ALEFBA/workspace/data/receipts.json"
+  }
+}

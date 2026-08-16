@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="الفبا مدل فارسی است که از حرف شروع می‌کند. می‌خواهی سرمایه بگذاری، به تیم بیایی یا یک دور آموزش را حمایت کنی؟ شفاف و واقعی." />
+  <meta name="theme-color" content="#f6f0e6" />
+  <title>الفبا از حرف تا کتاب</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="الفبا، مدل فارسی از حرف تا کتاب" />
+  <meta property="og:description" content="مدل زبانی فارسی از الفبا تا کتاب. برنامه باز با گزارش‌های شفاف." />
+  <meta property="og:image" content="/og-share.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="الفبا، مدل فارسی از حرف تا کتاب" />
+  <meta name="twitter:description" content="مدل زبانی فارسی از الفبا تا کتاب. برنامه باز با گزارش‌های شفاف." />
+  <meta name="twitter:image" content="/og-share.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/app.css?v=0.2.8.paper" />
+  <link rel="stylesheet" href="/persian-human.css?v=0.2.8.paper" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="live-bar" aria-hidden="true">
+    <div class="live-track" id="live-track"></div>
+  </div>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Alefbâ home">
+      <span class="brand-mark" aria-hidden="true">ا</span>
+      <span class="brand-text">
+        <strong data-i18n="brand">Alefbâ</strong>
+        <small data-i18n="brandSub">Persian foundation intelligence</small>
+      </span>
+    </a>
+    <div class="top-actions">
+      <button type="button" class="lang-btn" id="lang-btn" aria-label="Switch language">فا</button>
+      <a class="btn btn-primary btn-header-cta" href="#lanes" data-i18n="nav.ctaShort">Join</a>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-panel" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-panel" id="nav-panel" hidden>
+    <nav aria-label="Mobile">
+      <a href="#why" data-i18n="nav.why">Why now</a>
+      <a href="#masters" data-i18n="nav.masters">Literary masters</a>
+      <a href="#proof" data-i18n="nav.proof">Community</a>
+      <a href="#sample" data-i18n="nav.sample">Birth of mind</a>
+      <a href="#lanes" data-i18n="nav.lanes">Invest · Join · Donate</a>
+      <a href="#pitch" data-i18n="nav.pitch">Pitch</a>
+      <a href="#products" data-i18n="nav.products">Products</a>
+      <a href="#science" data-i18n="nav.science">Science</a>
+      <a href="/receipts.html" data-i18n="nav.receipts">Receipts</a>
+      <a href="#pattern" data-i18n="nav.pattern">China→Alefbâ</a>
+      <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+      <a href="/white-paper.html" data-i18n="nav.paper">White paper</a>
+      <a href="/press.html" data-i18n="nav.press">Press</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#share" data-i18n="nav.share">Share</a>
+      <a href="#ask" data-i18n="nav.cta">Join the movement</a>
+    </nav>
+  </div>
+
+  <aside class="charter-bar" id="charter-bar" aria-label="Charter quick nav">
+    <nav>
+      <a href="#lanes" data-i18n="charter.invest">Invest</a>
+      <a href="/white-paper.html" data-i18n="charter.paper">Paper</a>
+      <a href="#proof" data-i18n="charter.society">Society</a>
+      <a href="/receipts.html" data-i18n="charter.receipts">Receipts</a>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-plane" aria-hidden="true">
+        <div class="hero-wash"></div>
+        <div class="hero-orb hero-orb-a"></div>
+        <div class="hero-orb hero-orb-b"></div>
+        <div class="hero-geometry"></div>
+        <div class="hero-letters">
+          <span>ا</span><span>ب</span><span>پ</span><span>ت</span><span>ث</span><span>ج</span><span>چ</span><span>ح</span><span>خ</span><span>د</span>
+          <span>ذ</span><span>ر</span><span>ز</span><span>ژ</span><span>س</span><span>ش</span><span>ص</span><span>ض</span><span>ط</span><span>ظ</span>
+          <span>ع</span><span>غ</span><span>ف</span><span>ق</span><span>ک</span><span>گ</span><span>ل</span><span>م</span><span>ن</span><span>و</span>
+          <span>ه</span><span>ی</span>
+        </div>
+      </div>
+      <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Founding scientific charter · Persian foundation intelligence</span></p>
+        <h1 id="hero-title">
+          <span class="brand-hero" data-i18n="hero.brand">Alefbâ</span>
+          <span class="brand-hero-fa" lang="fa" dir="rtl">الفبا</span>
+        </h1>
+        <p class="hero-hook" data-i18n="hero.hook">از «ا» شروع می‌کنیم، تا کتاب می‌رویم.</p>
+        <p class="hero-verse" data-i18n="hero.verse">حافظ هنوز با ما حرف می‌زند.</p>
+        <div class="hero-dialog" aria-label="Sample conversation">
+          <div class="hero-dialog-line hero-dialog-line--you">
+            <span class="chat-avatar chat-avatar--you" aria-hidden="true">؟</span>
+            <div class="chat-stack">
+              <span class="hero-dialog-who" data-i18n="hero.d1who">تو</span>
+              <p data-i18n="hero.d1">این جملهٔ حافظ رو کامل کن.</p>
+            </div>
+          </div>
+          <div class="hero-dialog-line hero-dialog-line--alefba">
+            <span class="chat-avatar chat-avatar--alefba" aria-hidden="true">ا</span>
+            <div class="chat-stack">
+              <span class="hero-dialog-who" data-i18n="hero.d2who">الفبا</span>
+              <p data-i18n="hero.d2">هنوز نه! بذار بیشتر کتاب فارسی بخونم، بعد شعر حدس بزنم.</p>
+            </div>
+          </div>
+        </div>
+        <p class="lede" data-i18n="hero.lede">ما مدلی فارسی می‌سازیم که مثل بچه از الفبا شروع می‌کند. می‌خواهیم از مولوی، حافظ، سعدی و فردوسی یاد بگیرد. از کتاب واقعی، با گزارش شفاف.</p>
+        <div class="society-strip" aria-label="Institutional posture">
+          <span data-i18n="society.s1">جمع سازندگان</span>
+          <span data-i18n="society.s2">کتاب واقعی</span>
+          <span data-i18n="society.s3">باز و شفاف</span>
+          <span data-i18n="society.s4">یک داستان · چهار راه</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-glow" href="#lanes" data-i18n="hero.cta1">Invest · Join · Donate</a>
+          <a class="btn btn-ghost" href="/white-paper.html" data-i18n="hero.ctaPaper">سند بنیادگذاری</a>
+        </div>
+        <div class="hero-trust" aria-label="Signals">
+          <span data-i18n="hero.t1">ابزار جهانی</span>
+          <span data-i18n="hero.t2">داده و سنجش فارسی</span>
+          <span data-i18n="hero.t3">اول کتاب، بعد ادعا</span>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="section section-alt audience-package" id="audiences" aria-labelledby="audiences-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="aud.kicker">One package · four doors</p>
+        <h2 id="audiences-title" data-i18n="aud.title">Same charter — a reason for you to lean in</h2>
+        <p class="section-lede" data-i18n="aud.lede">One founding program on disk. Each visitor sees their door immediately — capital, corpus, craft, or community — without a different story.</p>
+        <div class="audience-grid card-grid card-grid--2">
+          <article class="ds-card audience-card audience-card--invest">
+            <p class="audience-tag" data-i18n="aud.investTag">Investor</p>
+            <h3 data-i18n="aud.investH">Fund gates, not slogans</h3>
+            <p data-i18n="aud.investP">Persian foundation intelligence with dated receipts and an 18-month gate ladder. Capital deploys after tokenizer proof.</p>
+            <a class="btn btn-ghost" href="/data-room.html" data-i18n="aud.investCta1">Data room</a>
+            <a class="btn btn-primary" href="#lanes" data-lane="invest" data-i18n="aud.investCta2">Talk capital</a>
+          </article>
+          <article class="ds-card audience-card audience-card--partner">
+            <p class="audience-tag" data-i18n="aud.partnerTag">Partner · publisher</p>
+            <h3 data-i18n="aud.partnerH">Your bookshelf becomes the rain</h3>
+            <p data-i18n="aud.partnerP">Licensed Persian literature with provenance — alphabet through books. Gate 1 opens with publisher partners and clear license records.</p>
+            <a class="btn btn-ghost" href="/corpus.html" data-i18n="aud.partnerCta1">Corpus brief</a>
+            <a class="btn btn-primary" href="#lanes" data-lane="participate" data-i18n="aud.partnerCta2">Publisher lane</a>
+          </article>
+          <article class="ds-card audience-card audience-card--builder">
+            <p class="audience-tag" data-i18n="aud.builderTag">Builder · crew</p>
+            <h3 data-i18n="aud.builderH">Ship the Persian door on real machinery</h3>
+            <p data-i18n="aud.builderP">Tokenizer, training loop, eval guild, API path — standard stack, Persian retuned at entry, feed, target, and proof.</p>
+            <a class="btn btn-ghost" href="/receipts.html" data-i18n="aud.builderCta1">Gate status</a>
+            <a class="btn btn-primary" href="#lanes" data-lane="participate" data-i18n="aud.builderCta2">Join the crew</a>
+          </article>
+          <article class="ds-card audience-card audience-card--public">
+            <p class="audience-tag" data-i18n="aud.publicTag">Public · ambassador</p>
+            <h3 data-i18n="aud.publicH">Grow the society that anchors Persian AI</h3>
+            <p data-i18n="aud.publicP">Read the charter, share the story, fuel a training run, or put your name on the wall — honest counters, receipt before claim.</p>
+            <a class="btn btn-ghost" href="/press.html" data-i18n="aud.publicCta1">Press kit</a>
+            <a class="btn btn-primary" href="#share" data-i18n="aud.publicCta2">Share &amp; donate</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section strip-why" id="why" aria-labelledby="why-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="why.kicker">Why now</p>
+        <h2 id="why-title" data-i18n="why.title">Persian deserves foundation research rooted in literature.</h2>
+        <p class="section-lede" data-i18n="why.lede">In many multilingual models, Persian has a small share of pretraining. Alefbâ runs an open scientific program: Persian-first curriculum, licensed books, native evaluation — alongside developers serving Persian speakers today.</p>
+        <div class="why-grid">
+          <article>
+            <strong data-i18n="why.c1t">Market gap</strong>
+            <p data-i18n="why.c1d">Hundreds of millions of Persian speakers. Almost no foundation model built for them from the ground up.</p>
+          </article>
+          <article>
+            <strong data-i18n="why.c2t">Timing</strong>
+            <p data-i18n="why.c2d">Open tooling + community capital + publisher appetite = the window to own Persian AI infrastructure.</p>
+          </article>
+          <article>
+            <strong data-i18n="why.c3t">Research depth</strong>
+            <p data-i18n="why.c3d">Curriculum design, licensed bookshelf, native raters, and vertical products — built with receipts and open to collaboration.</p>
+          </article>
+          <aside class="founder founder-in-why" id="founder" aria-labelledby="founder-title">
+            <div class="founder-mark" aria-hidden="true">س</div>
+            <div class="founder-body">
+              <p class="section-kicker" data-i18n="founder.kicker">Founder</p>
+              <h3 id="founder-title" data-i18n="founder.name">Sina Kazemnezhad</h3>
+              <p data-i18n="founder.note">I am building Alefbâ to research and ship Persian foundation intelligence rooted in our literature — with personal commitment to the product, the science plan, and an open community of builders.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="masters" aria-labelledby="masters-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="masters.kicker">Teachers of the model</p>
+        <h2 id="masters-title" data-i18n="masters.title">Depth, spirituality, and a worldwide gaze — from Rumi to Hafez</h2>
+        <p class="section-lede" data-i18n="masters.lede">Alefbâ’s goal is not vocabulary alone. We want a model that learns from the books of those who carried Persian to the depth of knowledge, mystic insight, and human universality — then proves it on paper, not in slogans.</p>
+        <div class="masters-grid">
+          <article class="master-card">
+            <h3 data-i18n="masters.rumiT">Rumi · مولوی</h3>
+            <p class="master-quote" data-i18n="masters.rumiQ">بشنو از نی چون حکایت می‌کند</p>
+            <p data-i18n-html="masters.rumiD">Mystic speech that crossed borders — <em>Listen to the reed</em> still travels the world.</p>
+          </article>
+          <article class="master-card">
+            <h3 data-i18n="masters.hafezT">Hafez · حافظ</h3>
+            <p class="master-quote" data-i18n="masters.hafezQ">از آن بهتر که در دل من باشی</p>
+            <p data-i18n="masters.hafezD">Inner sight and layered meaning — one ghazal holding cosmos and conscience.</p>
+          </article>
+          <article class="master-card">
+            <h3 data-i18n="masters.ferdowsiT">Ferdowsi · فردوسی</h3>
+            <p class="master-quote" data-i18n="masters.ferdowsiQ">چو ایران نباشد تن من مباد</p>
+            <p data-i18n="masters.ferdowsiD">Civilizational memory — the Shahnameh as a world, not a footnote.</p>
+          </article>
+          <article class="master-card">
+            <h3 data-i18n="masters.saadiT">Saadi · سعدی</h3>
+            <p data-i18n="masters.saadiD">Ethics for everyday life — Golestan and Bustan speaking to every soil.</p>
+          </article>
+          <article class="master-card">
+            <h3 data-i18n="masters.attarT">Attar · عطار</h3>
+            <p data-i18n="masters.attarD">The soul’s journey — Conference of the Birds as an inner map.</p>
+          </article>
+          <article class="master-card">
+            <h3 data-i18n="masters.nezamiT">Nezami · نظامی</h3>
+            <p data-i18n="masters.nezamiD">Epic psychology and moral depth — love, fate, and reason woven in long form.</p>
+          </article>
+        </div>
+        <p class="colophon masters-note" data-i18n="masters.note">The model is still learning. These names guide which books we license and teach — not a claim that today’s weights already hold their wisdom.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="proof" aria-labelledby="proof-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="proof.kicker">Founding society</p>
+        <h2 id="proof-title" data-i18n="proof.title">Real interest only — no vanity numbers.</h2>
+        <p class="section-lede" data-i18n="proof.lede">Counters update from pledges saved on this machine. Empty means early. Honest counts matter.</p>
+
+        <div class="society-roster" aria-label="Founding roles">
+          <article class="society-role"><span class="icon" aria-hidden="true">◆</span><strong data-i18n="roster.capital">Capital</strong><span data-i18n="roster.capitalD">GPU runway · governance</span></article>
+          <article class="society-role"><span class="icon" aria-hidden="true">◇</span><strong data-i18n="roster.builder">Builder</strong><span data-i18n="roster.builderD">Stack · product · ops</span></article>
+          <article class="society-role"><span class="icon" aria-hidden="true">○</span><strong data-i18n="roster.rater">Rater</strong><span data-i18n="roster.raterD">Native eval guild</span></article>
+          <article class="society-role"><span class="icon" aria-hidden="true">□</span><strong data-i18n="roster.publisher">Publisher</strong><span data-i18n="roster.publisherD">Licensed bookshelf</span></article>
+          <article class="society-role"><span class="icon" aria-hidden="true">△</span><strong data-i18n="roster.ambassador">Ambassador</strong><span data-i18n="roster.ambassadorD">Share · press · outreach</span></article>
+        </div>
+
+        <div class="proof-stats" id="proof-stats">
+          <article><strong id="stat-invest">0</strong><span data-i18n="proof.investors">Investors interested</span></article>
+          <article><strong id="stat-participate">0</strong><span data-i18n="proof.crew">Crew joined</span></article>
+          <article><strong id="stat-donate">0</strong><span data-i18n="proof.donors">Donors pledged</span></article>
+        </div>
+
+        <div class="thermo" aria-labelledby="thermo-title">
+          <div class="thermo-head">
+            <h3 id="thermo-title" data-i18n="thermo.title">Community fuel goal</h3>
+            <p class="thermo-summary" id="thermo-summary"></p>
+          </div>
+          <div class="thermo-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="thermo-bar">
+            <i id="thermo-fill" style="width:0%"></i>
+          </div>
+          <p class="thermo-note" data-i18n="thermo.note">Only donate pledges with an amount count toward the bar.</p>
+        </div>
+
+        <div class="wall-wrap">
+          <h3 data-i18n="wall.title">Supporter wall</h3>
+          <ul class="wall" id="supporter-wall">
+            <li class="wall-empty" data-i18n="wall.empty">Be the first name on the wall.</li>
+          </ul>
+        </div>
+        <blockquote class="colophon" data-i18n="proof.colophon">Receipt before claim. Test and E2E rows never appear on the public wall.</blockquote>
+      </div>
+    </section>
+
+    <section class="section" id="sample" aria-labelledby="sample-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="sample.kicker">Birth of a mind</p>
+        <h2 id="sample-title" data-i18n="sample.title">Watch the model learn — step by step.</h2>
+        <p class="section-lede" data-i18n="sample.lede">Each stage is a short conversation — like real teaching, not a slogan deck.</p>
+        <p class="sample-epigraph" data-i18n="sample.epigraph">«ریاضی حدس می‌زند؛ کتاب یاد می‌دهد؛ زمان هوشمندتر می‌کند.»</p>
+        <div class="sample-grid sample-theater">
+          <div class="sample-keys" role="tablist" aria-label="Ontogeny stages">
+            <button type="button" class="sample-key is-on" role="tab" id="tab-code" aria-controls="sample-out" aria-selected="true" data-sample="code" data-i18n="sample.k0">Code</button>
+            <button type="button" class="sample-key" role="tab" id="tab-alphabet" aria-controls="sample-out" aria-selected="false" data-sample="alphabet" data-i18n="sample.k1">Alphabet</button>
+            <button type="button" class="sample-key" role="tab" id="tab-words" aria-controls="sample-out" aria-selected="false" data-sample="words" data-i18n="sample.k2">Words</button>
+            <button type="button" class="sample-key" role="tab" id="tab-stories" aria-controls="sample-out" aria-selected="false" data-sample="stories" data-i18n="sample.k3">Stories</button>
+            <button type="button" class="sample-key" role="tab" id="tab-books" aria-controls="sample-out" aria-selected="false" data-sample="books" data-i18n="sample.k4">Books</button>
+            <button type="button" class="sample-key" role="tab" id="tab-meaning" aria-controls="sample-out" aria-selected="false" data-sample="meaning" data-i18n="sample.k5">Meaning</button>
+            <button type="button" class="sample-key" role="tab" id="tab-consciousness" aria-controls="sample-out" aria-selected="false" data-sample="consciousness" data-i18n="sample.k6">Consciousness</button>
+          </div>
+          <div class="sample-out" id="sample-out" role="tabpanel" aria-labelledby="tab-code" aria-live="polite">
+            <p class="sample-stage" id="sample-stage"></p>
+            <h3 class="sample-title-line" id="sample-title-line"></h3>
+            <div class="sample-chat" id="sample-chat" hidden></div>
+            <p class="sample-body" id="sample-body"></p>
+            <p class="sample-whisper" id="sample-whisper"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt lanes-section" id="lanes" aria-labelledby="lanes-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="lanes.kicker">Three ways in</p>
+        <h2 id="lanes-title" data-i18n="lanes.title">Invest. Participate. Donate.</h2>
+        <p class="section-lede" data-i18n="lanes.lede">Concrete tiers so “in” means something. Pick a pack, band, or first action.</p>
+
+        <div class="lanes">
+          <article class="lane lane-invest">
+            <p class="lane-tag" data-i18n="lanes.investTag">Capital</p>
+            <h3 data-i18n="lanes.investTitle">Invest</h3>
+            <p data-i18n="lanes.investBody">Conversation targets — not claimed raise totals.</p>
+            <div class="tier-list">
+              <button type="button" class="tier" data-lane="invest" data-tier="angel" data-amount="$25k–$100k" data-role="angel">
+                <strong data-i18n="tier.angelT">Angel conversation</strong>
+                <span data-i18n="tier.angelD">$25k–$100k · GPU runway + early API</span>
+              </button>
+              <button type="button" class="tier" data-lane="invest" data-tier="seed" data-amount="$250k–$1M" data-role="vc">
+                <strong data-i18n="tier.seedT">Seed conversation</strong>
+                <span data-i18n="tier.seedD">$250k–$1M · scale training + Studio path</span>
+              </button>
+            </div>
+            <a class="btn btn-primary" href="#ask" data-lane="invest" data-i18n="lanes.investCta">Talk investment</a>
+          </article>
+
+          <article class="lane lane-join">
+            <p class="lane-tag" data-i18n="lanes.joinTag">Community</p>
+            <h3 data-i18n="lanes.joinTitle">Participate</h3>
+            <p data-i18n="lanes.joinBody">First actions — clear and immediate.</p>
+            <div class="tier-list">
+              <button type="button" class="tier" data-lane="participate" data-tier="corpus" data-role="publisher" data-note="I can help with corpus / publishing.">
+                <strong data-i18n="tier.corpusT">Corpus partner</strong>
+                <span data-i18n="tier.corpusD">First action: share a book list or license intro</span>
+              </button>
+              <button type="button" class="tier" data-lane="participate" data-tier="rater" data-role="linguist" data-note="I want to join the native eval guild.">
+                <strong data-i18n="tier.raterT">Eval guild</strong>
+                <span data-i18n="tier.raterD">First action: join native rating waitlist</span>
+              </button>
+              <button type="button" class="tier" data-lane="participate" data-tier="builder" data-role="builder" data-note="I want to build with the Alefbâ crew.">
+                <strong data-i18n="tier.builderT">Builder</strong>
+                <span data-i18n="tier.builderD">First action: send skills + availability</span>
+              </button>
+              <button type="button" class="tier" data-lane="participate" data-tier="ambassador" data-role="ambassador" data-note="I will share Alefbâ with my network.">
+                <strong data-i18n="tier.ambT">Ambassador</strong>
+                <span data-i18n="tier.ambD">First action: use the share kit below</span>
+              </button>
+            </div>
+            <a class="btn btn-accent" href="#ask" data-lane="participate" data-i18n="lanes.joinCta">Join the crew</a>
+          </article>
+
+          <article class="lane lane-donate">
+            <p class="lane-tag" data-i18n="lanes.donateTag">Fuel</p>
+            <h3 data-i18n="lanes.donateTitle">Donate</h3>
+            <p data-i18n="lanes.donateBody">Packs that map to real spend.</p>
+            <div class="tier-list">
+              <button type="button" class="tier" data-lane="donate" data-tier="hour" data-amount="$99" data-role="donor">
+                <strong data-i18n="tier.hourT">Training hour</strong>
+                <span data-i18n="tier.hourD">$99 · fuels compute time</span>
+              </button>
+              <button type="button" class="tier" data-lane="donate" data-tier="books" data-amount="$250" data-role="donor">
+                <strong data-i18n="tier.booksT">Book pack</strong>
+                <span data-i18n="tier.booksD">$250 · toward licensed literature</span>
+              </button>
+              <button type="button" class="tier" data-lane="donate" data-tier="raterweek" data-amount="$500" data-role="donor">
+                <strong data-i18n="tier.raterwT">Rater week</strong>
+                <span data-i18n="tier.raterwD">$500 · native preference labeling</span>
+              </button>
+              <button type="button" class="tier" data-lane="donate" data-tier="founding" data-amount="$1000" data-role="donor">
+                <strong data-i18n="tier.foundT">Founding supporter</strong>
+                <span data-i18n="tier.foundD">$1,000+ · named wall + score-card updates</span>
+              </button>
+            </div>
+            <a class="btn btn-gold-outline" href="#ask" data-lane="donate" data-i18n="lanes.donateCta">Fuel a run</a>
+          </article>
+        </div>
+
+        <div class="fund-use" aria-labelledby="fund-title">
+          <h3 id="fund-title" data-i18n="fund.title">Where every dollar goes</h3>
+          <div class="fund-bars">
+            <div class="fund-row"><span data-i18n="fund.g1">GPU &amp; training</span><div class="bar"><i style="--w:42%"></i></div><em data-pct="42">42%</em></div>
+            <div class="fund-row"><span data-i18n="fund.g2">Corpus licensing</span><div class="bar"><i style="--w:28%"></i></div><em data-pct="28">28%</em></div>
+            <div class="fund-row"><span data-i18n="fund.g3">Native raters &amp; eval</span><div class="bar"><i style="--w:18%"></i></div><em data-pct="18">18%</em></div>
+            <div class="fund-row"><span data-i18n="fund.g4">Product &amp; ops</span><div class="bar"><i style="--w:12%"></i></div><em data-pct="12">12%</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="products" aria-labelledby="products-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="products.kicker">Product ladder</p>
+        <h2 id="products-title" data-i18n="products.title">What we sell — four paths to revenue</h2>
+        <p class="section-lede" data-i18n="products.lede">Research checkpoints, API access, Studio verticals, and Private deployments — each gated by scientific receipts.</p>
+        <div class="card-grid card-grid--4">
+          <article class="ds-card"><strong data-i18n="products.researchT">Research</strong><p data-i18n="products.researchD">Tokenizer + base checkpoints · score cards · design partners</p><a class="btn btn-ghost" href="/receipts.html" data-i18n="products.receiptsCta">Gate status</a></article>
+          <article class="ds-card"><strong data-i18n="products.apiT">API</strong><p data-i18n="products.apiD">Persian instruct endpoints · usage tiers · SLA after Gate 3</p><a class="btn btn-ghost" href="/api.html" data-i18n="products.apiCta">API waitlist</a></article>
+          <article class="ds-card"><strong data-i18n="products.studioT">Studio</strong><p data-i18n="products.studioD">EdTech · publishers · media workflows on licensed corpus</p><a class="btn btn-ghost" href="#lanes" data-lane="participate" data-i18n="products.studioCta">Publisher lane</a></article>
+          <article class="ds-card"><strong data-i18n="products.privateT">Private</strong><p data-i18n="products.privateD">On-prem or VPC · enterprise FA ops · Gate 4 contract</p><a class="btn btn-ghost" href="#ask" data-lane="invest" data-i18n="products.privateCta">Talk Private</a></article>
+        </div>
+        <h3 data-i18n="products.beachTitle">Beachhead verticals</h3>
+        <div class="card-grid card-grid--2 beach-grid">
+          <article class="ds-card"><strong data-i18n="products.b1t">EdTech</strong><p data-i18n="products.b1d">Curriculum-aligned tutoring · alphabet → books ladder</p></article>
+          <article class="ds-card"><strong data-i18n="products.b2t">Publishers</strong><p data-i18n="products.b2d">Licensed ingest · provenance UI · first corpus partners</p></article>
+          <article class="ds-card"><strong data-i18n="products.b3t">Media</strong><p data-i18n="products.b3d">FA content ops · register-safe generation · Studio pilots</p></article>
+          <article class="ds-card"><strong data-i18n="products.b4t">Enterprise</strong><p data-i18n="products.b4d">Internal FA knowledge · Private path after Gate 4</p></article>
+        </div>
+        <p><a class="btn btn-primary" href="/corpus.html" data-i18n="products.corpusCta">Corpus & Gate 1 brief</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="pitch" aria-labelledby="pitch-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="pitch.kicker">Compact pitch</p>
+        <h2 id="pitch-title" data-i18n="pitch.title">One card. Forward to anyone.</h2>
+        <article class="pitch-card" id="pitch-card">
+          <header>
+            <strong>Alefbâ · الفبا</strong>
+            <span data-i18n="pitch.tag">Persian foundation intelligence</span>
+          </header>
+          <p data-i18n="pitch.body">Context: Persian often has a thin slice in multilingual LMs. Program: Persian-first curriculum, native tokenizer, gates + score cards, then API + Studio. Invite: invest · participate · donate. Foundation: licensed bookshelf + native raters + open receipts.</p>
+          <ul>
+            <li data-i18n="pitch.b1">Beachhead: education, publishers, media, enterprise FA ops</li>
+            <li data-i18n="pitch.b2">18-month path: tokenizer → base → instruct API → verticals</li>
+            <li data-i18n="pitch.b3">Capital use: 42% GPU · 28% corpus · 18% raters · 12% ops</li>
+          </ul>
+          <footer>
+            <button type="button" class="btn btn-ghost" id="copy-pitch" data-i18n="pitch.copy">Copy pitch</button>
+            <a class="btn btn-ghost" href="/data-room.html" data-i18n="pitch.dataRoom">Data room</a>
+            <a class="btn btn-primary" href="#ask" data-i18n="pitch.cta">Commit now</a>
+          </footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="science" aria-labelledby="science-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="science.kicker">Scientific edge</p>
+        <h2 id="science-title" data-i18n="science.title">Investors fund science that compounds.</h2>
+        <p class="section-lede" data-i18n="science.lede">Math scores guesses. Persian books turn those guesses into language. Stories and long works turn language into meaning. Gates and months turn meaning into a system that gets smarter on a timeline.</p>
+        <div class="plan-grid">
+          <article class="plan-block">
+            <h3 data-i18n="science.stackTitle">Model stack</h3>
+            <ul>
+              <li data-i18n="science.s1">Persian-aware tokenizer with alphabet coverage guarantees</li>
+              <li data-i18n="science.s2">Base decoder LLM sized to compute reality, then scaled on measured lift</li>
+              <li data-i18n="science.s3">SFT on human Persian pairs, then DPO/ORPO with native raters</li>
+              <li data-i18n="science.s4">Optional RAG over licensed books for grounded citation products</li>
+              <li data-i18n="science.s5">Eval harness: orthography probes, FA reading suites, human rubrics — dated before scale</li>
+              <li data-i18n="science.s6">Baselines: named open checkpoints on the same Persian splits — not English proxies alone</li>
+            </ul>
+          </article>
+          <article class="plan-block">
+            <h3 data-i18n="science.evalTitle">Evaluation law</h3>
+            <ul>
+              <li data-i18n="science.e1">Orthography and morphology probes</li>
+              <li data-i18n="science.e2">Persian reading comprehension and knowledge suites</li>
+              <li data-i18n="science.e3">Human rubrics for fluency, register, cultural fit</li>
+              <li data-i18n="science.e4">No capability claim without dated score cards</li>
+            </ul>
+          </article>
+          <article class="plan-block">
+            <h3 data-i18n="science.dataTitle">Corpus law</h3>
+            <ul>
+              <li data-i18n="science.d1">Licensed, publisher-partnered, and public-domain first</li>
+              <li data-i18n="science.d2">Provenance, license class, and quality grade per shard</li>
+              <li data-i18n="science.d3">Hard train / validation / public-eval separation</li>
+              <li data-i18n="science.d4">Volume claimed in bands — never as “all books”</li>
+            </ul>
+          </article>
+        </div>
+        <div class="learn-bridge" aria-label="Math to meaning">
+          <h3 data-i18n="science.bridgeTitle">How it gets smarter</h3>
+          <ol class="learn-bridge-list">
+            <li data-i18n-html="science.bridge1"><strong>Math loop</strong> — predict next Persian piece → measure error → update weights</li>
+            <li data-i18n-html="science.bridge2"><strong>Language</strong> — alphabet, words, habits from Persian literature</li>
+            <li data-i18n-html="science.bridge3"><strong>Meaning</strong> — stories + books teach causality, register, metaphor</li>
+            <li data-i18n-html="science.bridge4"><strong>Timeline</strong> — M3→M8→M12→M18 gates prove real Persian lift each season</li>
+          </ol>
+          <div class="pattern-card" id="pattern">
+            <h3 data-i18n="science.patternTitle">Four surfaces that Persianize the training loop</h3>
+            <p data-i18n="science.latinNote">Every large model runs the same engine: predict the next token, measure error, update weights. Alefbâ keeps the Latin factory — Python, CUDA, standard pretrain recipes. What we retune is every place Persian enters.</p>
+            <ul class="pattern-steps">
+              <li data-i18n="science.pat1">Entry — a Persian tokenizer for ا ب پ and joining forms</li>
+              <li data-i18n="science.pat2">Feed — staged curriculum: alphabet, stories, licensed books</li>
+              <li data-i18n="science.pat3">Target — weights learn the next Persian piece</li>
+              <li data-i18n="science.pat4">Proof — native raters and dated score cards before scale</li>
+            </ul>
+            <p class="science-paper-cta">
+              <a class="btn btn-ghost" href="/white-paper.html#pattern" data-i18n="science.patternCta">Full pattern table in the founding paper</a>
+            </p>
+          </div>
+        </div>
+        <div class="gate-strip" aria-label="Go no-go gates">
+          <h3 data-i18n="science.gatesTitle">Go / No-Go gates</h3>
+          <ol class="gate-strip-list">
+            <li data-i18n="science.g1">G1 Tokenizer — fertility + alphabet coverage</li>
+            <li data-i18n="science.g2">G2 Base — published Persian score card</li>
+            <li data-i18n="science.g3">G3 Instruct — human rubrics + 3 design partners</li>
+            <li data-i18n="science.g4">G4 Product — paying contract or Private usage</li>
+          </ol>
+          <p class="science-paper-cta">
+            <a class="btn btn-ghost" href="/receipts.html" data-i18n="science.receiptsCta">View scientific receipts</a>
+            <a class="btn btn-ghost" href="/white-paper.html#genesis" data-i18n="science.paperCta">سند علمی</a>
+          </p>
+        </div>
+        <div class="plan-block refs-block" id="literature" aria-labelledby="refs-title">
+          <h3 id="refs-title" data-i18n="science.refsTitle">Research &amp; engineering literature</h3>
+          <p class="section-lede" data-i18n="science.refsLede">Named papers and baselines — the same citations investors and reviewers expect in a real LM program.</p>
+          <ul class="refs-list">
+            <li data-i18n="science.ref1">Kaplan et al. 2020 — scaling laws (compute · data · parameters)</li>
+            <li data-i18n="science.ref2">Hoffmann et al. 2022 — Chinchilla compute-optimal training budgets</li>
+            <li data-i18n="science.ref3">Workshop et al. 2022 — BLOOM 176B multilingual baseline (Persian as thin slice)</li>
+            <li data-i18n="science.ref4">Rust et al. 2021 — tokenizer fertility as a quality signal</li>
+            <li data-i18n="science.ref5">Rafailov et al. 2023 — DPO preference optimization</li>
+            <li data-i18n="science.ref6">Zeng et al. 2022 — GLM-130B Chinese precedent on Latin factory</li>
+            <li data-i18n="science.ref7">Kudo &amp; Richardson 2018 — SentencePiece / BPE / Unigram segmentation</li>
+          </ul>
+          <p class="colophon" data-i18n="science.refsNote">Receipts name the checkpoint, split, and date — never a slogan score.</p>
+        </div>
+        <div class="plan-block stack-factory" aria-labelledby="factory-title">
+          <h3 id="factory-title" data-i18n="science.factoryTitle">Factory stack (unchanged)</h3>
+          <p data-i18n="science.stackFactory">Python · PyTorch · CUDA · HuggingFace Transformers · causal LM recipes · run logs · standard pretrain → SFT → DPO/ORPO</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="roadmap.kicker">Eighteen months</p>
+        <h2 id="roadmap-title" data-i18n="roadmap.title">Getting smarter on a timeline</h2>
+        <div class="phases">
+          <article>
+            <strong data-i18n="rd.p1t">P1 · Foundation</strong>
+            <span data-i18n="rd.p1m">Months 0–3</span>
+            <p data-i18n="rd.p1d">Corpus inventory, license map, tokenizer v1 → Gate 1</p>
+          </article>
+          <article>
+            <strong data-i18n="rd.p2t">P2 · Base research</strong>
+            <span data-i18n="rd.p2m">Months 3–8</span>
+            <p data-i18n="rd.p2d">First base model, orthography score cards → Gate 2</p>
+          </article>
+          <article>
+            <strong data-i18n="rd.p3t">P3 · Instruct MVP</strong>
+            <span data-i18n="rd.p3m">Months 8–12</span>
+            <p data-i18n="rd.p3d">Instruct model, API alpha, three design partners → Gate 3</p>
+          </article>
+          <article>
+            <strong data-i18n="rd.p4t">P4 · Verticals</strong>
+            <span data-i18n="rd.p4m">Months 12–18</span>
+            <p data-i18n="rd.p4d">Studio pilots, paid contracts, Private path → Gate 4</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq" aria-labelledby="faq-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="faq.kicker">FAQ</p>
+        <h2 id="faq-title" data-i18n="faq.title">Questions people actually ask.</h2>
+        <div class="faq-list">
+          <details open>
+            <summary data-i18n="faq.q1">Invest vs donate — what is the difference?</summary>
+            <p data-i18n="faq.a1">Invest is an equity conversation. Donate is a gift that fuels public research and open eval cards — not shares.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q2">Where does the training data come from?</summary>
+            <p data-i18n="faq.a2">Licensed publisher deals, public-domain text, and partnered corpora. Scraping is not the strategy. Every shard needs provenance and license class.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q3">What does GPU money buy?</summary>
+            <p data-i18n="faq.a3">Training and eval runs for tokenizer experiments, base pretrain, and instruct alignment — tracked against score cards.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q4">Who owns the model?</summary>
+            <p data-i18n="faq.a4">Company-owned foundation weights for commercial API/Studio. Selective research checkpoints may be released; donors do not receive equity by default.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q5">How does participation work?</summary>
+            <p data-i18n="faq.a5">Pick a first action (corpus, eval guild, builder, ambassador). We route you into the matching crew lane after interest capture.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q6">What is the timeline?</summary>
+            <p data-i18n="faq.a6">Eighteen months from foundation inventory to vertical pilots — capital and corpus speed change the calendar.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q7">What baselines will receipts compare against?</summary>
+            <p data-i18n="faq.a7">Named open checkpoints on the same Persian splits — orthography, morphology, reading comprehension, human rubrics. No English-translated proxy as the center.</p>
+          </details>
+          <details>
+            <summary data-i18n="faq.q8">Why cite Chinese models?</summary>
+            <p data-i18n="faq.a8">GLM and similar systems showed that native corpus, tokenizer, and evaluation matter on shared hardware. We honor that precedent and apply the same scientific pattern for Persian literature.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="share" aria-labelledby="share-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="share.kicker">Community spread</p>
+        <h2 id="share-title" data-i18n="share.title">Invite your circle in one tap.</h2>
+        <p class="section-lede" data-i18n="share.lede">Copy the invite, or open Telegram / WhatsApp with a prefilled pitch.</p>
+        <div class="share-actions">
+          <button type="button" class="btn btn-primary" id="copy-invite" data-i18n="share.copy">Copy invite link</button>
+          <a class="btn btn-ghost" id="share-telegram" target="_blank" rel="noopener noreferrer" data-i18n="share.tg">Telegram</a>
+          <a class="btn btn-ghost" id="share-whatsapp" target="_blank" rel="noopener noreferrer" data-i18n="share.wa">WhatsApp</a>
+          <a class="btn btn-ghost" id="share-x" target="_blank" rel="noopener noreferrer" data-i18n="share.x">X</a>
+          <a class="btn btn-ghost" href="/press.html" data-i18n="share.press">Press kit</a>
+        </div>
+        <p class="share-status" id="share-status" hidden></p>
+      </div>
+    </section>
+
+    <section class="section close" id="ask" aria-labelledby="ask-title">
+      <div class="section-inner close-inner">
+        <p class="section-kicker" data-i18n="ask.kicker">Commit</p>
+        <h2 id="ask-title" data-i18n="ask.title">Put your name on Persian intelligence.</h2>
+        <p class="section-lede" data-i18n="ask.lede">Tell us how you want in — investment, participation, or donation. Interest lands on disk here.</p>
+
+        <div class="lane-pills" role="group" aria-label="Lane">
+          <button type="button" class="pill is-on" data-set-lane="invest" data-i18n="ask.pillInvest">Invest</button>
+          <button type="button" class="pill" data-set-lane="participate" data-i18n="ask.pillJoin">Participate</button>
+          <button type="button" class="pill" data-set-lane="donate" data-i18n="ask.pillDonate">Donate</button>
+        </div>
+
+        <form class="partner-form" id="partner-form">
+          <input type="hidden" name="lane" id="lane-field" value="invest" />
+          <input type="hidden" name="tier" id="tier-field" value="" />
+          <label>
+            <span data-i18n="ask.name">Name</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            <span data-i18n="ask.email">Email</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            <span data-i18n="ask.role">Focus</span>
+            <select name="role" id="role-field">
+              <option value="angel" data-i18n="ask.roleAngel">Angel / seed investor</option>
+              <option value="vc" data-i18n="ask.roleVc">Fund / VC</option>
+              <option value="builder" data-i18n="ask.roleBuilder">Builder / engineer</option>
+              <option value="linguist" data-i18n="ask.roleLing">Linguist / rater</option>
+              <option value="publisher" data-i18n="ask.rolePub">Publisher / corpus</option>
+              <option value="donor" data-i18n="ask.roleDonor">Community donor</option>
+              <option value="ambassador" data-i18n="ask.roleAmb">Ambassador</option>
+            </select>
+          </label>
+          <label class="amount-wrap" id="amount-wrap" hidden>
+            <span data-i18n="ask.amount">Intended gift / check size (optional)</span>
+            <input type="text" name="amount" id="amount-field" data-i18n-placeholder="ask.amountPh" placeholder="e.g. $500 gift or $50k conversation" />
+          </label>
+          <label class="full wall-opt">
+            <input type="checkbox" name="showOnWall" id="wall-check" checked />
+            <span data-i18n="ask.wall">Show my first name on the supporter wall</span>
+          </label>
+          <label class="full">
+            <span data-i18n="ask.note">Why Alefbâ</span>
+            <textarea name="note" id="note-field" rows="3" data-i18n-placeholder="ask.notePh" placeholder="What draws you in — capital, craft, or funding a training run?"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary btn-glow" data-i18n="ask.submit">Send my interest</button>
+          <p class="form-status" id="form-status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><strong>Alefbâ · الفبا</strong> <span data-i18n="foot.line">Community-powered Persian foundation intelligence · invest · join · donate</span></p>
+  </footer>
+
+  <div class="dock" aria-label="Quick actions">
+    <a href="#sample" data-i18n="dock.sample">Mind</a>
+    <a href="#lanes" data-lane="invest" data-i18n="dock.invest">Invest</a>
+    <a href="#lanes" data-lane="participate" data-i18n="dock.join">Join</a>
+    <a class="dock-hot" href="/white-paper.html#pattern" data-i18n="dock.paper">Paper</a>
+  </div>
+
+  <script src="/app.js?v=0.2.8.paper"></script>
+</body>
+</html>

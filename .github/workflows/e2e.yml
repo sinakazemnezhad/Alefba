@@ -1,0 +1,58 @@
+name: Alefbâ E2E
+
+on:
+  push:
+    paths:
+      - "workspace/**"
+      - "governance/**"
+      - "ALEFBA.json"
+  pull_request:
+    paths:
+      - "workspace/**"
+      - "governance/**"
+      - "ALEFBA.json"
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workspace
+    env:
+      NODE_ENV: production
+      ALEFBA_HOST: 0.0.0.0
+      ALEFBA_ADMIN_TOKEN: ci-e2e-admin-token
+      ALEFBA_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: workspace/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium
+      - name: Sync governance content
+        run: npm run sync:content
+      - name: Start server (production bind)
+        run: node src/server.mjs &
+      - name: Wait for health
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:5293/api/health && exit 0
+            sleep 0.5
+          done
+          exit 1
+      - name: Production bind smoke
+        run: |
+          curl -sf http://127.0.0.1:5293/api/health | grep -q '"version":"0.2.8"'
+          code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5293/api/interest/export.json)
+          test "$code" = "401"
+      - name: Run E2E
+        run: npm run e2e
+      - name: Install Python transformers (G1 HF baseline)
+        run: pip install 'transformers>=4.40'
+      - name: G1 science verify
+        run: npm run test:g1

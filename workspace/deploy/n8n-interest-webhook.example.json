@@ -1,0 +1,37 @@
+{
+  "name": "Alefbâ interest notify",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "alefba-interest",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "=Alefbâ interest: {{$json.body.row.name}} · {{$json.body.row.lane}} · {{$json.body.row.email}}"
+      },
+      "id": "telegram",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [300, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Telegram", "type": "main", "index": 0 }]]
+    }
+  },
+  "meta": {
+    "description": "Glue only — SSOT remains workspace/data/interest.jsonl. Set ALEFBA_N8N_INTEREST_WEBHOOK to the production webhook URL."
+  }
+}

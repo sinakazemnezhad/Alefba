@@ -1,0 +1,41 @@
+{
+  "name": "alefba-workspace",
+  "version": "0.2.8",
+  "private": true,
+  "type": "module",
+  "description": "Alefbâ — Persian foundation intelligence startup page",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "dev": "node --watch src/server.mjs",
+    "sync:content": "node scripts/sync-content.mjs",
+    "e2e": "node scripts/e2e-local.mjs",
+    "e2e:install": "playwright install chromium",
+    "test:g1": "node scripts/g1-verify.mjs",
+    "train:tokenizer": "node scripts/tokenizer-train-v1.mjs && node scripts/tokenizer-fertility-v1.mjs",
+    "test:hf-baseline": "node scripts/tokenizer-fertility-hf-baseline.mjs",
+    "test:alphabet": "node scripts/tokenizer-alphabet-coverage.mjs",
+    "test:eval": "node scripts/eval-harness-v1.mjs",
+    "verify:local": "node scripts/e2e-local.mjs",
+    "verify:publish": "npm run sync:content && npm run train:tokenizer && npm run test:g1 && node scripts/e2e-local.mjs",
+    "ship:preflight": "node scripts/ship-preflight.mjs",
+    "smoke:prod": "node scripts/smoke-production.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "agentAttribution": {
+    "repo": "PLUS ONE",
+    "product": "DIS BRAND",
+    "namespace": "dis-brand-agent",
+    "tag": "DIS-PLUSONE-ALEFBA-WORKSPACE-PACKAGE-JSON",
+    "fileTag": "DIS-PLUSONE-ALEFBA-WORKSPACE-PACKAGE-JSON",
+    "name": "DIS BRAND Governed Agent",
+    "agent": "DIS-PLUSONE-GOV-AGENT",
+    "action": "edit",
+    "at": "2026-08-09T20:30:11.218Z",
+    "file": "ALEFBA/workspace/package.json"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

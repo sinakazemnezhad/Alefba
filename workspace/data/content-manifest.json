@@ -1,0 +1,38 @@
+{
+  "version": "0.2.8",
+  "generatedAt": "2026-08-16T06:53:45.300Z",
+  "sources": [
+    "ALEFBA/governance/WHITE_PAPER.md",
+    "ALEFBA/governance/COMMERCIAL_SCIENTIFIC_PLAN.md",
+    "ALEFBA/governance/CONCEPT_BRIEF.md"
+  ],
+  "patternLaw": {
+    "en": "Keep Latin factory; change door · rain · loss · eval (tokenizer, Persian books, Persian next-token, native score cards).",
+    "fa": "کارخانهٔ لاتین بماند؛ در · باران · زیان · ارزیابی فارسی شود."
+  },
+  "epigraph": {
+    "en": "Math guesses; books teach; time makes it smarter.",
+    "fa": "ریاضی حدس می‌زند؛ کتاب یاد می‌دهد؛ زمان هوشمندتر می‌کند."
+  },
+  "gates": [
+    "G1 Tokenizer",
+    "G2 Base",
+    "G3 Instruct",
+    "G4 Product"
+  ],
+  "fundSplit": {
+    "gpu": 42,
+    "corpus": 28,
+    "raters": 18,
+    "ops": 12
+  },
+  "references": [
+    "Kaplan et al. 2020 — scaling laws",
+    "Hoffmann et al. 2022 — Chinchilla",
+    "Workshop et al. 2022 — BLOOM 176B",
+    "Rust et al. 2021 — tokenizer fertility",
+    "Rafailov et al. 2023 — DPO",
+    "Zeng et al. 2022 — GLM-130B",
+    "Kudo & Richardson 2018 — SentencePiece"
+  ]
+}

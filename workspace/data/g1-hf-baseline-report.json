@@ -1,0 +1,120 @@
+{
+  "gate": "G1",
+  "suite": "hf_tokenizer_fertility",
+  "at": "2026-08-16T06:57:46.936490Z",
+  "baselineId": "bloom-560m",
+  "huggingfaceId": "bigscience/bloom-560m",
+  "method": "transformers.AutoTokenizer.encode",
+  "fertilityProbeCount": 22,
+  "excludedProbeIds": [
+    "a01"
+  ],
+  "bloom560m": {
+    "probeCount": 22,
+    "totalChars": 416,
+    "totalTokens": 228,
+    "charsPerToken": 1.825,
+    "perLine": [
+      {
+        "chars": 29,
+        "tokens": 14
+      },
+      {
+        "chars": 38,
+        "tokens": 16
+      },
+      {
+        "chars": 28,
+        "tokens": 14
+      },
+      {
+        "chars": 27,
+        "tokens": 17
+      },
+      {
+        "chars": 24,
+        "tokens": 11
+      },
+      {
+        "chars": 21,
+        "tokens": 12
+      },
+      {
+        "chars": 24,
+        "tokens": 13
+      },
+      {
+        "chars": 33,
+        "tokens": 16
+      },
+      {
+        "chars": 32,
+        "tokens": 15
+      },
+      {
+        "chars": 34,
+        "tokens": 19
+      },
+      {
+        "chars": 35,
+        "tokens": 20
+      },
+      {
+        "chars": 18,
+        "tokens": 8
+      },
+      {
+        "chars": 27,
+        "tokens": 23
+      },
+      {
+        "chars": 18,
+        "tokens": 12
+      },
+      {
+        "chars": 8,
+        "tokens": 5
+      },
+      {
+        "chars": 7,
+        "tokens": 3
+      },
+      {
+        "chars": 1,
+        "tokens": 1
+      },
+      {
+        "chars": 1,
+        "tokens": 1
+      },
+      {
+        "chars": 1,
+        "tokens": 1
+      },
+      {
+        "chars": 5,
+        "tokens": 3
+      },
+      {
+        "chars": 1,
+        "tokens": 1
+      },
+      {
+        "chars": 4,
+        "tokens": 3
+      }
+    ]
+  },
+  "alefba": {
+    "probeCount": 22,
+    "totalChars": 416,
+    "totalTokens": 107,
+    "charsPerToken": 3.888
+  },
+  "compare": {
+    "alefbaBeatsBloom560m": true,
+    "alefbaCharsPerToken": 3.888,
+    "bloomCharsPerToken": 1.825
+  },
+  "pass": true
+}

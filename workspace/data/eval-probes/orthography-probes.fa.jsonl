@@ -1,0 +1,8 @@
+{"id":"o01","class":"orthography","text":"می‌خواهم","probe":"zwnj","expected":"می\u200cخواهم"}
+{"id":"o02","class":"orthography","text":"کتاب‌ها","probe":"zwnj_plural","expected":"کتاب\u200cها"}
+{"id":"o03","class":"orthography","text":"ی","probe":"persian_yeh","expected":"ی"}
+{"id":"o04","class":"orthography","text":"ك","probe":"arabic_kaf","note":"normalize_to_persian_kehe"}
+{"id":"o05","class":"orthography","text":"ي","probe":"arabic_yeh","note":"normalize_to_persian_yeh"}
+{"id":"o06","class":"orthography","text":"آرامش","probe":"alef_mad","expected":"آ"}
+{"id":"o07","class":"orthography","text":"ئ","probe":"hamze_on_ye","expected":"ئ"}
+{"id":"o08","class":"orthography","text":"گاهی","probe":"ye_word_final","expected":"ی"}

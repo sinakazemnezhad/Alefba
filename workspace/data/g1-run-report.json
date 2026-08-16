@@ -1,0 +1,20 @@
+{
+  "suite": "alphabet_coverage",
+  "gate": "G1",
+  "at": "2026-08-16T06:57:47.114Z",
+  "specVersion": "1.0.0",
+  "probeCount": 15,
+  "letterCoveragePct": 100,
+  "missingLetters": [],
+  "joiningFormCoveragePct": 100,
+  "missingJoiningForms": [],
+  "zwnjInCorpus": true,
+  "avgCharsPerProbeLine": 28,
+  "pass": true,
+  "checks": {
+    "letterCoverage": true,
+    "joiningForms": true,
+    "zwnj": true
+  },
+  "note": "Probe corpus pass — tokenizer fertility vs baseline requires trained weights + receipt."
+}

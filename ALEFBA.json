@@ -1,0 +1,64 @@
+{
+  "version": "0.2.8",
+  "id": "ALEFBA",
+  "label": "Alefbâ",
+  "labelFa": "الفبا",
+  "tagline": "Persian foundation intelligence — grown from the alphabet, words, stories, and books",
+  "taglineFa": "هوش بنیادین فارسی — ریشه‌گرفته از الفبا، واژه‌ها، داستان‌ها و کتاب‌ها",
+  "repoRoot": "~/Desktop/ALEFBA",
+  "policy": "isolated-local-repo",
+  "classification": "PRIVATE_CONFIDENTIAL",
+  "productFamily": {
+    "current": "persian-foundation-llm",
+    "surfaces": [
+      "research-lab",
+      "api",
+      "enterprise-assistant",
+      "education",
+      "publisher-tools"
+    ]
+  },
+  "mvp": {
+    "languages": [
+      "fa",
+      "en"
+    ],
+    "depth": "commercial-scientific-plan-site",
+    "corpusPriority": [
+      "alphabet-orthography",
+      "lexicon",
+      "stories",
+      "books",
+      "poetry",
+      "contemporary-usage"
+    ]
+  },
+  "server": {
+    "port": 5293,
+    "host": "127.0.0.1",
+    "envPort": "ALEFBA_PORT",
+    "portLock": "governance/PORT_LOCK.json"
+  },
+  "pattern": {
+    "keep": "latin-factory",
+    "change": [
+      "native-tokenizer-door",
+      "persian-curriculum-rain",
+      "persian-next-token-loss",
+      "native-eval-gates"
+    ],
+    "precedent": "chinese-native-llm-on-latin-tooling"
+  },
+  "agentAttribution": {
+    "repo": "Desktop/ALEFBA",
+    "product": "DIS BRAND",
+    "namespace": "dis-brand-agent",
+    "tag": "DIS-PLUSONE-ALEFBA-ALEFBA-JSON",
+    "fileTag": "DIS-PLUSONE-ALEFBA-ALEFBA-JSON",
+    "name": "DIS BRAND Governed Agent",
+    "agent": "DIS-PLUSONE-GOV-AGENT",
+    "action": "edit",
+    "at": "2026-08-09T20:08:54.714Z",
+    "file": "ALEFBA/ALEFBA.json"
+  }
+}

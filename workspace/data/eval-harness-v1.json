@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "name": "Alefbâ Eval Harness v1",
+  "updatedAt": "2026-08-13T03:45:00.000Z",
+  "gate": "G1_ready",
+  "suites": [
+    {
+      "id": "alphabet_coverage",
+      "gate": "G1",
+      "script": "scripts/tokenizer-alphabet-coverage.mjs",
+      "probeFile": "data/eval-probes/alphabet-probes.fa.jsonl",
+      "passCriteria": {
+        "letterCoveragePct": 100,
+        "joiningFormCoveragePct": 95,
+        "zwnjPresentInCorpus": true
+      }
+    },
+    {
+      "id": "orthography_probes",
+      "gate": "G2",
+      "probeFile": "data/eval-probes/orthography-probes.fa.jsonl",
+      "passCriteria": {
+        "minAccuracy": null,
+        "note": "Threshold set on first base score card — not before training"
+      }
+    },
+    {
+      "id": "fertility_compare",
+      "gate": "G1",
+      "baselineFile": "data/eval-baselines.json",
+      "baselineIds": ["bloom-560m", "mGPT-1.3b"],
+      "note": "Requires tokenizer weights — receipt JSON when trained"
+    },
+    {
+      "id": "human_rubrics",
+      "gate": "G3",
+      "status": "guild_forming",
+      "dimensions": ["fluency", "register", "cultural_fit", "refusal_fa"]
+    }
+  ],
+  "splits": {
+    "train": "never_public_eval_leak",
+    "validation": "internal_dev",
+    "public_eval": "held_out_probes_and_external_benchmarks"
+  },
+  "runner": "scripts/eval-harness-v1.mjs",
+  "reportPath": "data/g1-run-report.json"
+}

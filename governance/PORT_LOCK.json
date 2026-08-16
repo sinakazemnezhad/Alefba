@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "locked": true,
+  "product": "ALEFBA",
+  "host": "127.0.0.1",
+  "port": 5293,
+  "law": "Alefbâ owns 5293 only — never share with PATHWAY 5291 · WORKFIELD 5290 · DIS BRAND 5180",
+  "agentAttribution": {
+    "repo": "Desktop/ALEFBA",
+    "product": "DIS BRAND",
+    "namespace": "dis-brand-agent",
+    "tag": "DIS-PLUSONE-ALEFBA-GOVERNANCE-PORT-LOCK-JSON",
+    "fileTag": "DIS-PLUSONE-ALEFBA-GOVERNANCE-PORT-LOCK-JSON",
+    "name": "DIS BRAND Governed Agent",
+    "agent": "DIS-PLUSONE-GOV-AGENT",
+    "action": "edit",
+    "at": "2026-08-09T19:05:11.746Z",
+    "file": "ALEFBA/governance/PORT_LOCK.json"
+  }
+}

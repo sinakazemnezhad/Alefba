@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="الفبا API — وضعیت دروازه‌ها و ثبت‌نام نسخهٔ دستورپذیر." />
+  <meta name="theme-color" content="#f6f0e6" />
+  <title>API · الفبا</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/app.css?v=0.2.8.paper" />
+  <link rel="stylesheet" href="/persian-human.css?v=0.2.8.paper" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><span class="brand-mark">ا</span><span class="brand-text"><strong>الفبا</strong><small>API</small></span></a>
+    <div class="top-actions">
+      <button type="button" class="lang-btn" id="lang-btn">EN</button>
+      <a class="btn btn-primary btn-header-cta" href="/#ask">ثبت‌نام</a>
+    </div>
+  </header>
+  <main class="section">
+    <div class="section-inner">
+      <header class="subpage-hero">
+        <p class="section-kicker">API alpha</p>
+        <h1>الفبا API</h1>
+        <p class="lede" id="api-lede">Instruct MVP not live yet — honest gate status below.</p>
+      </header>
+      <div id="api-status" aria-live="polite"></div>
+      <h2>Waitlist</h2>
+      <p class="section-lede">After Gate 3 — design partners first. Leave email for API alpha.</p>
+      <form class="partner-form" id="api-waitlist-form">
+        <label><span>Name</span><input type="text" name="name" required /></label>
+        <label><span>Email</span><input type="email" name="email" required /></label>
+        <label><span>Use case</span><input type="text" name="useCase" placeholder="EdTech · publisher · enterprise" /></label>
+        <button type="submit" class="btn btn-primary">Join API waitlist</button>
+        <p class="form-status" id="api-form-status" hidden></p>
+      </form>
+      <p class="colophon"><a href="/api/v1/health">/api/v1/health</a> · <a href="/api/v1/status">/api/v1/status</a> · <a href="/receipts.html">Receipts</a></p>
+    </div>
+  </main>
+  <script>
+    (function () {
+      const langBtn = document.getElementById("lang-btn");
+      const statusRoot = document.getElementById("api-status");
+      const lede = document.getElementById("api-lede");
+      const form = document.getElementById("api-waitlist-form");
+      const formStatus = document.getElementById("api-form-status");
+      let lang = localStorage.getItem("alefba-lang") || "fa";
+      document.documentElement.lang = lang === "fa" ? "fa" : "en";
+      document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+
+      async function loadStatus() {
+        try {
+          const data = await (await fetch("/api/v1/status")).json();
+          const g1 = data.gates?.find((g) => g.id === "G1");
+          statusRoot.innerHTML = `<table class="receipt-table"><tbody>
+            <tr><td>Version</td><td>${data.version}</td></tr>
+            <tr><td>G1</td><td>${g1?.status || "pending"}</td></tr>
+            <tr><td>Instruct MVP</td><td>${data.instructMvp}</td></tr>
+            <tr><td>Score cards</td><td>${data.scoreCards}</td></tr>
+          </tbody></table>`;
+          if (lang === "fa") {
+            lede.textContent = "نسخهٔ دستورپذیر هنوز live نیست — وضعیت دروازه‌ها صادق است.";
+          } else {
+            lede.textContent = "Instruct MVP not live — gate status is honest.";
+          }
+        } catch {
+          statusRoot.textContent = lang === "fa" ? "وضعیت API در دسترس نیست." : "API status unavailable.";
+        }
+      }
+
+      form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const res = await fetch("/api/v1/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: fd.get("name"),
+            email: fd.get("email"),
+            useCase: fd.get("useCase"),
+            lang,
+          }),
+        });
+        formStatus.hidden = false;
+        formStatus.textContent = res.ok
+          ? lang === "fa"
+            ? "ثبت شد. Gate 3 بعد از رسید."
+            : "Saved. API alpha follows Gate 3 receipt."
+          : lang === "fa"
+            ? "خطا در ثبت."
+            : "Could not save.";
+      });
+
+      langBtn?.addEventListener("click", () => {
+        lang = lang === "fa" ? "en" : "fa";
+        localStorage.setItem("alefba-lang", lang);
+        document.documentElement.lang = lang === "fa" ? "fa" : "en";
+        document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+        langBtn.textContent = lang === "fa" ? "EN" : "فا";
+        loadStatus();
+      });
+      langBtn.textContent = lang === "fa" ? "EN" : "فا";
+      loadStatus();
+    })();
+  </script>
+</body>
+</html>

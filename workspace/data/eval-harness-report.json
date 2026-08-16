@@ -1,0 +1,48 @@
+{
+  "harness": "Alefbâ Eval Harness v1",
+  "version": "1.0.0",
+  "at": "2026-08-16T06:57:47.118Z",
+  "results": [
+    {
+      "id": "alphabet_coverage",
+      "gate": "G1",
+      "pass": true,
+      "exitCode": 0
+    },
+    {
+      "id": "baseline_list_integrity",
+      "gate": "G1",
+      "pass": true,
+      "baselineCount": 6,
+      "listedNotRun": 4
+    },
+    {
+      "id": "orthography_probes_indexed",
+      "gate": "G2",
+      "pass": true,
+      "probeLines": 8
+    }
+  ],
+  "pass": true,
+  "baselinesFile": "data/eval-baselines.json",
+  "g1Detail": {
+    "suite": "alphabet_coverage",
+    "gate": "G1",
+    "at": "2026-08-16T06:57:47.114Z",
+    "specVersion": "1.0.0",
+    "probeCount": 15,
+    "letterCoveragePct": 100,
+    "missingLetters": [],
+    "joiningFormCoveragePct": 100,
+    "missingJoiningForms": [],
+    "zwnjInCorpus": true,
+    "avgCharsPerProbeLine": 28,
+    "pass": true,
+    "checks": {
+      "letterCoverage": true,
+      "joiningForms": true,
+      "zwnj": true
+    },
+    "note": "Probe corpus pass — tokenizer fertility vs baseline requires trained weights + receipt."
+  }
+}

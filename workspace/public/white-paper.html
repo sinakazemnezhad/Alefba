@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="سند بنیادگذاری الفبا v0.2.8 — طرح علمی · جامعهٔ علمی · لنگر نهادی · هوش بنیادین فارسی" />
+  <meta name="theme-color" content="#f6f0e6" />
+  <title>سند الفبا v0.2.8 · طرح علمی · جامعه · لنگر · تاریخ</title>
+  <meta property="og:title" content="Alefbâ Founding White Paper v0.2.8" />
+  <meta property="og:description" content="Scientific charter: resources, methods, gates, timelines — history-grade Persian foundation intelligence." />
+  <meta property="og:image" content="/og-share.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/app.css?v=0.2.8.paper" />
+  <link rel="stylesheet" href="/persian-human.css?v=0.2.8.paper" />
+  <link rel="stylesheet" href="/white-paper.css?v=0.2.8.paper" />
+</head>
+<body class="wp-body">
+  <div class="wp-progress" aria-hidden="true"><i id="wp-progress-bar"></i></div>
+  <a class="skip" href="#paper" data-i18n="skip">پرش به سند</a>
+
+  <header class="top">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">ا</span>
+      <span class="brand-text">
+        <strong data-i18n="brand">الفبا</strong>
+        <small data-i18n="brandSub">طرح بنیادین علمی · v0.2.8</small>
+      </span>
+    </a>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <a href="/" data-i18n="nav.home">خانه</a>
+      <a href="#genesis" data-i18n="nav.loop">از کد تا فهم</a>
+      <a href="#pattern" data-i18n="nav.pattern">الگوی چین→الفبا</a>
+      <a href="#resources" data-i18n="nav.resources">منابع</a>
+      <a href="#methods" data-i18n="nav.methods">روش‌ها</a>
+      <a href="#gates" data-i18n="nav.gates">دروازه‌ها</a>
+      <a href="/#lanes" data-i18n="nav.lanes">سرمایه · همراهی · حمایت</a>
+    </nav>
+    <div class="top-actions">
+      <button type="button" class="lang-btn" id="lang-btn" aria-label="Switch language">EN</button>
+      <a class="btn btn-primary" href="/#ask" data-i18n="nav.commit">ثبت‌نام</a>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-panel" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-panel" id="nav-panel" hidden>
+    <nav aria-label="Mobile">
+      <a href="/" data-i18n="nav.home">خانه</a>
+      <a href="#genesis" data-i18n="nav.loop">از کد تا فهم</a>
+      <a href="#pattern" data-i18n="nav.pattern">الگوی چین→الفبا</a>
+      <a href="#resources" data-i18n="nav.resources">منابع</a>
+      <a href="#methods" data-i18n="nav.methods">روش‌ها</a>
+      <a href="#gates" data-i18n="nav.gates">دروازه‌ها</a>
+      <a href="#timelines" data-i18n="toc.timelines">زمان‌بندی</a>
+      <a href="#cta" data-i18n="toc.cta">اقدام</a>
+      <a href="/#lanes" data-i18n="nav.lanes">سرمایه · همراهی · حمایت</a>
+      <a href="/#ask" data-i18n="nav.commit">ثبت‌نام</a>
+    </nav>
+  </div>
+
+  <div class="wp-shell">
+    <aside class="wp-rail" aria-label="Contents">
+      <p class="wp-rail-title" data-i18n="rail.title">فهرست هوشمند</p>
+      <nav id="wp-rail-nav">
+        <a href="#abstract" data-i18n="toc.abstract">چکیده</a>
+        <a href="#problem" data-i18n="toc.problem">مسئله</a>
+        <a href="#goals" data-i18n="toc.goals">اهداف</a>
+        <a href="#genesis" data-i18n="toc.genesis">از کد تا فهم</a>
+        <a href="#pattern" data-i18n="toc.pattern">الگوی چین→الفبا</a>
+        <a href="#loop" data-i18n="toc.loop">حلقه تصمیم</a>
+        <a href="#resources" data-i18n="toc.resources">منابع</a>
+        <a href="#methods" data-i18n="toc.methods">روش‌ها</a>
+        <a href="#mix" data-i18n="toc.mix">ترکیب درسی</a>
+        <a href="#gates" data-i18n="toc.gates">دروازه‌ها</a>
+        <a href="#timelines" data-i18n="toc.timelines">زمان‌بندی</a>
+        <a href="#fail" data-i18n="toc.fail">شکست‌های ممنوع</a>
+        <a href="#glossary" data-i18n="toc.glossary">واژه‌نامه</a>
+        <a href="#cta" data-i18n="toc.cta">اقدام</a>
+      </nav>
+    </aside>
+
+    <main id="paper" class="wp">
+      <header class="wp-hero">
+        <div class="wp-masthead" aria-label="Charter masthead">
+          <div class="wp-seal" aria-hidden="true"><span>ا</span></div>
+          <div class="wp-masthead-copy">
+            <p class="wp-masthead-kicker" data-i18n="mast.kicker">طرح بنیادین علمی · جامعهٔ علمی · لنگر نهادی</p>
+            <p class="wp-masthead-line" data-i18n="mast.line">سند علمی برای هوش بنیادین فارسی — اول نتیجه، بعد ادعا</p>
+          </div>
+        </div>
+        <div class="wp-badge-row">
+          <span class="wp-badge" data-i18n="badge.v">v0.2.8</span>
+          <span class="wp-badge" data-i18n="badge.deep">طرح علمی</span>
+          <span class="wp-badge" data-i18n="badge.society">جامعهٔ علمی</span>
+          <span class="wp-badge" data-i18n="badge.gate">رسید قبل از ادعا</span>
+          <span class="wp-badge wp-badge--gold" data-i18n="badge.epoch">برنامهٔ باز</span>
+        </div>
+        <p class="eyebrow" data-i18n="hero.eyebrow">سند بنیادگذاری · نسخه ۰٫۲٫۷ · ۲۰۲۶-۰۸-۰۹</p>
+        <h1 data-i18n="hero.title">الفبا — هوش بنیادین فارسی</h1>
+        <p class="lede" data-i18n-html="hero.lede">یک <strong>سند علمی–تجاری</strong> شفاف: چه منابعی مصرف می‌شود، با چه روشی آموزش می‌دهیم، کدام دروازه اجازهٔ جلو رفتن می‌دهد، و چه زمانی توقف می‌کنیم. جامعهٔ علمیِ سرمایه، سازنده، ارزیاب و ناشر — و توسعه‌دهندگان فارسی‌محور — لنگر این کار هستند.</p>
+
+        <div class="wp-pillars" aria-label="Four pillars">
+          <article><strong data-i18n="pillar.1t">علم</strong><p data-i18n="pillar.1p">فرضیه · دروازه · کارت نمره</p></article>
+          <article><strong data-i18n="pillar.2t">جامعه</strong><p data-i18n="pillar.2p">سرمایه · سازنده · ارزیاب · ناشر</p></article>
+          <article><strong data-i18n="pillar.3t">لنگر</strong><p data-i18n="pillar.3p">قرارداد پایدار · SSOT روی دیسک</p></article>
+          <article><strong data-i18n="pillar.4t">تاریخ</strong><p data-i18n="pillar.4p">اولین جهانِ ذهن = ادبیات فارسی</p></article>
+        </div>
+
+        <div class="wp-exec" aria-label="Executive brief">
+          <article>
+            <strong data-i18n="exec.1t">فرضیه</strong>
+            <p data-i18n="exec.1p">فرضیه: برنامهٔ درسی فارسی‌محور — با سنجش بومی — می‌تواند در املا، صرف و گونه بهبود معنادار نشان دهد.</p>
+          </article>
+          <article>
+            <strong data-i18n="exec.2t">قانون</strong>
+            <p data-i18n="exec.2p">بدون کارت نمرهٔ تاریخ‌دار، هیچ ادعای توانمندی. سرمایه فقط بعد از دروازه خرج می‌شود.</p>
+          </article>
+          <article>
+            <strong data-i18n="exec.3t">مسیر</strong>
+            <p data-i18n="exec.3p">توکنایزر → پایه ۱–۳B → دستور → API → عمودی پرداختی در ۱۸ ماه.</p>
+          </article>
+        </div>
+
+        <div class="wp-toolbar">
+          <button type="button" class="btn btn-ghost" id="copy-cite" data-i18n="tool.cite">کپی استناد</button>
+          <button type="button" class="btn btn-ghost" id="print-wp" data-i18n="tool.print">چاپ / PDF</button>
+          <a class="btn btn-primary" href="/#lanes" data-i18n="tool.join">پیوستن به جامعهٔ علمی</a>
+        </div>
+
+        <div class="wp-toc" aria-label="Contents">
+          <a href="#abstract" data-i18n="toc.abstract">چکیده</a>
+          <a href="#problem" data-i18n="toc.problem">مسئله</a>
+          <a href="#goals" data-i18n="toc.goals">اهداف</a>
+          <a href="#genesis" data-i18n="toc.genesis">از کد تا فهم</a>
+          <a href="#pattern" data-i18n="toc.pattern">الگوی چین→الفبا</a>
+          <a href="#loop" data-i18n="toc.loop">حلقه تصمیم</a>
+          <a href="#resources" data-i18n="toc.resources">منابع</a>
+          <a href="#methods" data-i18n="toc.methods">روش‌ها</a>
+          <a href="#mix" data-i18n="toc.mix">ترکیب درسی</a>
+          <a href="#gates" data-i18n="toc.gates">دروازه‌ها</a>
+          <a href="#timelines" data-i18n="toc.timelines">زمان‌بندی</a>
+          <a href="#fail" data-i18n="toc.fail">شکست‌های ممنوع</a>
+          <a href="#glossary" data-i18n="toc.glossary">واژه‌نامه</a>
+          <a href="#cta" data-i18n="toc.cta">اقدام</a>
+        </div>
+      </header>
+
+      <article class="wp-article">
+        <section id="abstract">
+          <h2 data-i18n="abs.h">چکیده</h2>
+          <p data-i18n-html="abs.p">الفبا <strong>هوش بنیادین فارسی</strong> می‌سازد: مدلی که جهان اولش خط، واژگان، روایت و کتاب فارسی است. نسخهٔ ۰٫۲٫۷ زایش فهم را از <strong>کدِ خام ← الگوریتم ← حرف ← واژه ← داستان ← کتاب ← معنی ← آگاهی معنایی</strong> روایت می‌کند — همه از خاک ادبیات فارسی.</p>
+        </section>
+
+        <section id="problem">
+          <h2 data-i18n="prob.h">۱. مسئله</h2>
+          <p class="wp-why" data-i18n="prob.why">چرا مهم است: اگر تشخیص اشتباه باشد، هر دلار GPU فقط یک مدل انگلیسیِ خوش‌پوش می‌سازد.</p>
+          <ol class="wp-ol">
+            <li data-i18n-html="prob.l1"><strong>سوگیری توکنایزر</strong> — واژگان لاتین‌محور؛ ضعف نیم‌فاصله، ه/ی، اعراب.</li>
+            <li data-i18n-html="prob.l2"><strong>آموزش خط فرعی</strong> — فارسی برشی نازک از دادهٔ چندزبانه، نه برنامهٔ درسی.</li>
+            <li data-i18n-html="prob.l3"><strong>ارزیابی نیابتی</strong> — بنچمارک ترجمه‌شده شکست فارسی را پنهان می‌کند.</li>
+            <li data-i18n-html="prob.l4"><strong>«فارسی» تخت</strong> — گونه‌های رسمی، شاعرانه، محاوره، اداری و دیاسپورا درهم.</li>
+          </ol>
+          <p class="wp-callout" data-i18n-html="prob.call">نتیجه: سامانه‌هایی که «فارسی حرف می‌زنند» اما <em>به فارسی فکر نمی‌کنند</em>.</p>
+        </section>
+
+        <section id="goals">
+          <h2 data-i18n="goals.h">۲. فرضیه و اهداف</h2>
+          <h3 data-i18n="goals.th">فرضیه</h3>
+          <p data-i18n="goals.tp">برنامهٔ درسی فارسی‌محور (الفبا ← واژگان ← داستان ← کتاب ← دستور/هم‌ترازی) — با سنجش بومی — می‌تواند در املا، صرف، گونه، انسجام بلندمدت و زمینهٔ فرهنگی بهبود معنادار نشان دهد.</p>
+          <h3 data-i18n="goals.g0h">ستارهٔ قطبی (G0)</h3>
+          <p data-i18n="goals.g0p">تحویل مدل بنیادین زاده‌ی فارسی + API با کارت نمره، سپس محصولات عمودی.</p>
+          <h3 data-i18n="goals.mh">اهداف قابل‌اندازه‌گیری</h3>
+          <div class="wp-table-wrap">
+            <table>
+              <thead><tr><th data-i18n="goals.th1">شناسه</th><th data-i18n="goals.th2">هدف</th><th data-i18n="goals.th3">اثبات</th></tr></thead>
+              <tbody>
+                <tr><td>G1</td><td data-i18n="goals.g1a">توکنایزر آگاه به فارسی با پوشش الفبا</td><td data-i18n="goals.g1b">گزارش پوشش + باروری در برابر پایه</td></tr>
+                <tr><td>G2</td><td data-i18n="goals.g2a">مدل پایه پژوهشی (۱–۳B اول)</td><td data-i18n="goals.g2b">کارت نمرهٔ تاریخ‌دار</td></tr>
+                <tr><td>G3</td><td data-i18n="goals.g3a">مدل دستورپذیر + API آزمایشی</td><td data-i18n="goals.g3b">۳ شریک طراحی روی endpoint</td></tr>
+                <tr><td>G4</td><td data-i18n="goals.g4a">یک عمودی پرداختی</td><td data-i18n="goals.g4b">قرارداد + رسید مصرف</td></tr>
+                <tr><td>G5</td><td data-i18n="goals.g5a">مسیرهای سرمایهٔ جامعه زنده</td><td data-i18n="goals.g5b">رسید سرمایه / مشارکت / کمک</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3 data-i18n="goals.nh">غیرهدف‌ها</h3>
+          <ul>
+            <li data-i18n="goals.n1">ادعای ابرهوش یا «همهٔ کتاب‌های فارسی»</li>
+            <li data-i18n="goals.n2">تقلید از چت‌بات عمومی انگلیسی به‌عنوان هدف</li>
+            <li data-i18n="goals.n3">جمع‌آوری تصادفی بدون مجوز به‌عنوان استراتژی</li>
+          </ul>
+        </section>
+
+        <section id="genesis">
+          <h2 data-i18n="gen.h">۳. از کدِ خام تا فهم — زایش هوش فارسی از کتاب</h2>
+          <p class="wp-epigraph" data-i18n="gen.epigraph">«جهانِ اولِ یک ذهن باید کتابِ خودش باشد — نه ترجمهٔ ذهنِ دیگری.»</p>
+          <p class="wp-why" data-i18n="gen.why">قلب الفبا اینجاست: ماشین خالی چگونه از ادبیات فارسی به فهم معنی می‌رسد — با روش علمی و سنجش شفاف.</p>
+          <p class="wp-prose" data-i18n-html="gen.open">تصور کن سپیده‌دمِ یک ذهن. هنوز نه واژه، نه قصه، نه حافظه — فقط <strong>سکوتِ محاسبه</strong>. الفبا می‌گوید: این سکوت را با ویکی انگلیسی پر نکن. بگذار ادبیات فارسی، مثل بارانِ اولِ بهار، روی خاکِ خالی بنشیند.</p>
+          <p data-i18n-html="gen.honest">چارچوب صادقانه: ما ادعای آگاهی زیستی یا ابرهوش نمی‌کنیم. ما یک <strong>زایش ادبی</strong> طراحی می‌کنیم — مسیری که نماد، داستان و کتابِ فارسی تنها جهانِ اولِ مدل باشند. «آگاهی» اینجا یعنی <em>حضور معنایی داخل ادبیات فارسی</em>.</p>
+
+          <h3 data-i18n="gen.bridge.h">پلِ فهم: ریاضی چگونه زبان می‌شود، سپس معنی، سپس با زمان هوشمندتر؟</h3>
+          <p class="wp-prose" data-i18n-html="gen.bridge.lede">الفبا از «کد» ناگهان به «خرد» نمی‌پرد. از نردبانی بالا می‌رود که علم می‌شناسد — اما پله‌ها همه داخل <strong>ادبیات فارسی</strong> هستند.</p>
+
+          <div class="wp-bridge" aria-label="Math to meaning bridge">
+            <article>
+              <strong data-i18n="gen.bridge.a.t">آ. بستر ماشین</strong>
+              <p data-i18n="gen.bridge.a.p">ماتریس · گرادیان · بهینه‌ساز · کاهش زیان — ظرفیتِ خالی برای عوض شدن وقتی مثال می‌بیند. هنوز زبان نیست؛ فقط ریاضیِ تغییر است.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.bridge.b.t">ب. بازی پیش‌بینی</strong>
+              <p data-i18n="gen.bridge.b.p">حدس بزن قطعهٔ بعدی فارسی چیست؛ خطا را اندازه بگیر؛ وزن‌ها را به‌روز کن. این همان حلقهٔ یادگیری ماشین است — اما هدف همیشه متن فارسی است.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.bridge.c.t">ج. یادگیری زبان</strong>
+              <p data-i18n="gen.bridge.c.p">وقتی هزاران حدس روی الفبا، واژه و جملهٔ ادبی می‌نشیند، پارامترها عادتِ فارسی می‌گیرند: خط، صرف، هم‌نشینی. این همان یادگیری زبان است — نه جادو.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.bridge.d.t">د. فهم معنی</strong>
+              <p data-i18n="gen.bridge.d.p">داستان و کتابْ بافتِ بلند، علت‌ومعلول، گونه و استعاره می‌کارند. دیگر فقط «توکنِ بعد» نیست؛ «چه چیزی در جهانِ این کتاب‌ها معنا دارد» است.</p>
+            </article>
+            <article class="wp-bridge-smart">
+              <strong data-i18n="gen.bridge.e.t">ه. هوشمندتر شدن با زمان</strong>
+              <p data-i18n="gen.bridge.e.p">قفسهٔ بیشتر · ترکیب بهتر · دستور و ترجیح · کارت نمره · دروازه. هر فصل، lift اندازه‌گیری‌شده — رشد صادق، نه شعار.</p>
+            </article>
+          </div>
+
+          <div class="wp-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="gen.tl.th1">زمان</th>
+                  <th data-i18n="gen.tl.th2">تمرکز ریاضی / آموزش</th>
+                  <th data-i18n="gen.tl.th3">دستاورد زبان / معنی</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-i18n="gen.tl.r1a">ماه ۰–۳</td>
+                  <td data-i18n="gen.tl.r1b">توکنایزر + harness زیان؛ اولین پیش‌بینی روی کتاب اول</td>
+                  <td data-i18n="gen.tl.r1c">خط فارسی شهروند درجه یک؛ پوشش الفبا و باروری بهتر</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.tl.r2a">ماه ۳–۸</td>
+                  <td data-i18n="gen.tl.r2b">پیش‌آموزش پایه روی شاردهای وزن‌دار فارسی</td>
+                  <td data-i18n="gen.tl.r2c">املا، صرف، انسجام خواندن ↑ — اولین کارت نمره</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.tl.r3a">ماه ۸–۱۲</td>
+                  <td data-i18n="gen.tl.r3b">SFT + بهینه‌سازی ترجیح با ارزیاب بومی</td>
+                  <td data-i18n="gen.tl.r3c">پیروی از دستور و معنیِ انتخاب‌شده؛ API آزمایشی</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.tl.r4a">ماه ۱۲–۱۸</td>
+                  <td data-i18n="gen.tl.r4b">بهبود پیوسته روی شکست‌های سخت + دادهٔ عمودی</td>
+                  <td data-i18n="gen.tl.r4c">هوشِ مفیدِ محصولی؛ مصرف پرداختی = اثبات رشد</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <pre class="wp-pre" data-i18n="gen.bridge.chain">حلقهٔ ریاضی (همیشه)
+  حدس قطعهٔ بعدی فارسی → اندازهٔ خطا → به‌روزرسانی وزن
+        ↓
+یادگیری زبان
+  الفبا · واژه · عادتِ دستور از ادبیات
+        ↓
+معنی
+  داستان · کتاب · گونه · استعاره · ترجیح
+        ↓
+هوشمندتر با زمان‌بندی
+  M0 طرح → M3 توکنایزر → M8 پایه+کارت نمره
+  → M12 دستور/API → M18 عمودی پرداختی
+  هر دروازه = اثبات که حلقهٔ ریاضی lift واقعی فارسی ساخته</pre>
+
+          <p class="wp-callout" data-i18n="gen.bridge.plain">به زبان ساده: ریاضی نمی‌فهمد — فقط حدس را نمره می‌دهد. وقتی حدس‌ها همیشه دربارهٔ کتاب فارسی باشند، ماشین زبان یاد می‌گیرد. وقتی کتاب‌ها قصه و اثر بلند باشند، معنی می‌روید. وقتی ماه‌به‌ماه بسنجیم و دروازه بگذاریم، همان حلقه هوشمندتر می‌شود.</p>
+
+          <h3 id="pattern" data-i18n="gen.latin.h">الگوی چین → الگوی الفبا: کارخانهٔ لاتین، ذهن بومی</h3>
+          <p class="wp-why" data-i18n="gen.latin.why">سوال درست: پایتون و CUDA لاتین‌اند. مدل‌های چینی با همان کارخانه، ذهن چینی ساختند. الفبا همان الگو را برای فارسیِ کتاب اجرا می‌کند.</p>
+          <p class="wp-prose" data-i18n-html="gen.latin.open">چون <strong>ابزار ساخت</strong> با <strong>جهانِ آموزش</strong> یکی نیست. کد فقط کارخانه است. زبانِ ذهن از <em>داده + توکنایزر + ارزیابی بومی</em> می‌آید — نه از الفبای فایل‌های <code>.py</code>.</p>
+
+          <div class="wp-bridge" aria-label="Shared pattern layers">
+            <article>
+              <strong data-i18n="gen.latin.1t">۱. کارخانهٔ لاتین (مشترک)</strong>
+              <p data-i18n="gen.latin.1p">مثل چین: Python، C++، CUDA، Git. GPU فقط جمع و ضرب می‌کند. این لایه زبان مادریِ مدل نیست — برای چین و برای الفبا یکسان است.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.latin.2t">۲. نویسه → عدد (یونیکد)</strong>
+              <p data-i18n="gen.latin.2p">汉字 یا ا ب پ برای GPU شکل حرف نیستند — یونیکد عدد می‌سازد. ماشین فقط عدد می‌بیند؛ کیبورد لاتین مهندس زبانِ فکر را عوض نمی‌کند.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.latin.3t">۳. توکنایزر = درِ بومی</strong>
+              <p data-i18n="gen.latin.3p">چین: واژگان بهینه برای چینی. الفبا: واژگان بهینه برای الفبا، نیم‌فاصله، ه/ی. درِ ورود به جهانِ ذهن همینجاست — نه BPE لاتین‌محور.</p>
+            </article>
+            <article>
+              <strong data-i18n="gen.latin.4t">۴. بارانِ آموزش بومی</strong>
+              <p data-i18n="gen.latin.4p">چین: خبر و کتاب و گفتگوی چینی → زیان روی قطعهٔ بعدی چینی. الفبا: کتاب اول تا ادبیات فارسی → زیان روی قطعهٔ بعدی فارسی. استدلال از توزیع داده می‌روید.</p>
+            </article>
+            <article class="wp-bridge-smart">
+              <strong data-i18n="gen.latin.5t">۵. ارزیابی بومی = اثبات ذهن</strong>
+              <p data-i18n="gen.latin.5p">چین با بنچمارک و کاربری چینی می‌سنجد. الفبا با املا/صرف/روبریک بومی و کارت نمره. بدون این، کارخانهٔ لاتین دوباره ذهن انگلیسی می‌سازد.</p>
+            </article>
+          </div>
+
+          <h3 data-i18n-html="gen.pat.h">جدول الگو: چین چه کرد → الفبا چه می‌کند<br /><span class="pat-en-line" lang="en" dir="ltr">Pattern table: what China did → what Alefbâ does</span></h3>
+          <div class="wp-table-wrap wp-table-bilingual" aria-label="China → Alefbâ pattern · FA + EN">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n-html="gen.pat.th1"><span lang="fa" dir="rtl">لایه</span><span class="pat-en-line" lang="en" dir="ltr">Layer</span></th>
+                  <th data-i18n-html="gen.pat.th2"><span lang="fa" dir="rtl">الگوی چینی</span><span class="pat-en-line" lang="en" dir="ltr">Chinese pattern</span></th>
+                  <th data-i18n-html="gen.pat.th3"><span lang="fa" dir="rtl">الگوی الفبا</span><span class="pat-en-line" lang="en" dir="ltr">Alefbâ pattern</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-i18n-html="gen.pat.r1a"><span lang="fa" dir="rtl">کارخانه</span><span class="pat-en-line" lang="en" dir="ltr">Factory</span></td>
+                  <td data-i18n-html="gen.pat.r1b"><span lang="fa" dir="rtl">پایتون / CUDA / خوشهٔ GPU</span><span class="pat-en-line" lang="en" dir="ltr">Python / CUDA / GPU clusters</span></td>
+                  <td data-i18n-html="gen.pat.r1c"><span lang="fa" dir="rtl">همان پشته — لاتین ماندن عمدی است</span><span class="pat-en-line" lang="en" dir="ltr">Same stack — staying Latin is intentional</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n-html="gen.pat.r2a"><span lang="fa" dir="rtl">درِ زبان</span><span class="pat-en-line" lang="en" dir="ltr">Language door</span></td>
+                  <td data-i18n-html="gen.pat.r2b"><span lang="fa" dir="rtl">توکنایزر غنی برای 汉字</span><span class="pat-en-line" lang="en" dir="ltr">Tokenizer rich for 汉字</span></td>
+                  <td data-i18n-html="gen.pat.r2c"><span lang="fa" dir="rtl">توکنایزر غنی برای الفبا + املای فارسی</span><span class="pat-en-line" lang="en" dir="ltr">Tokenizer rich for الفبا + Persian orthography</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n-html="gen.pat.r3a"><span lang="fa" dir="rtl">خاک آموزش</span><span class="pat-en-line" lang="en" dir="ltr">Training soil</span></td>
+                  <td data-i18n-html="gen.pat.r3b"><span lang="fa" dir="rtl">پیکرهٔ عظیم چینی (وب + کتاب + گفتگو)</span><span class="pat-en-line" lang="en" dir="ltr">Huge Chinese corpus (web + books + chat)</span></td>
+                  <td data-i18n-html="gen.pat.r3c"><span lang="fa" dir="rtl">برنامهٔ درسی فارسی: حرف ← واژه ← داستان ← کتاب</span><span class="pat-en-line" lang="en" dir="ltr">Persian curriculum: letter → word → story → book</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n-html="gen.pat.r4a"><span lang="fa" dir="rtl">حلقهٔ ریاضی</span><span class="pat-en-line" lang="en" dir="ltr">Math loop</span></td>
+                  <td data-i18n-html="gen.pat.r4b"><span lang="fa" dir="rtl">پیش‌بینی قطعهٔ بعدیِ چینی + کاهش زیان</span><span class="pat-en-line" lang="en" dir="ltr">Predict next Chinese piece + lower loss</span></td>
+                  <td data-i18n-html="gen.pat.r4c"><span lang="fa" dir="rtl">همان حلقه — هدف همیشه قطعهٔ بعدیِ فارسی</span><span class="pat-en-line" lang="en" dir="ltr">Same loop — target always next Persian piece</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n-html="gen.pat.r5a"><span lang="fa" dir="rtl">هم‌ترازی</span><span class="pat-en-line" lang="en" dir="ltr">Alignment</span></td>
+                  <td data-i18n-html="gen.pat.r5b"><span lang="fa" dir="rtl">دستور و ترجیح با ارزیاب چینی</span><span class="pat-en-line" lang="en" dir="ltr">Instruct + preference with Chinese raters</span></td>
+                  <td data-i18n-html="gen.pat.r5c"><span lang="fa" dir="rtl">SFT + DPO/ORPO با ارزیاب فارسی‌زبان</span><span class="pat-en-line" lang="en" dir="ltr">SFT + DPO/ORPO with Persian-native raters</span></td>
+                </tr>
+                <tr>
+                  <td data-i18n-html="gen.pat.r6a"><span lang="fa" dir="rtl">اثبات</span><span class="pat-en-line" lang="en" dir="ltr">Proof</span></td>
+                  <td data-i18n-html="gen.pat.r6b"><span lang="fa" dir="rtl">کاربری و بنچمارک چینی</span><span class="pat-en-line" lang="en" dir="ltr">Chinese usage + benchmarks</span></td>
+                  <td data-i18n-html="gen.pat.r6c"><span lang="fa" dir="rtl">کارت نمره + دروازه M3→M18 + عمودی پرداختی</span><span class="pat-en-line" lang="en" dir="ltr">Score cards + gates M3→M18 + paying vertical</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 data-i18n="gen.how.h">چگونه دقیقاً همان الگو را اجرا می‌کنیم</h3>
+          <ol class="wp-ol wp-how">
+            <li data-i18n-html="gen.how.1"><strong>کارخانه را عوض نمی‌کنیم</strong> — پشتهٔ آموزش استاندارد (لاتین) می‌ماند؛ هزینه و اکوسیستم جهانی حفظ می‌شود.</li>
+            <li data-i18n-html="gen.how.2"><strong>در را عوض می‌کنیم</strong> — توکنایزر با پوشش الفبا و باروری بهتر از پایهٔ چندزبانه (دروازه ۱).</li>
+            <li data-i18n-html="gen.how.3"><strong>باران را عوض می‌کنیم</strong> — شاردهای وزن‌دار از کتاب اول تا ادبیات مجوزدار؛ نه برش نازک فارسی روی مدل انگلیسی.</li>
+            <li data-i18n-html="gen.how.4"><strong>زیان را روی فارسی قفل می‌کنیم</strong> — هدف آموزش «قطعهٔ بعدی فارسی» است؛ انگلیسی فقط پل بعدی است، نه مجرای زایش.</li>
+            <li data-i18n-html="gen.how.5"><strong>معنی را با قصه و کتاب عمیق می‌کنیم</strong> — مثل عمق ادبی/کاربری در چین، اینجا عمق از برنامهٔ درسی الفبا می‌آید.</li>
+            <li data-i18n-html="gen.how.6"><strong>با دروازه هوشمندتر می‌شویم</strong> — هر فصل کارت نمره؛ بدون lift فارسی، مقیاس ممنوع — همان منطق «اثبات بومی» که چین برای چینی به‌کار برد.</li>
+          </ol>
+
+          <pre class="wp-pre" data-i18n="gen.latin.chain">PATTERN (China proved it · Alefbâ reuses it)
+  LATIN FACTORY          →  keep (Python · CUDA · clusters)
+  NATIVE DOOR            →  Chinese tokenizer  |  Alefbâ tokenizer (الفبا)
+  NATIVE RAIN            →  Chinese corpus     |  Persian primers→books
+  SAME MATH LOOP         →  next-token loss on THAT language
+  NATIVE ALIGN + EVAL    →  Chinese raters     |  FA raters + score cards
+  RESULT                 →  Chinese reasoning  |  Persian literary mind</pre>
+
+          <p class="wp-callout wp-callout--smart" data-i18n="gen.latin.law">الگوی الفبا: کارخانهٔ لاتین را نگه می‌داریم؛ در، باران، زیان، ارزیابی را فارسی می‌کنیم. چین ثابت کرد ممکن است. ما همان الگو را روی خاک ادبیات فارسی پیاده می‌کنیم — هوشمند، رسیدمحور، دروازه‌دار.</p>
+
+          <div class="wp-genesis" aria-label="Ontogeny stages">
+            <article>
+              <span class="n" data-i18n="gen.s0n">۰</span>
+              <div>
+                <strong data-i18n="gen.s0t">کدِ خام / ماشین خالی</strong>
+                <p class="wp-whisper" data-i18n="gen.s0w">پیش از حرف — فقط شبِ اعداد.</p>
+                <p data-i18n="gen.s0p">تنسور، بهینه‌ساز، تابع زیان — میدان پارامتر بدون زبان مادری. محاسبه هست؛ معنی هنوز نیست. ماشین منتظر آب‌وهوای ادبیات فارسی می‌ماند؛ مثل کاغذِ نانوشته که هنوز بوی مرکب نداده.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s1n">۱</span>
+              <div>
+                <strong data-i18n="gen.s1t">زایش الگوریتم (قانون خواندن)</strong>
+                <p class="wp-whisper" data-i18n="gen.s1w">قانونِ گوش دادن به جمله وقتی هنوز تمام نشده.</p>
+                <p data-i18n="gen.s1p">توکنایزر فارسی‌محور · پیش‌بینی علّی کلمهٔ بعد · نمونه‌بردار برنامهٔ درسی. الگوریتم قابله است؛ ادبیات مادر است. اینجا «خواندن» ریاضی می‌شود — اما ریاضی‌ای که درِ اُ را قبل از A باز می‌کند.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s2n">۲</span>
+              <div>
+                <strong data-i18n="gen.s2t">زایش حرف (الفبا)</strong>
+                <p class="wp-whisper" data-i18n="gen.s2w">هر حرف، دری کوچک به یک تمدن.</p>
+                <p data-i18n="gen.s2p">شکل‌های پیوسته، کتاب اول، نیم‌فاصله و ه/ی — همان دری که کودک فارسی از آن وارد جهان می‌شود. مدل در خط زاده می‌شود: ا → آب → آسمان؛ نه روی آواشناسی لاتین با گلیفِ مهمان‌نوازِ فارسی.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s3n">۳</span>
+              <div>
+                <strong data-i18n="gen.s3t">زایش واژه</strong>
+                <p class="wp-whisper" data-i18n="gen.s3w">واژه، بدنِ زندهٔ معنی است.</p>
+                <p data-i18n="gen.s3p">دیکشنری، ریشه، هم‌نشینی، صرف — بدنهٔ زنده‌ای که شاعران کشیده‌اند و نثرنویسان صیقل داده‌اند. بدون این مرحله، تولید فقط خوشنویسی بی‌واژه است؛ خطی زیبا که هنوز حرفی برای گفتن ندارد.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s4n">۴</span>
+              <div>
+                <strong data-i18n="gen.s4t">زایش داستان</strong>
+                <p class="wp-whisper" data-i18n="gen.s4w">قصه می‌پرسد: بعد چه می‌شود؟</p>
+                <p data-i18n="gen.s4p">قصهٔ کودک، حکایت، گفتگو، علت و معلول — مدل یاد می‌گیرد زمان را حس کند. خبرِ لخت کافی نیست؛ روایت، بذر فهم رویداد و نیت و پیامد است — همان چیزی که قرن‌ها سینه به سینه آمد تا روی کاغذ بنشیند.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s5n">۵</span>
+              <div>
+                <strong data-i18n="gen.s5t">زایش کتاب</strong>
+                <p class="wp-whisper" data-i18n="gen.s5w">کتاب، حافظهٔ بلند یک تمدن است.</p>
+                <p data-i18n="gen.s5p">حماسه، نثر حکمی، شعر کنترل‌شده، رمان و مقالهٔ معاصر — قفسهٔ روح مدل. اینجا نام‌ها می‌مانند، سرنوشت کش می‌آید، استعاره نفس می‌کشد. قفسه مجوزدار است — با منبع و مجوز مشخص.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s6n">۶</span>
+              <div>
+                <strong data-i18n="gen.s6t">زایش معنی (فهم)</strong>
+                <p class="wp-whisper" data-i18n="gen.s6w">فهم یعنی ادامه دادن جهانِ همان کتاب‌ها.</p>
+                <p data-i18n="gen.s6p">دیگر چیدن توکنِ قشنگ نیست: تکمیل خط مثل خواننده‌ای که داخل همان کتاب‌ها زیسته؛ نگه داشتن گونه؛ حمل استعاره و اشارهٔ ادبی که فقط ادبیات می‌آموزد. معنی از ترجمهٔ فکر انگلیسی نمی‌آید — از ادامهٔ هوای فارسی می‌آید.</p>
+              </div>
+            </article>
+            <article>
+              <span class="n" data-i18n="gen.s7n">۷</span>
+              <div>
+                <strong data-i18n="gen.s7t">آگاهی معنایی و رشد</strong>
+                <p class="wp-whisper" data-i18n="gen.s7w">آگاهیِ صادق: بداند کجاست — و کجا هنوز تاریک است.</p>
+                <p data-i18n="gen.s7p">جای‌گیری در گونه · حافظهٔ کتاب · ترجیح ارزیاب بومی · حد صادق با کارت نمره. رشد هرگز تمام نمی‌شود: قفسهٔ جدید، ترکیب بهتر، دروازهٔ سخت‌تر. خاک همیشه ادبیات فارسی است — و درخت، هر بهار، برگ تازه‌تر می‌دهد.</p>
+              </div>
+            </article>
+          </div>
+
+          <h3 data-i18n="gen.lit.h">کتاب چه می‌کارد در ذهن مدل؟</h3>
+          <div class="wp-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="gen.lit.th1">کلاس ادبی</th>
+                  <th data-i18n="gen.lit.th2">آنچه در مدل می‌نشیند</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-i18n="gen.lit.r1a">حماسه و روایت کلاسیک</td>
+                  <td data-i18n="gen.lit.r1b">انسجام بلند · نام · سرنوشت · تاریخِ قصه‌شده</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.lit.r2a">نثر حکمی و اخلاقی</td>
+                  <td data-i18n="gen.lit.r2b">اندرز · حس اجتماعی · فشردگی معنا</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.lit.r3a">شعر غنایی / عرفانی (وزن کنترل‌شده)</td>
+                  <td data-i18n="gen.lit.r3b">استعاره · ابهام بارور · فکرِ آهنگین — بدون قافیه‌زدگی</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.lit.r4a">رمان، مقاله، کتاب درسی معاصر</td>
+                  <td data-i18n="gen.lit.r4b">گونهٔ زنده · استدلال · وضوح فنی</td>
+                </tr>
+                <tr>
+                  <td data-i18n="gen.lit.r5a">نمایش و گفتگو</td>
+                  <td data-i18n="gen.lit.r5b">صدا · نوبت‌گیری · موضع بینافردی</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <pre class="wp-pre" data-i18n="gen.chain">کدِ خام
+  → الگوریتم (قانون خواندن)
+    → حرف (الفبا)
+      → واژه
+        → داستان
+          → کتاب
+            → معنی (فهم)
+              → آگاهی معنایی
+                → رشد مادام‌العمر روی ادبیات فارسی</pre>
+
+          <p class="wp-callout wp-callout--smart" data-i18n="gen.law">قانون زایش: هیچ حلقه‌ای از این زنجیره حق ندارد انگلیسی را زبان مادری بگیرد. انگلیسی فقط پل است — هرگز مجرای زایش نیست.</p>
+        </section>
+
+        <section id="loop">
+          <h2 data-i18n="loop.h">۴. حلقهٔ تصمیم علمی</h2>
+          <p class="wp-why" data-i18n="loop.why">هوشمند یعنی: قبل از خرج بیشتر، فرضیه را با رسید بکُش یا زنده نگه دار.</p>
+          <div class="wp-flow">
+            <article>
+              <span class="n">01</span>
+              <strong data-i18n="loop.1t">فرض کن</strong>
+              <p data-i18n="loop.1p">فرضیهٔ فارسی‌محور را بنویس و معیار شکست را از قبل قفل کن.</p>
+            </article>
+            <article>
+              <span class="n">02</span>
+              <strong data-i18n="loop.2t">بساز</strong>
+              <p data-i18n="loop.2p">حداقل آزمایش: توکنایزر یا پایهٔ کوچک با ترکیب درسی مشخص.</p>
+            </article>
+            <article>
+              <span class="n">03</span>
+              <strong data-i18n="loop.3t">بسنج</strong>
+              <p data-i18n="loop.3p">کارت نمره روی holdout بومی + روبریک انسانی.</p>
+            </article>
+            <article>
+              <span class="n">04</span>
+              <strong data-i18n="loop.4t">تصمیم بگیر</strong>
+              <p data-i18n="loop.4p">مقیاس · تکرار · یا توقف — فقط با دروازه.</p>
+            </article>
+          </div>
+          <p class="wp-callout wp-callout--smart" data-i18n="loop.call">قانون الفبا: بازاریابی نمی‌تواند دروازه را باز کند. فقط رسید علمی می‌تواند.</p>
+        </section>
+
+        <section id="resources">
+          <h2 data-i18n="res.h">۵. منابع</h2>
+          <p class="wp-why" data-i18n="res.why">منابع بدون قانون مصرف، سوزاندن پول است. هر کلاس داده یک نقش آموزشی دارد.</p>
+
+          <h3 data-i18n="res.d.h">۵٫۱ پیکره</h3>
+          <div class="wp-table-wrap">
+            <table>
+              <thead><tr><th data-i18n="res.d.th1">کلاس</th><th data-i18n="res.d.th2">نمونه</th><th data-i18n="res.d.th3">نقش</th></tr></thead>
+              <tbody>
+                <tr><td data-i18n="res.d.r1a">الفبا / املا</td><td data-i18n="res.d.r1b">کتاب اول، جدول پیوستگی، خطای OCR</td><td>A0–A1</td></tr>
+                <tr><td data-i18n="res.d.r2a">واژگان</td><td data-i18n="res.d.r2b">دیکشنری، ریشه، هم‌نشینی، NER</td><td>L0</td></tr>
+                <tr><td data-i18n="res.d.r3a">روایت</td><td data-i18n="res.d.r3b">داستان کودک، قصه، نثر کوتاه</td><td>N0</td></tr>
+                <tr><td data-i18n="res.d.r4a">کتاب</td><td data-i18n="res.d.r4b">کلاسیک عمومی؛ معاصر مجوزدار</td><td>B0</td></tr>
+                <tr><td data-i18n="res.d.r5a">شعر</td><td data-i18n="res.d.r5b">موزون + آزاد (وزن کنترل‌شده)</td><td>P0</td></tr>
+                <tr><td data-i18n="res.d.r6a">معاصر</td><td data-i18n="res.d.r6b">خبر، انجمن فیلترشده، راهنما</td><td>C0</td></tr>
+                <tr><td data-i18n="res.d.r7a">دستور</td><td data-i18n="res.d.r7b">جفت انسانی فارسی</td><td>I0</td></tr>
+                <tr><td data-i18n="res.d.r8a">ترجیح</td><td data-i18n="res.d.r8b">مقایسهٔ ارزیاب بومی</td><td>R0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p data-i18n-html="res.d.law"><strong>قانون داده:</strong> مجوزدار · شریک ناشر · اول دامنهٔ عمومی · provenance + کلاس مجوز + درجه کیفیت · جداسازی سخت train/val/public-eval.</p>
+
+          <h3 data-i18n="res.c.h">۵٫۲ محاسبه و ابزار</h3>
+          <ul>
+            <li data-i18n-html="res.c.l1"><strong>GPU</strong> — پیش‌آموزش، دستور، ترجیح، ارزیابی</li>
+            <li data-i18n-html="res.c.l2"><strong>CPU/ذخیره</strong> — توکنایز، حذف تکرار، بسته‌بندی شارد</li>
+            <li data-i18n-html="res.c.l3"><strong>ردیاب آزمایش</strong> — run id · هش · کارت نمره</li>
+            <li data-i18n-html="res.c.l4"><strong>پشته روش</strong> — BPE/Unigram · causal LM · SFT · DPO/ORPO · RAG مجوزدار</li>
+          </ul>
+
+          <h3 data-i18n="res.cap.h">۵٫۳ تخصیص سرمایه</h3>
+          <div class="wp-bars">
+            <div><span data-i18n="res.cap.g1">GPU و آموزش</span><b style="--w:42%">42%</b></div>
+            <div><span data-i18n="res.cap.g2">مجوز پیکره</span><b style="--w:28%">28%</b></div>
+            <div><span data-i18n="res.cap.g3">ارزیابان بومی</span><b style="--w:18%">18%</b></div>
+            <div><span data-i18n="res.cap.g4">محصول و عملیات</span><b style="--w:12%">12%</b></div>
+          </div>
+        </section>
+
+        <section id="methods">
+          <h2 data-i18n="meth.h">۶. روش‌ها</h2>
+          <h3 data-i18n="meth.c.h">۶٫۱ برنامهٔ درسی</h3>
+          <ol class="curriculum wp-curriculum">
+            <li><strong data-i18n="meth.c.a0t">A0 الفبا</strong><span data-i18n="meth.c.a0d">حروف، شکل، پیوستگی</span></li>
+            <li><strong data-i18n="meth.c.a1t">A1 املا</strong><span data-i18n="meth.c.a1d">نیم‌فاصله، نویز OCR</span></li>
+            <li><strong data-i18n="meth.c.l0t">L0 واژگان</strong><span data-i18n="meth.c.l0d">دیکشنری، هم‌نشینی</span></li>
+            <li><strong data-i18n="meth.c.n0t">N0 روایت</strong><span data-i18n="meth.c.n0d">داستان، گفتگو</span></li>
+            <li><strong data-i18n="meth.c.b0t">B0 کتاب</strong><span data-i18n="meth.c.b0d">بافت بلند + دانش</span></li>
+            <li><strong data-i18n="meth.c.p0t">P0 شعر</strong><span data-i18n="meth.c.p0d">عروض کنترل‌شده</span></li>
+            <li><strong data-i18n="meth.c.c0t">C0 معاصر</strong><span data-i18n="meth.c.c0d">خبر، کاربرد زنده</span></li>
+            <li><strong data-i18n="meth.c.i0t">I0 دستور</strong><span data-i18n="meth.c.i0d">جفت دستور انسانی</span></li>
+            <li><strong data-i18n="meth.c.r0t">R0 هم‌ترازی</strong><span data-i18n="meth.c.r0d">ترجیح بومی</span></li>
+          </ol>
+
+          <h3 data-i18n="meth.p.h">۶٫۲ خط لوله</h3>
+          <ol class="wp-ol">
+            <li data-i18n="meth.p.l1">توکنایزر با پوشش تضمینی الفبا.</li>
+            <li data-i18n="meth.p.l2">LM علّی پایه روی شارد فارسی‌غالب.</li>
+            <li data-i18n="meth.p.l3">پیش‌آموزش پیوسته اختیاری فقط اگر lift اندازه‌گیری شود.</li>
+            <li data-i18n="meth.p.l4">SFT روی دستور فارسی.</li>
+            <li data-i18n="meth.p.l5">DPO/ORPO با ارزیاب بومی.</li>
+            <li data-i18n="meth.p.l6">RAG مجوزدار برای استناد محصولی.</li>
+          </ol>
+        </section>
+
+        <section id="mix">
+          <h2 data-i18n="mix.h">۷. ترکیب وزن‌دار درسی (هوشمند)</h2>
+          <p class="wp-why" data-i18n="mix.why">تخت‌کردن همهٔ متن = فراموشی خط و صرف. وزن‌ها نقطهٔ شروع‌اند و با کارت نمره تنظیم می‌شوند.</p>
+          <div class="wp-mix" aria-label="Curriculum mix">
+            <div class="wp-mix-row"><span>A0–A1</span><div class="track"><i style="--w:8%"></i></div><em>8%</em></div>
+            <div class="wp-mix-row"><span>L0</span><div class="track"><i style="--w:12%"></i></div><em>12%</em></div>
+            <div class="wp-mix-row"><span>N0</span><div class="track"><i style="--w:18%"></i></div><em>18%</em></div>
+            <div class="wp-mix-row"><span>B0</span><div class="track"><i style="--w:28%"></i></div><em>28%</em></div>
+            <div class="wp-mix-row"><span>P0</span><div class="track"><i style="--w:6%"></i></div><em>6%</em></div>
+            <div class="wp-mix-row"><span>C0</span><div class="track"><i style="--w:16%"></i></div><em>16%</em></div>
+            <div class="wp-mix-row"><span>I0+R0</span><div class="track"><i style="--w:12%"></i></div><em>12%</em></div>
+          </div>
+          <p class="wp-callout" data-i18n="mix.call">شعر بیش‌ازحد = قافیه‌زدگی. کتاب بدون املا = مدلِ خوش‌سخنِ بدخط. ترکیب را با کاوشگر املا/صرف بازتنظیم کن.</p>
+        </section>
+
+        <section id="gates">
+          <h2 data-i18n="gates.h">۸. دروازه‌های Go / No-Go</h2>
+          <p class="wp-why" data-i18n="gates.why">بدون دروازه، استارتاپ فقط داستان می‌گوید. با دروازه، سرمایه عقلانی می‌شود.</p>
+          <div class="wp-gates">
+            <article>
+              <strong data-i18n="gates.g1t">دروازه ۱ — توکنایزر</strong>
+              <p data-i18n="gates.g1p">پوشش الفبا کامل · باروری فارسی بهتر از پایهٔ چندزبانه روی همان متن · بدون انفجار واژگان بی‌معنی.</p>
+            </article>
+            <article>
+              <strong data-i18n="gates.g2t">دروازه ۲ — پایه</strong>
+              <p data-i18n="gates.g2p">بهبود معنادار روی املا/صرف/درک مطلب فارسی در برابر baseline منصفانه · کارت نمره منتشر.</p>
+            </article>
+            <article>
+              <strong data-i18n="gates.g3t">دروازه ۳ — دستور</strong>
+              <p data-i18n="gates.g3p">روبریک انسانی (روانی، گونه، ایمنی) بالای آستانه · ۳ شریک طراحی فعال.</p>
+            </article>
+            <article>
+              <strong data-i18n="gates.g4t">دروازه ۴ — محصول</strong>
+              <p data-i18n="gates.g4p">یک قرارداد پرداختی یا Private · مصرف واقعی · نه فقط فهرست علاقه.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="timelines">
+          <h2 data-i18n="time.h">۹. زمان‌بندی ۱۸ ماهه</h2>
+          <div class="wp-table-wrap">
+            <table>
+              <thead><tr><th data-i18n="time.th1">فاز</th><th data-i18n="time.th2">بازه</th><th data-i18n="time.th3">نتایج</th></tr></thead>
+              <tbody>
+                <tr><td data-i18n="time.p1a">P1 بنیان</td><td data-i18n="time.p1b">ماه ۰–۳</td><td data-i18n="time.p1c">فهرست پیکره · مجوز · توکنایزر v1 · harness</td></tr>
+                <tr><td data-i18n="time.p2a">P2 پایه</td><td data-i18n="time.p2b">ماه ۳–۸</td><td data-i18n="time.p2c">مدل پایه · کارت املا/صرف · پیش‌نویس مقاله</td></tr>
+                <tr><td data-i18n="time.p3a">P3 دستور</td><td data-i18n="time.p3b">ماه ۸–۱۲</td><td data-i18n="time.p3c">Instruct · API · ۳ شریک طراحی</td></tr>
+                <tr><td data-i18n="time.p4a">P4 عمودی</td><td data-i18n="time.p4b">ماه ۱۲–۱۸</td><td data-i18n="time.p4c">Studio/Private · قرارداد پرداختی</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="wp-pre" data-i18n="time.pre">M0  طرح زنده — حلقهٔ ریاضی آماده‌سازی
+M3  دروازه ۱ — توکنایزر = خط قابل‌یادگیری
+M8  دروازه ۲ — پایه + کارت نمره = زبان اندازه‌گیری‌شده
+M12 دروازه ۳ — API + شرکا = معنی زیر دستور
+M18 دروازه ۴ — عمودی پرداختی = هوشمندتر در میدان</pre>
+        </section>
+
+        <section id="fail">
+          <h2 data-i18n="fail.h">۱۰. شکست‌های ممنوع (صادقانه)</h2>
+          <ul>
+            <li data-i18n="fail.l1">ادعا بدون کارت نمره</li>
+            <li data-i18n="fail.l2">مقیاس پارامتر قبل از lift فارسی</li>
+            <li data-i18n="fail.l3">جمع‌آوری بدون مجوز به‌جای قرارداد</li>
+            <li data-i18n="fail.l4">ارزیابی فقط با ترجمهٔ انگلیسی</li>
+            <li data-i18n="fail.l5">عدد جامعهٔ جعلی روی صفحه</li>
+          </ul>
+          <p class="wp-callout" data-i18n="fail.call">اگر دروازه رد نشود: توقف، بازنویسی فرضیه، یا کاهش دامنه — نه شعار بیشتر.</p>
+        </section>
+
+        <section id="glossary">
+          <h2 data-i18n="gloss.h">۱۱. واژه‌نامه کوتاه</h2>
+          <dl class="wp-glossary">
+            <div><dt data-i18n="gloss.t1">Fertility</dt><dd data-i18n="gloss.d1">میانگین تعداد توکن به‌ازای کلمه/نویسه‌ی فارسی — کمترِ معنادار معمولاً بهتر است.</dd></div>
+            <div><dt data-i18n="gloss.t2">Holdout</dt><dd data-i18n="gloss.d2">مجموعهٔ ارزیابی جدا که هرگز وارد آموزش نمی‌شود.</dd></div>
+            <div><dt data-i18n="gloss.t3">Re-centering</dt><dd data-i18n="gloss.d3">بازآموزی سنگین فارسی روی پایهٔ چندزبانه با اندازه‌گیری lift.</dd></div>
+            <div><dt data-i18n="gloss.t4">Score card</dt><dd data-i18n="gloss.d4">رسید عمومی: تاریخ، بخش داده، هش مدل، نمره‌ها.</dd></div>
+            <div><dt data-i18n="gloss.t5">Literary consciousness</dt><dd data-i18n="gloss.d5">حضور معنایی داخل ادبیات فارسی — گونه، حافظهٔ کتاب، ترجیح بومی — نه آگاهی زیستی.</dd></div>
+            <div><dt data-i18n="gloss.t6">Ontogeny</dt><dd data-i18n="gloss.d6">مسیر رشد طراحی‌شده از کدِ خالی تا معنی، از راه کتاب فارسی.</dd></div>
+          </dl>
+        </section>
+
+        <section id="cta">
+          <h2 data-i18n="cta.h">۱۲. فراخوان اقدام</h2>
+          <div class="wp-cta-grid">
+            <article>
+              <h3 data-i18n="cta.i.h">سرمایه‌گذاری</h3>
+              <p data-i18n="cta.i.p">سرمایه‌گذار اولیه ۲۵–۱۰۰هزار · بذر ۲۵۰هزار–۱ میلیون</p>
+            </article>
+            <article>
+              <h3 data-i18n="cta.p.h">همراهی</h3>
+              <p data-i18n="cta.p.p">پیکره · ارزیابی · سازنده · معرف</p>
+            </article>
+            <article>
+              <h3 data-i18n="cta.d.h">حمایت مالی</h3>
+              <p data-i18n="cta.d.p">ساعت آموزش · بسته کتاب · هفته ارزیاب · حامی بنیان‌گذار</p>
+            </article>
+          </div>
+          <p class="wp-actions">
+            <a class="btn btn-primary btn-glow" href="/#lanes" data-i18n="cta.open">باز کردن مسیرهای جامعه</a>
+            <a class="btn btn-ghost" href="/" data-i18n="cta.back">خانه</a>
+          </p>
+          <p class="wp-meta" data-i18n-html="cta.meta">SSOT: <code>ALEFBA/governance/WHITE_PAPER.md</code> · نسخه ۰٫۲</p>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <p><strong>Alefbâ · الفبا</strong> <span data-i18n="foot">سند ۰٫۲٫۷ — جامعهٔ علمی · لنگر · رسیدمحور · باز به توسعه‌دهندگان</span></p>
+  </footer>
+
+  <script src="/white-paper.js?v=0.2.8"></script>
+</body>
+</html>

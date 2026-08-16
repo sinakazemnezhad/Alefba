@@ -1,0 +1,155 @@
+{
+  "gate": "G1",
+  "suite": "tokenizer_fertility",
+  "at": "2026-08-16T06:57:46.936490Z",
+  "specVersion": "1.0.0",
+  "modelId": "alefba-tokenizer-v1",
+  "modelHash": "205839eb015478e7",
+  "metric": "characters_per_token",
+  "alefba": {
+    "probeCount": 22,
+    "totalChars": 416,
+    "totalTokens": 107,
+    "charsPerToken": 3.888
+  },
+  "fertilityProbeCount": 22,
+  "excludedProbeIds": [
+    "a01"
+  ],
+  "excludedReason": "full_alphabet_row display probe — not used for chars/token fertility",
+  "baselines": {
+    "latin_subword_proxy": {
+      "probeCount": 22,
+      "totalChars": 416,
+      "totalTokens": 214,
+      "charsPerToken": 1.944
+    },
+    "bloom_560m_proxy": {
+      "baselineId": "bloom-560m",
+      "huggingfaceId": "bigscience/bloom-560m",
+      "method": "published_proxy_chars_per_token",
+      "charsPerToken": 2.05,
+      "totalChars": 416,
+      "totalTokens": 203,
+      "note": "Proxy from multilingual thin-slice posture — not a live HF run in this harness"
+    },
+    "bloom_560m_hf": {
+      "baselineId": "bloom-560m",
+      "huggingfaceId": "bigscience/bloom-560m",
+      "method": "hf_autotokenizer",
+      "probeCount": 22,
+      "totalChars": 416,
+      "totalTokens": 228,
+      "charsPerToken": 1.825,
+      "perLine": [
+        {
+          "chars": 29,
+          "tokens": 14
+        },
+        {
+          "chars": 38,
+          "tokens": 16
+        },
+        {
+          "chars": 28,
+          "tokens": 14
+        },
+        {
+          "chars": 27,
+          "tokens": 17
+        },
+        {
+          "chars": 24,
+          "tokens": 11
+        },
+        {
+          "chars": 21,
+          "tokens": 12
+        },
+        {
+          "chars": 24,
+          "tokens": 13
+        },
+        {
+          "chars": 33,
+          "tokens": 16
+        },
+        {
+          "chars": 32,
+          "tokens": 15
+        },
+        {
+          "chars": 34,
+          "tokens": 19
+        },
+        {
+          "chars": 35,
+          "tokens": 20
+        },
+        {
+          "chars": 18,
+          "tokens": 8
+        },
+        {
+          "chars": 27,
+          "tokens": 23
+        },
+        {
+          "chars": 18,
+          "tokens": 12
+        },
+        {
+          "chars": 8,
+          "tokens": 5
+        },
+        {
+          "chars": 7,
+          "tokens": 3
+        },
+        {
+          "chars": 1,
+          "tokens": 1
+        },
+        {
+          "chars": 1,
+          "tokens": 1
+        },
+        {
+          "chars": 1,
+          "tokens": 1
+        },
+        {
+          "chars": 5,
+          "tokens": 3
+        },
+        {
+          "chars": 1,
+          "tokens": 1
+        },
+        {
+          "chars": 4,
+          "tokens": 3
+        }
+      ],
+      "note": "Live HuggingFace tokenizer run on held fertility probes"
+    }
+  },
+  "compare": {
+    "beatsLatinSubwordProxy": true,
+    "beatsBloom560mProxy": true,
+    "targetFromSpec": "lower_or_equal_chars_per_token_on_fa_probes",
+    "beatsBloom560mHf": true,
+    "bloom560mHfCharsPerToken": 1.825
+  },
+  "pass": true,
+  "note": "G1 fertility receipt — live BLOOM-560m HF tokenizer on held probes.",
+  "hfBaseline": {
+    "baselineId": "bloom-560m",
+    "huggingfaceId": "bigscience/bloom-560m",
+    "method": "transformers.AutoTokenizer",
+    "charsPerToken": 1.825,
+    "totalChars": 416,
+    "totalTokens": 228,
+    "report": "data/g1-hf-baseline-report.json"
+  }
+}
