@@ -12,7 +12,9 @@ import {
   handleChatGet,
   handleChatPostRequest,
   handleDesignPartnerPost,
+  handleDesignPartnerGet,
 } from "./chat-v1.mjs";
+import { buildPartnerStats } from "../../../lib/design-partner-v1.mjs";
 
 const VERSION = "0.2.8";
 const EDGE_ORIGIN = "https://alefba.sina-kazemnezhad-ca.workers.dev";
@@ -260,6 +262,7 @@ async function handleV1Status(env) {
   let interestRows = null;
   let designPartnerRows = null;
   let chatUsageRows = null;
+  let g3PartnerGate = null;
   if (env.DB) {
     try {
       const row = await env.DB.prepare("SELECT COUNT(*) AS n FROM api_waitlist").first();
@@ -276,10 +279,11 @@ async function handleV1Status(env) {
       interestRows = null;
     }
     try {
-      const row = await env.DB.prepare("SELECT COUNT(*) AS n FROM design_partners").first();
-      designPartnerRows = row?.n ?? 0;
+      const { results } = await env.DB.prepare("SELECT status FROM design_partners").all();
+      g3PartnerGate = buildPartnerStats(results || []);
+      designPartnerRows = g3PartnerGate.counts?.total ?? null;
     } catch {
-      designPartnerRows = null;
+      g3PartnerGate = null;
     }
     try {
       const row = await env.DB.prepare("SELECT COUNT(*) AS n FROM api_usage").first();
@@ -295,11 +299,13 @@ async function handleV1Status(env) {
     apiAlpha: "waitlist",
     chatAlpha: "probe_only",
     chatRoute: "/api/v1/chat",
+    partnerRoute: "/api/v1/design-partners",
     waitlistRows,
     interestRows,
     designPartnerRows,
     chatUsageRows,
-    migration: env.MIGRATION_PHASE || "g3_chat_stub",
+    g3PartnerGate,
+    migration: env.MIGRATION_PHASE || "g3_partners_lane",
     gates: [
       { id: "G1", status: "pass" },
       { id: "G2", status: "in_progress" },
@@ -331,6 +337,9 @@ async function handleWorkerApi(request, env, ctx) {
   }
   if (url.pathname === "/api/v1/chat" && request.method === "POST") {
     return handleChatPostRequest(request, env);
+  }
+  if (url.pathname === "/api/v1/design-partners" && request.method === "GET") {
+    return handleDesignPartnerGet(env);
   }
   if (url.pathname === "/api/v1/design-partners" && request.method === "POST") {
     return handleDesignPartnerPost(request, env);

@@ -7,7 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { chatCapabilityDoc, handleChatPost } from "../lib/chat-v1.mjs";
-import { parseDesignPartner, validateDesignPartner } from "../lib/design-partner-v1.mjs";
+import { parseDesignPartner, validateDesignPartner, buildPartnerStats } from "../lib/design-partner-v1.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "../public");
@@ -241,6 +241,24 @@ function isTestRecord(r) {
   return false;
 }
 
+function readDesignPartners() {
+  ensureData();
+  if (!fs.existsSync(DESIGN_PARTNERS_FILE)) return [];
+  return fs
+    .readFileSync(DESIGN_PARTNERS_FILE, "utf8")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l) => {
+      try {
+        return JSON.parse(l);
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean);
+}
+
 function readRecords() {
   ensureData();
   const text = fs.readFileSync(INTEREST_FILE, "utf8");
@@ -469,6 +487,8 @@ async function handleApi(req, res, pathname) {
       apiAlpha: "waitlist",
       chatAlpha: "probe_only",
       chatRoute: "/api/v1/chat",
+      partnerRoute: "/api/v1/design-partners",
+      g3PartnerGate: buildPartnerStats(readDesignPartners()),
       charter: `${req.headers.host ? `https://${req.headers.host}` : ""}/`,
     });
     return true;
@@ -488,6 +508,11 @@ async function handleApi(req, res, pathname) {
     } catch (err) {
       sendJson(res, req, 400, { ok: false, error: String(err.message || err) });
     }
+    return true;
+  }
+
+  if (pathname === "/api/v1/design-partners" && req.method === "GET") {
+    sendJson(res, req, 200, buildPartnerStats(readDesignPartners()));
     return true;
   }
 
@@ -512,11 +537,13 @@ async function handleApi(req, res, pathname) {
         status: "prospect",
       };
       fs.appendFileSync(DESIGN_PARTNERS_FILE, `${JSON.stringify(saved)}\n`, "utf8");
+      const partnerGate = buildPartnerStats(readDesignPartners());
       sendJson(res, req, 201, {
         ok: true,
         persisted: true,
         status: "prospect",
-        note: "Gate 3 requires 3 active design partners for instruct MVP.",
+        partnerGate,
+        note: partnerGate.note,
       });
     } catch (err) {
       sendJson(res, req, 400, { ok: false, error: String(err.message || err) });

@@ -18,3 +18,23 @@ export function validateDesignPartner(row) {
   if (!row.contactEmail) return "contact_email_required";
   return null;
 }
+
+export const G3_ACTIVE_PARTNER_TARGET = 3;
+
+export function buildPartnerStats(rows) {
+  const counts = { prospect: 0, active: 0, paused: 0, churned: 0, total: 0 };
+  for (const r of rows || []) {
+    const s = String(r.status || "prospect");
+    if (s in counts) counts[s] += 1;
+    counts.total += 1;
+  }
+  const active = counts.active;
+  return {
+    gate: "G3",
+    targetActive: G3_ACTIVE_PARTNER_TARGET,
+    active,
+    met: active >= G3_ACTIVE_PARTNER_TARGET,
+    counts,
+    note: "Gate 3 instruct MVP requires 3 active design partners on API alpha.",
+  };
+}

@@ -304,6 +304,35 @@ async function main() {
   }
   record("api/v1 chat probe echo", chatProbeOk);
 
+  const partnerStats = await get("/api/v1/design-partners");
+  let partnerStatsOk = false;
+  try {
+    const ps = JSON.parse(partnerStats.text);
+    partnerStatsOk = ps.targetActive === 3 && ps.gate === "G3";
+  } catch {
+    partnerStatsOk = false;
+  }
+  record("api/v1 design-partner stats", partnerStats.res.ok && partnerStatsOk);
+
+  const partnerPost = await fetch(`${BASE}/api/v1/design-partners`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      orgName: "E2E Partner Org",
+      contactName: "E2E",
+      contactEmail: `partner-e2e-${Date.now()}@partner-check.invalid`,
+      vertical: "EdTech",
+    }),
+  });
+  let partnerPostOk = false;
+  try {
+    const pp = JSON.parse(await partnerPost.text());
+    partnerPostOk = partnerPost.status === 201 && pp.ok === true && pp.partnerGate?.targetActive === 3;
+  } catch {
+    partnerPostOk = false;
+  }
+  record("api/v1 design-partner POST", partnerPostOk);
+
   const fert = await get("/api/g1-tokenizer-receipt");
   let fertOk = false;
   try {

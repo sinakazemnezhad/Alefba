@@ -223,6 +223,30 @@ async function main() {
   } catch {}
   record("chat probe echo", probeOk);
 
+  const partnerStats = await get("/api/v1/design-partners");
+  let partnerStatsOk = false;
+  try {
+    const ps = JSON.parse(partnerStats.text);
+    partnerStatsOk = ps.targetActive === 3;
+  } catch {}
+  record("design partner stats", partnerStats.res.ok && partnerStatsOk);
+
+  const partnerPost = await fetch(`${BASE}/api/v1/design-partners`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      orgName: "Smoke Partner",
+      contactEmail: `partner-smoke-${Date.now()}@partner-check.invalid`,
+      vertical: "publisher",
+    }),
+  });
+  let partnerPostOk = false;
+  try {
+    const pp = JSON.parse(await partnerPost.text());
+    partnerPostOk = partnerPost.status === 201 && pp.ok === true;
+  } catch {}
+  record("design partner POST", partnerPostOk);
+
   const v1Status = await get("/api/v1/status");
   let statusJ = {};
   try {

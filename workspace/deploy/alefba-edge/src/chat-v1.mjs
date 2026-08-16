@@ -4,7 +4,7 @@ import {
   chatCapabilityDoc,
   handleChatPost,
 } from "../../../lib/chat-v1.mjs";
-import { parseDesignPartner, validateDesignPartner } from "../../../lib/design-partner-v1.mjs";
+import { parseDesignPartner, validateDesignPartner, buildPartnerStats } from "../../../lib/design-partner-v1.mjs";
 
 export async function handleChatGet(env) {
   return json(chatCapabilityDoc(env.ALEFBA_VERSION || "0.2.8"));
@@ -36,6 +36,20 @@ export async function handleChatPostRequest(request, env) {
   return json(result.body, result.status);
 }
 
+export async function handleDesignPartnerGet(env) {
+  if (!env.DB) {
+    return json(buildPartnerStats([]));
+  }
+  try {
+    const { results } = await env.DB.prepare(
+      "SELECT status FROM design_partners"
+    ).all();
+    return json(buildPartnerStats(results || []));
+  } catch (e) {
+    return json({ ok: false, error: String(e.message || e) }, 500);
+  }
+}
+
 export async function handleDesignPartnerPost(request, env) {
   const body = await readJson(request);
   const row = parseDesignPartner(body || {});
@@ -64,16 +78,16 @@ export async function handleDesignPartnerPost(request, env) {
         row.notes || null
       )
       .run();
-    const countRow = await env.DB.prepare(
-      "SELECT COUNT(*) AS n FROM design_partners"
-    ).first();
+    const stats = buildPartnerStats(
+      (await env.DB.prepare("SELECT status FROM design_partners").all()).results || []
+    );
     return json({
       ok: true,
       persisted: true,
       status: "prospect",
-      designPartnerRows: countRow?.n ?? null,
-      migration: env.MIGRATION_PHASE || "g3_chat_stub",
-      note: "Gate 3 requires 3 active design partners for instruct MVP.",
+      partnerGate: stats,
+      migration: env.MIGRATION_PHASE || "g3_partners_lane",
+      note: stats.note,
     }, 201);
   } catch (e) {
     return json({ ok: false, error: String(e.message || e) }, 500);

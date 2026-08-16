@@ -37,6 +37,17 @@
         <p class="lede" id="api-lede">Instruct MVP not live yet — honest gate status below.</p>
       </header>
       <div id="api-status" aria-live="polite"></div>
+      <h2 id="partner-title">Design partners</h2>
+      <p class="section-lede" id="partner-lede">Gate 3 needs <strong>3 active</strong> design partners before instruct API goes live.</p>
+      <p class="colophon" id="partner-gate-line" aria-live="polite"></p>
+      <form class="partner-form" id="api-partner-form">
+        <label><span>Organization</span><input type="text" name="orgName" required /></label>
+        <label><span>Contact name</span><input type="text" name="contactName" /></label>
+        <label><span>Contact email</span><input type="email" name="contactEmail" required /></label>
+        <label><span>Vertical</span><input type="text" name="vertical" placeholder="publisher · EdTech · enterprise" /></label>
+        <button type="submit" class="btn btn-primary">Apply as design partner</button>
+        <p class="form-status" id="api-partner-status" hidden></p>
+      </form>
       <h2>Waitlist</h2>
       <p class="section-lede">After Gate 3 — design partners first. Leave email for API alpha.</p>
       <form class="partner-form" id="api-waitlist-form">
@@ -78,6 +89,10 @@
       const chatForm = document.getElementById("api-chat-form");
       const chatStatus = document.getElementById("api-chat-status");
       const chatLede = document.getElementById("chat-probe-lede");
+      const partnerForm = document.getElementById("api-partner-form");
+      const partnerStatus = document.getElementById("api-partner-status");
+      const partnerLede = document.getElementById("partner-lede");
+      const partnerGateLine = document.getElementById("partner-gate-line");
       let lang = localStorage.getItem("alefba-lang") || "fa";
       document.documentElement.lang = lang === "fa" ? "fa" : "en";
       document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
@@ -108,8 +123,16 @@
             <tr><td>Waitlist rows</td><td>${data.waitlistRows ?? "—"}</td></tr>
             <tr><td>Interest rows (D1)</td><td>${data.interestRows ?? "—"}</td></tr>
             <tr><td>Design partners</td><td>${data.designPartnerRows ?? "—"}</td></tr>
+            <tr><td>G3 active partners</td><td>${data.g3PartnerGate ? `${data.g3PartnerGate.active}/${data.g3PartnerGate.targetActive}` : "—"}</td></tr>
             <tr><td>Chat usage rows</td><td>${data.chatUsageRows ?? "—"}</td></tr>
           </tbody></table>`;
+          if (data.g3PartnerGate && partnerGateLine) {
+            const g = data.g3PartnerGate;
+            partnerGateLine.textContent =
+              lang === "fa"
+                ? `فعال: ${g.active} از ${g.targetActive} · prospect: ${g.counts?.prospect ?? 0}`
+                : `Active: ${g.active} of ${g.targetActive} · prospects: ${g.counts?.prospect ?? 0}`;
+          }
           if (lang === "fa") {
             lede.textContent = "نسخهٔ دستورپذیر هنوز live نیست — وضعیت دروازه‌ها صادق است.";
           } else {
@@ -119,6 +142,31 @@
           statusRoot.textContent = lang === "fa" ? "وضعیت API در دسترس نیست." : "API status unavailable.";
         }
       }
+
+      partnerForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fd = new FormData(partnerForm);
+        const res = await fetch("/api/v1/design-partners", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orgName: fd.get("orgName"),
+            contactName: fd.get("contactName"),
+            contactEmail: fd.get("contactEmail"),
+            vertical: fd.get("vertical"),
+          }),
+        });
+        const data = await res.json();
+        partnerStatus.hidden = false;
+        partnerStatus.textContent = res.ok
+          ? lang === "fa"
+            ? `ثبت شد · فعال ${data.partnerGate?.active ?? 0}/${data.partnerGate?.targetActive ?? 3}`
+            : `Saved · active ${data.partnerGate?.active ?? 0}/${data.partnerGate?.targetActive ?? 3}`
+          : lang === "fa"
+            ? "خطا در ثبت."
+            : "Could not save.";
+        if (res.ok) loadStatus();
+      });
 
       chatForm?.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -176,6 +224,12 @@
             lang === "fa"
               ? "فقط برای wiring — مدل alefba-probe-v1 پاسخ curriculum probe می‌دهد. مدل instruct آموزش‌داده‌شده نیست."
               : "Wiring test only — model alefba-probe-v1 echoes curriculum probes. Not a trained instruct model.";
+        }
+        if (partnerLede) {
+          partnerLede.innerHTML =
+            lang === "fa"
+              ? "دروازهٔ ۳ به <strong>۳ شریک فعال</strong> نیاز دارد قبل از live شدن instruct API."
+              : "Gate 3 needs <strong>3 active</strong> design partners before instruct API goes live.";
         }
         loadStatus();
       });

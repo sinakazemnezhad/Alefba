@@ -38,7 +38,9 @@ jobs:
             --environment "$RAILWAY_ENVIRONMENT_ID" \
             --service "$RAILWAY_SERVICE_ID" \
             --detach
-      - name: Production runtime gate
+      - name: Production runtime gate (canonical edge)
+        env:
+          ALEFBA_BASE_URL: https://alefba.sina-kazemnezhad-ca.workers.dev
         run: npm run smoke:prod
       - name: Note
         if: vars.RAILWAY_SERVICE_ID == ''
