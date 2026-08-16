@@ -135,13 +135,13 @@ async function main() {
     record("export ok with admin token", expAuth.status === 200, String(expAuth.status));
   }
 
-  const probeEmail = `runtime-gate-${Date.now()}@example.com`;
+  const probeEmail = `founding-deliver-${Date.now()}@partner-check.invalid`;
   const post = await fetch(`${BASE}/api/interest`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       lane: "participate",
-      name: "Runtime Gate",
+      name: "Founding Deliver Check",
       email: probeEmail,
       lang: "fa",
       showOnWall: false,
