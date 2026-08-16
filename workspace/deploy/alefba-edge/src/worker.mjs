@@ -4,6 +4,53 @@
  */
 
 const VERSION = "0.2.8";
+const EDGE_ORIGIN = "https://alefba.sina-kazemnezhad-ca.workers.dev";
+
+const SITEMAP_PAGES = [
+  { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/white-paper.html", priority: "0.95", changefreq: "monthly" },
+  { path: "/corpus.html", priority: "0.9", changefreq: "weekly" },
+  { path: "/receipts.html", priority: "0.9", changefreq: "weekly" },
+  { path: "/data-room.html", priority: "0.85", changefreq: "monthly" },
+  { path: "/press.html", priority: "0.8", changefreq: "monthly" },
+  { path: "/api.html", priority: "0.7", changefreq: "monthly" },
+];
+
+function edgeOrigin(env) {
+  const fromEnv = (env.ALEFBA_PUBLIC_ORIGIN || "").replace(/\/$/, "");
+  return fromEnv || EDGE_ORIGIN;
+}
+
+function serveRobots(env) {
+  const origin = edgeOrigin(env);
+  const body = [
+    "User-agent: *",
+    "Allow: /",
+    "Disallow: /api/interest/export",
+    "Disallow: /api/interest/export.csv",
+    "",
+    `Sitemap: ${origin}/sitemap.xml`,
+    "",
+  ].join("\n");
+  return new Response(body, {
+    status: 200,
+    headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600" },
+  });
+}
+
+function serveSitemap(env) {
+  const origin = edgeOrigin(env);
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const urls = SITEMAP_PAGES.map((p) => {
+    const loc = `${origin}${p.path}`;
+    return `<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`;
+  }).join("");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  return new Response(xml, {
+    status: 200,
+    headers: { "content-type": "application/xml; charset=utf-8", "cache-control": "public, max-age=3600" },
+  });
+}
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -63,8 +110,11 @@ async function handleV1Status(env) {
 
 async function handleWorkerApi(request, env) {
   const url = new URL(request.url);
-  if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") {
-    return proxyToRailway(request, env);
+  if (url.pathname === "/robots.txt") {
+    return serveRobots(env);
+  }
+  if (url.pathname === "/sitemap.xml") {
+    return serveSitemap(env);
   }
   if (url.pathname === "/api/v1/health" && request.method === "GET") {
     return handleV1Health(env);
