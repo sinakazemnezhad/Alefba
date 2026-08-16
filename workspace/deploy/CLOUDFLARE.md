@@ -1,6 +1,10 @@
 # Cloudflare edge for Alefbâ (Railway origin → G3 Workers)
 
-**Current:** Railway origin. **G3 target:** CF Pages (charter) + Workers (API) + D1. Spike: [g3-cloudflare/README.md](./g3-cloudflare/README.md).
+**Account:** sina.kazemnezhad.ca@gmail.com — see [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md).
+
+**Current:** Railway origin · Option D canonical URL. **G3 target:** CF Pages + Workers + D1. Spike: [g3-cloudflare/README.md](./g3-cloudflare/README.md).
+
+**Wire script:** `node scripts/cf-phase0-wire.mjs verify` | `wire --hostname …`
 
 ## DNS
 

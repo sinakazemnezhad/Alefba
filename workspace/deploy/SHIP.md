@@ -19,18 +19,26 @@ PRODUCT (G4)       → edge API + billing + optional Private VPC
 | **P3 Vertical** | 12–18 | G4 | CF Pages + Workers | D1 + usage metering | Dedicated GPU if justified |
 | **Private (G4)** | 12+ | G4 | Customer VPC | Customer store | Customer or dedicated |
 
-### Phase 0 · Now (G1 pass · G2 in progress)
+### Phase 0 · Now (G1 pass · G2 in progress) — **Option D selected**
 
-**Live:** Railway `alefba-production.up.railway.app` · GHA `deploy-railway.yml` only.
+**Canonical URL:** `https://alefba-production.up.railway.app` (no custom domain required).
 
 | Do now | Why |
 |--------|-----|
-| Custom domain + **Cloudflare** proxy | TLS, WAF, cache — see [CLOUDFLARE.md](./CLOUDFLARE.md) |
-| Set `ALEFBA_PUBLIC_ORIGIN` to custom domain | Canonical + sitemap + CORS |
-| CF cache: bypass `/api/*` | Leads and receipts must not stale |
+| Keep `ALEFBA_PUBLIC_ORIGIN` = Railway URL | Already set on production |
+| Search Console on Railway URL | Sitemap submitted · 7 pages |
+| CF account runbook | [CLOUDFLARE-ACCOUNT.md](./CLOUDFLARE-ACCOUNT.md) · `node scripts/cf-phase0-wire.mjs verify` |
+
+**Cloudflare note:** CF cannot proxy `*.up.railway.app`. Edge on **sina.kazemnezhad.ca@gmail.com** CF account applies when you add a hostname on a zone you own (`wire` mode). Until then, Railway-only is correct for Option D.
+
+Optional before custom hostname:
+
+| Do now | Why |
+|--------|-----|
+| CF API token with **DNS Edit** on target zone | Enables `cf-phase0-wire.mjs wire` |
 | Nightly lead backup → R2 | Survives origin migration |
 
-**Do not:** rewrite to serverless or D1 until G3 API is real.
+**Do not:** buy a domain or rewrite to D1 until you choose a hostname or G3 ships.
 
 ### Phase 1 · G2 base score card (M8)
 
