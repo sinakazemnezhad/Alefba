@@ -86,7 +86,7 @@
       "press.lede": "Boilerplate, assets, and share copy for scientific society outreach.",
       "press.boilerTitle": "Boilerplate",
       "press.boiler":
-        "Alefbâ (الفبا) builds Persian foundation intelligence — a causal LM whose pretrain curriculum runs A0 alphabet through licensed books, with gates G1–G4 and dated score cards before scale. Founding scientific charter · receipt before claim · invest · join · donate.",
+        "Alefbâ (الفبا) builds Persian foundation intelligence — a causal LM whose pretrain curriculum runs A0 alphabet through licensed books, with gates G1–G4 and dated score cards before scale. Founding scientific charter · transparent reports · invest · join · donate.",
       "press.copyBoiler": "Copy boilerplate",
       "press.founderTitle": "Founder",
       "press.founder":
@@ -101,7 +101,7 @@
       "press.copyCite": "Copy citation",
       "press.shareTitle": "Share",
       "press.sharePitch":
-        "Alefbâ · الفبا — Persian foundation intelligence. Founding scientific charter. Receipt before claim.",
+        "Alefbâ · الفبا — Persian foundation intelligence. Founding scientific charter. Transparent reports.",
       "data.kicker": "Investor data room",
       "data.title": "Founding documents",
       "data.lede": "Same story on disk and in browser. SSOT governance + live receipts + named research citations.",
@@ -225,7 +225,7 @@
       "press.lede": "متن پایه، اقلام بصری و نسخهٔ اشتراک برای گسترش جامعه.",
       "press.boilerTitle": "متن پایه",
       "press.boiler":
-        "الفبا مدل زبانی فارسی می‌سازد — از الفبا تا کتاب مجوزدار، با مراحل سنجش شفاف (G1–G4) قبل از مقیاس. طرح بنیادین · اول نتیجه، بعد ادعا · سرمایه · همراهی · حمایت مالی.",
+        "الفبا مدل زبانی فارسی می‌سازد — از الفبا تا کتاب مجوزدار، با مراحل سنجش شفاف (G1–G4) قبل از مقیاس. طرح بنیادین · گزارش شفاف · سرمایه · همراهی · حمایت مالی.",
       "press.copyBoiler": "رونوشت متن پایه",
       "press.founderTitle": "بنیان‌گذار",
       "press.founder":
@@ -236,15 +236,15 @@
       "press.asset3": "تصویر اشتراک — جامعه",
       "press.asset4": "تصویر اشتراک — الگو",
       "press.citeTitle": "استناد",
-      "press.cite": "الفبا — سند بنیادگذاری نسخه ۰٫۲٫۱ (۲۰۲۶-۰۸-۰۹). مدل زبانی فارسی.",
+      "press.cite": "الفبا — سند بنیادگذاری نسخه ۰٫۲٫۸ (۲۰۲۶-۰۸-۱۶). مدل زبانی فارسی.",
       "press.copyCite": "رونوشت استناد",
       "press.shareTitle": "اشتراک",
       "press.sharePitch":
-        "الفبا · مدل زبانی فارسی. طرح بنیادین. اول نتیجه، بعد ادعا.",
+        "الفبا · مدل زبانی فارسی. طرح بنیادین. گزارش شفاف.",
       "data.kicker": "اتاق دادهٔ سرمایه‌گذار",
       "data.title": "اسناد بنیادگذار",
       "data.lede": "یک روایت روی دیسک و در مرورگر — سند، رسیدها، پیکره و استنادهای پژوهشی نام‌دار.",
-      "data.d1": "سند بنیادگذاری نسخه ۰٫۲٫۷",
+      "data.d1": "سند بنیادگذاری نسخه ۰٫۲٫۸",
       "data.d1s": "طرح علمی",
       "data.d2": "رسیدهای علمی",
       "data.d2s": "دروازه · کارت نمره",

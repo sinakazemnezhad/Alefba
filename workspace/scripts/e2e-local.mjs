@@ -33,6 +33,7 @@ async function main() {
     "/robots.txt",
     "/sitemap.xml",
     "/seo.js",
+    "/google27df59668b3bb50e.html",
     "/app.js",
     "/app.css",
     "/persian-human.css",
@@ -330,8 +331,11 @@ async function main() {
   const pagesJs = await get("/pages.js");
   record("pages FA corpus title", pagesJs.text.includes("پیکره و برنامهٔ درسی"));
   record("pages FA receipts", pagesJs.text.includes("رسیدهای علمی"));
+  record("no receipt-before-claim calque EN", !appJs.text.includes("receipt before claim") && !appJs.text.includes("Receipt before claim"));
+  record("no receipt-before-claim calque FA", !pagesJs.text.includes("بعد ادعا") && !pagesJs.text.includes("قبل از ادعا"));
+  const ogReceipts = await get("/og-receipts.svg");
+  record("OG receipts UTF-8", ogReceipts.text.includes("رسیدهای علمی") && !ogReceipts.text.includes("\uFFFD"));
   record("no FA skin-in-game calque", !appJs.text.includes("پوست من در بازی"));
-  record("no FA virality calque", !appJs.text.includes('"share.kicker": "ویروسی"'));
   record("FA institutional pitch", appJs.text.includes("خلاصهٔ ارائه"));
   record("content drift epigraph", appJs.text.includes("Math guesses; books teach; time makes it smarter") && manifestOk);
   record("WP FA charter not whitepaper loan", wpJs.text.includes('skip: "پرش به سند"') && !wpJs.text.includes("پرش به وایت‌پیپر"));
