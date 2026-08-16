@@ -1,0 +1,91 @@
+{
+  "pipeline": "corpus-pipeline-v1",
+  "version": "1.0.0",
+  "at": "2026-08-16T08:23:10.344Z",
+  "phase": "P1",
+  "gate": "G1",
+  "pass": true,
+  "checks": [
+    {
+      "id": "a0-alphabet-curriculum-v1_indexed_file",
+      "pass": true,
+      "detail": "8 lines"
+    },
+    {
+      "id": "b0-pd-literary-sample-v1_indexed_file",
+      "pass": true,
+      "detail": "6 lines"
+    },
+    {
+      "id": "l0-lexicon-sample-v1_indexed_file",
+      "pass": true,
+      "detail": "8 lines"
+    },
+    {
+      "id": "n0-narrative-sample-v1_indexed_file",
+      "pass": true,
+      "detail": "6 lines"
+    },
+    {
+      "id": "min_indexed_train_shards",
+      "pass": true,
+      "detail": "4 shards"
+    },
+    {
+      "id": "min_train_lines",
+      "pass": true,
+      "detail": "28 lines"
+    },
+    {
+      "id": "license_map_present",
+      "pass": true,
+      "detail": "5 entries"
+    }
+  ],
+  "shardStats": {
+    "a0-alphabet-curriculum-v1": {
+      "file": "data/corpus/shards/a0-alphabet-curriculum-v1.jsonl",
+      "ok": true,
+      "errors": [],
+      "lineCount": 8,
+      "charCount": 126,
+      "bytes": 524,
+      "sha256Prefix": "cac334f0dfcd8ccc"
+    },
+    "b0-pd-literary-sample-v1": {
+      "file": "data/corpus/shards/b0-pd-literary-sample-v1.jsonl",
+      "ok": true,
+      "errors": [],
+      "lineCount": 6,
+      "charCount": 261,
+      "bytes": 747,
+      "sha256Prefix": "da4802927bea5e81"
+    },
+    "l0-lexicon-sample-v1": {
+      "file": "data/corpus/shards/l0-lexicon-sample-v1.jsonl",
+      "ok": true,
+      "errors": [],
+      "lineCount": 8,
+      "charCount": 325,
+      "bytes": 929,
+      "sha256Prefix": "678f118db46f4890"
+    },
+    "n0-narrative-sample-v1": {
+      "file": "data/corpus/shards/n0-narrative-sample-v1.jsonl",
+      "ok": true,
+      "errors": [],
+      "lineCount": 6,
+      "charCount": 435,
+      "bytes": 1120,
+      "sha256Prefix": "b4976cb5af0b1827"
+    }
+  },
+  "totals": {
+    "diskShardFiles": 4,
+    "indexedTrainShards": 4,
+    "trainLines": 28,
+    "trainChars": 1147
+  },
+  "inventoryFile": "data/corpus-inventory.json",
+  "law": "Licensed and public-domain first. Scraping is not strategy. Volume in bands — never all books."
+}

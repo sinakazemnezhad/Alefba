@@ -213,6 +213,14 @@ async function main() {
   const corpus = await get("/api/corpus-inventory");
   record("corpus inventory API", corpus.res.ok && corpus.text.length > 200, `${corpus.text.length}b`);
 
+  const corpusPipe = await get("/api/corpus-pipeline-report");
+  let pipeOk = false;
+  try {
+    const pj = JSON.parse(corpusPipe.text);
+    pipeOk = pj.pass === true;
+  } catch {}
+  record("corpus pipeline report", corpusPipe.res.ok && pipeOk);
+
   const failed = results.filter((r) => !r.ok);
   console.log(`\n${failed.length ? "RED" : "GREEN"}  ${results.length - failed.length}/${results.length} pass`);
   process.exit(failed.length ? 1 : 0);

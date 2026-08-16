@@ -1,6 +1,6 @@
 {
   "version": "0.2.0",
-  "updatedAt": "2026-08-13T03:50:00.000Z",
+  "updatedAt": "2026-08-16T08:23:10.344Z",
   "law": "Licensed and public-domain first. Scraping is not strategy. Volume in bands — never all books.",
   "phase": "P1",
   "gate": "G1",
@@ -8,31 +8,61 @@
     "A0_alphabet": {
       "status": "probe_indexed",
       "targetBand": "primer + joining-form probes for G1",
-      "tokens": null,
-      "shards": ["a0-primer-probes-v1", "a0-joining-forms-v1"]
+      "tokens": 8,
+      "shards": [
+        "a0-primer-probes-v1",
+        "a0-joining-forms-v1",
+        "a0-alphabet-curriculum-v1"
+      ],
+      "lastPipelineAt": "2026-08-16T08:23:10.344Z"
     },
     "L0_lexicon": {
       "status": "sample_indexed",
       "targetBand": "dictionary + lemma shards",
-      "tokens": null,
-      "shards": ["l0-lexicon-sample-v1"]
+      "tokens": 8,
+      "shards": [
+        "l0-lexicon-sample-v1"
+      ],
+      "lastPipelineAt": "2026-08-16T08:23:10.344Z"
     },
     "N0_narrative": {
       "status": "sample_indexed",
       "targetBand": "stories + short fiction",
-      "tokens": null,
-      "shards": ["n0-narrative-sample-v1"]
+      "tokens": 6,
+      "shards": [
+        "n0-narrative-sample-v1"
+      ],
+      "lastPipelineAt": "2026-08-16T08:23:10.344Z"
     },
     "B0_books": {
       "status": "pd_sample_indexed",
       "targetBand": "licensed long works + public-domain samples",
-      "tokens": null,
-      "shards": ["b0-pd-literary-sample-v1"]
+      "tokens": 6,
+      "shards": [
+        "b0-pd-literary-sample-v1"
+      ],
+      "lastPipelineAt": "2026-08-16T08:23:10.344Z"
     },
-    "P0_poetry": { "status": "pending", "targetBand": "controlled poetry weight", "tokens": null },
-    "C0_contemporary": { "status": "pending", "targetBand": "news + technical filtered", "tokens": null },
-    "I0_instruct": { "status": "pending", "targetBand": "human FA instruction pairs", "tokens": null },
-    "R0_align": { "status": "pending", "targetBand": "native preference labels", "tokens": null }
+    "P0_poetry": {
+      "status": "pending",
+      "targetBand": "controlled poetry weight",
+      "tokens": null
+    },
+    "C0_contemporary": {
+      "status": "pending",
+      "targetBand": "news + technical filtered",
+      "tokens": null
+    },
+    "I0_instruct": {
+      "status": "pending",
+      "targetBand": "human FA instruction pairs",
+      "tokens": null
+    },
+    "R0_align": {
+      "status": "pending",
+      "targetBand": "native preference labels",
+      "tokens": null
+    }
   },
   "licenseMap": [
     {
@@ -92,7 +122,10 @@
       "quality_grade": "G1_probe",
       "split": "public_eval",
       "status": "indexed",
-      "provenance": { "file": "data/eval-probes/alphabet-probes.fa.jsonl", "indexedAt": "2026-08-13" },
+      "provenance": {
+        "file": "data/eval-probes/alphabet-probes.fa.jsonl",
+        "indexedAt": "2026-08-13"
+      },
       "gate": "G1",
       "publisher_lane": null
     },
@@ -105,7 +138,10 @@
       "quality_grade": "G2_probe",
       "split": "public_eval",
       "status": "indexed",
-      "provenance": { "file": "data/eval-probes/orthography-probes.fa.jsonl", "indexedAt": "2026-08-13" },
+      "provenance": {
+        "file": "data/eval-probes/orthography-probes.fa.jsonl",
+        "indexedAt": "2026-08-13"
+      },
       "gate": "G1",
       "publisher_lane": null
     },
@@ -118,7 +154,10 @@
       "quality_grade": null,
       "split": null,
       "status": "publisher_intro_sent",
-      "provenance": { "lane": "lm-publisher-shelf", "updatedAt": "2026-08-13" },
+      "provenance": {
+        "lane": "lm-publisher-shelf",
+        "updatedAt": "2026-08-13"
+      },
       "gate": "G2",
       "publisher_lane": "lm-publisher-shelf",
       "note": "Contemporary fiction shelf — awaiting publisher response"
@@ -132,7 +171,10 @@
       "quality_grade": null,
       "split": null,
       "status": "license_review",
-      "provenance": { "lane": "lm-publisher-classics", "updatedAt": "2026-08-13" },
+      "provenance": {
+        "lane": "lm-publisher-classics",
+        "updatedAt": "2026-08-13"
+      },
       "gate": "G2",
       "publisher_lane": "lm-publisher-classics",
       "note": "Classical works band — license class under review"
@@ -146,7 +188,10 @@
       "quality_grade": null,
       "split": null,
       "status": "catalog_received",
-      "provenance": { "lane": "lm-public-domain", "updatedAt": "2026-08-13" },
+      "provenance": {
+        "lane": "lm-public-domain",
+        "updatedAt": "2026-08-13"
+      },
       "gate": "G2",
       "publisher_lane": "lm-public-domain",
       "note": "PD catalog received — shard bytes not ingested yet"
@@ -160,7 +205,10 @@
       "quality_grade": "curriculum_sample",
       "split": "train",
       "status": "indexed",
-      "provenance": { "file": "data/corpus/shards/l0-lexicon-sample-v1.jsonl", "indexedAt": "2026-08-16" },
+      "provenance": {
+        "file": "data/corpus/shards/l0-lexicon-sample-v1.jsonl",
+        "indexedAt": "2026-08-16"
+      },
       "gate": "G1",
       "publisher_lane": null
     },
@@ -173,7 +221,10 @@
       "quality_grade": "curriculum_sample",
       "split": "train",
       "status": "indexed",
-      "provenance": { "file": "data/corpus/shards/n0-narrative-sample-v1.jsonl", "indexedAt": "2026-08-16" },
+      "provenance": {
+        "file": "data/corpus/shards/n0-narrative-sample-v1.jsonl",
+        "indexedAt": "2026-08-16"
+      },
       "gate": "G2",
       "publisher_lane": null
     },
@@ -186,10 +237,29 @@
       "quality_grade": "curriculum_sample",
       "split": "train",
       "status": "indexed",
-      "provenance": { "file": "data/corpus/shards/b0-pd-literary-sample-v1.jsonl", "indexedAt": "2026-08-16" },
+      "provenance": {
+        "file": "data/corpus/shards/b0-pd-literary-sample-v1.jsonl",
+        "indexedAt": "2026-08-16"
+      },
       "gate": "G2",
       "publisher_lane": "lm-public-domain",
       "note": "Classical literary excerpts — public-domain posture; not full works"
+    },
+    {
+      "shard_id": "a0-alphabet-curriculum-v1",
+      "curriculum": "A0",
+      "source_class": "primer_curriculum",
+      "license_class": "internal_research",
+      "volume_band": "8 curriculum lines",
+      "quality_grade": "curriculum_sample",
+      "split": "train",
+      "status": "indexed",
+      "provenance": {
+        "file": "data/corpus/shards/a0-alphabet-curriculum-v1.jsonl",
+        "indexedAt": "2026-08-16"
+      },
+      "gate": "G1",
+      "publisher_lane": null
     }
   ],
   "evalSources": [
@@ -219,7 +289,23 @@
       "role": "eval_only",
       "status": "guild_forming",
       "note": "Native rater rubrics — fluency, register, cultural fit"
+    },
+    {
+      "id": "eval-morph-probes",
+      "role": "eval_only",
+      "status": "harness_ready",
+      "file": "data/eval-probes/morphology-probes.fa.jsonl",
+      "note": "G2 morphology probes — round-trip fidelity in eval-g2-score-card"
+    },
+    {
+      "id": "eval-reading-probes",
+      "role": "eval_only",
+      "status": "harness_ready",
+      "file": "data/eval-probes/reading-probes.fa.jsonl",
+      "note": "G2 reading proxy probes — held sentences"
     }
   ],
-  "plrBoundary": "Field atlas lives in PERSIAN-LLM-REFERENCE — this file is Alefbâ train curriculum only. No scrape fantasy. No PLR self-list until G1+ receipt."
+  "plrBoundary": "Field atlas lives in PERSIAN-LLM-REFERENCE — this file is Alefbâ train curriculum only. No scrape fantasy. No PLR self-list until G1+ receipt.",
+  "pipelineReport": "data/corpus-pipeline-report.json",
+  "pipelineStatus": "pass"
 }

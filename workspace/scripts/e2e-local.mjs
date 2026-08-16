@@ -194,6 +194,16 @@ async function main() {
   }
   record("api/corpus-inventory P1", corpusInv.res.ok && corpusInvOk);
 
+  const corpusPipe = await get("/api/corpus-pipeline-report");
+  let corpusPipeOk = false;
+  try {
+    const pj = JSON.parse(corpusPipe.text);
+    corpusPipeOk = pj.pass === true && pj.totals?.indexedTrainShards >= 4;
+  } catch {
+    corpusPipeOk = false;
+  }
+  record("api/corpus-pipeline pass", corpusPipe.res.ok && corpusPipeOk);
+
   const tokSpec = await get("/api/tokenizer-v1-spec");
   let tokOk = false;
   try {

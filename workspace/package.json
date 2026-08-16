@@ -14,6 +14,7 @@
     "train:tokenizer": "node scripts/tokenizer-train-v1.mjs && node scripts/tokenizer-fertility-v1.mjs",
     "test:hf-baseline": "node scripts/tokenizer-fertility-hf-baseline.mjs",
     "test:g2": "node scripts/g2-verify.mjs",
+    "test:corpus": "node scripts/corpus-verify.mjs",
     "test:alphabet": "node scripts/tokenizer-alphabet-coverage.mjs",
     "test:eval": "node scripts/eval-harness-v1.mjs",
     "verify:local": "node scripts/e2e-local.mjs",

@@ -20,6 +20,7 @@ const INTEREST_FILE = path.join(PERSIST_DIR, "interest.jsonl");
 const RECEIPTS_FILE = path.join(DATA_DIR, "receipts.json");
 const MANIFEST_FILE = path.join(DATA_DIR, "content-manifest.json");
 const CORPUS_INVENTORY_FILE = path.join(DATA_DIR, "corpus-inventory.json");
+const CORPUS_PIPELINE_REPORT_FILE = path.join(DATA_DIR, "corpus-pipeline-report.json");
 const TOKENIZER_SPEC_FILE = path.join(DATA_DIR, "tokenizer-v1-spec.json");
 const EVAL_BASELINES_FILE = path.join(DATA_DIR, "eval-baselines.json");
 const EVAL_HARNESS_FILE = path.join(DATA_DIR, "eval-harness-v1.json");
@@ -326,6 +327,11 @@ async function handleApi(req, res, pathname) {
 
   if (pathname === "/api/corpus-inventory" && req.method === "GET") {
     sendJson(res, req, 200, readCorpusInventory());
+    return true;
+  }
+
+  if (pathname === "/api/corpus-pipeline-report" && req.method === "GET") {
+    sendJson(res, req, 200, readJsonFile(CORPUS_PIPELINE_REPORT_FILE, { error: "not_found" }));
     return true;
   }
 
