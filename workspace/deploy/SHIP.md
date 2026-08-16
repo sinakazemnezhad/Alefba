@@ -24,9 +24,26 @@ GHA `e2e.yml` must green on `0.2.8`.
 
 See [RAILWAY.md](./RAILWAY.md). Required:
 
-- Volume on `workspace/data`
 - `NODE_ENV=production`, `ALEFBA_ADMIN_TOKEN`, `ALEFBA_SHA`, `ALEFBA_PUBLIC_ORIGIN`
+- `PERSIST_DIR=/app/persistent` + volume `alefba-volume` mounted at `/app/persistent`
 - Optional: `ALEFBA_N8N_INTEREST_WEBHOOK`
+
+### Lead persistence invariant (production)
+
+| Path | Storage | Files |
+|------|---------|-------|
+| `DATA_DIR` → `/app/data` (baked image) | Deploy artifact | `receipts.json`, G1 reports, corpus inventory, tokenizer specs |
+| `PERSIST_DIR` → `/app/persistent` (Railway volume) | **Persistent** | `interest.jsonl`, `api-waitlist.jsonl` |
+
+**Rule:** Never mount the volume at `/app/data` — it shadows baked science receipts. Leads only on `PERSIST_DIR`.
+
+Verify after deploy:
+
+```bash
+# record total, redeploy, same total
+curl -fsS "$BASE/api/stats"
+ALEFBA_BASE_URL="$BASE" npm run smoke:prod
+```
 
 ## Live smoke
 

@@ -12,7 +12,11 @@ const ROOT = path.resolve(__dirname, "../public");
 const DATA_DIR = process.env.DATA_DIR
   ? path.resolve(process.env.DATA_DIR)
   : path.resolve(__dirname, "../data");
-const INTEREST_FILE = path.join(DATA_DIR, "interest.jsonl");
+/** Mutable lead capture only — mount Railway volume here in production. */
+const PERSIST_DIR = process.env.PERSIST_DIR
+  ? path.resolve(process.env.PERSIST_DIR)
+  : DATA_DIR;
+const INTEREST_FILE = path.join(PERSIST_DIR, "interest.jsonl");
 const RECEIPTS_FILE = path.join(DATA_DIR, "receipts.json");
 const MANIFEST_FILE = path.join(DATA_DIR, "content-manifest.json");
 const CORPUS_INVENTORY_FILE = path.join(DATA_DIR, "corpus-inventory.json");
@@ -23,7 +27,7 @@ const G1_REPORT_FILE = path.join(DATA_DIR, "g1-run-report.json");
 const G1_FERTILITY_FILE = path.join(DATA_DIR, "g1-tokenizer-receipt.json");
 const G1_HF_REPORT_FILE = path.join(DATA_DIR, "g1-hf-baseline-report.json");
 const TOKENIZER_MODEL_FILE = path.join(DATA_DIR, "tokenizer-v1-model.json");
-const API_WAITLIST_FILE = path.join(DATA_DIR, "api-waitlist.jsonl");
+const API_WAITLIST_FILE = path.join(PERSIST_DIR, "api-waitlist.jsonl");
 const HOST =
   process.env.ALEFBA_HOST ||
   (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
@@ -51,6 +55,8 @@ const RATE_MAX = 12;
 
 function ensureData() {
   fs.mkdirSync(DATA_DIR, { recursive: true });
+  fs.mkdirSync(PERSIST_DIR, { recursive: true });
+  migrateLegacyLeads();
   if (!fs.existsSync(INTEREST_FILE)) fs.writeFileSync(INTEREST_FILE, "", "utf8");
   if (!fs.existsSync(RECEIPTS_FILE)) {
     fs.writeFileSync(
@@ -58,6 +64,22 @@ function ensureData() {
       JSON.stringify({ version: VERSION, gates: [], scoreCards: [] }, null, 2),
       "utf8"
     );
+  }
+}
+
+/** One-time: copy leads from baked DATA_DIR when PERSIST_DIR is a separate volume mount. */
+function migrateLegacyLeads() {
+  if (PERSIST_DIR === DATA_DIR) return;
+  const pairs = [
+    [path.join(DATA_DIR, "interest.jsonl"), INTEREST_FILE],
+    [path.join(DATA_DIR, "api-waitlist.jsonl"), API_WAITLIST_FILE],
+  ];
+  for (const [legacy, target] of pairs) {
+    if (fs.existsSync(target) && fs.statSync(target).size > 0) continue;
+    if (!fs.existsSync(legacy)) continue;
+    const content = fs.readFileSync(legacy, "utf8").trim();
+    if (!content) continue;
+    fs.writeFileSync(target, content.endsWith("\n") ? content : `${content}\n`, "utf8");
   }
 }
 
@@ -501,6 +523,8 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, HOST, () => {
   console.log(`Alefbâ startup page → http://${HOST}:${PORT}/`);
+  console.log(`Alefbâ data dir      → ${DATA_DIR}`);
+  console.log(`Alefbâ persist dir   → ${PERSIST_DIR}`);
   console.log(`Alefbâ API health   → http://${HOST}:${PORT}/api/health`);
   console.log(`Alefbâ API stats    → http://${HOST}:${PORT}/api/stats`);
   console.log(`Alefbâ receipts     → http://${HOST}:${PORT}/receipts.html`);
