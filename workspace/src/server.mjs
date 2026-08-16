@@ -40,7 +40,19 @@ const VERSION = "0.2.8";
 const BUILD_SHA = process.env.ALEFBA_SHA || "local";
 const ADMIN_TOKEN = process.env.ALEFBA_ADMIN_TOKEN || "";
 const PUBLIC_ORIGIN = process.env.ALEFBA_PUBLIC_ORIGIN || "";
+const SITE_ORIGIN =
+  PUBLIC_ORIGIN || "https://alefba-production.up.railway.app";
 const N8N_INTEREST_WEBHOOK = process.env.ALEFBA_N8N_INTEREST_WEBHOOK || "";
+
+const SITEMAP_PAGES = [
+  { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/white-paper.html", priority: "0.95", changefreq: "monthly" },
+  { path: "/corpus.html", priority: "0.9", changefreq: "weekly" },
+  { path: "/receipts.html", priority: "0.9", changefreq: "weekly" },
+  { path: "/data-room.html", priority: "0.85", changefreq: "monthly" },
+  { path: "/press.html", priority: "0.8", changefreq: "monthly" },
+  { path: "/api.html", priority: "0.7", changefreq: "monthly" },
+];
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -50,7 +62,42 @@ const TYPES = {
   ".svg": "image/svg+xml",
   ".png": "image/png",
   ".woff2": "font/woff2",
+  ".txt": "text/plain; charset=utf-8",
+  ".xml": "application/xml; charset=utf-8",
 };
+
+function serveRobots(res) {
+  const body = [
+    "User-agent: *",
+    "Allow: /",
+    "Disallow: /api/interest/export",
+    "Disallow: /api/interest/export.csv",
+    "",
+    `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
+    "",
+  ].join("\n");
+  res.writeHead(200, {
+    "Content-Type": TYPES[".txt"],
+    "Cache-Control": "public, max-age=3600",
+    ...securityHeaders(),
+  });
+  res.end(body);
+}
+
+function serveSitemap(res) {
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const urls = SITEMAP_PAGES.map((p) => {
+    const loc = `${SITE_ORIGIN}${p.path}`;
+    return `<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`;
+  }).join("");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  res.writeHead(200, {
+    "Content-Type": TYPES[".xml"],
+    "Cache-Control": "public, max-age=3600",
+    ...securityHeaders(),
+  });
+  res.end(xml);
+}
 
 const rateMap = new Map();
 const RATE_WINDOW_MS = 60_000;
@@ -518,6 +565,15 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://${HOST}:${PORT}`);
   const handled = await handleApi(req, res, url.pathname);
   if (handled) return;
+
+  if (url.pathname === "/robots.txt" && req.method === "GET") {
+    serveRobots(res);
+    return;
+  }
+  if (url.pathname === "/sitemap.xml" && req.method === "GET") {
+    serveSitemap(res);
+    return;
+  }
 
   const file = safeJoin(ROOT, url.pathname);
   if (!file) {

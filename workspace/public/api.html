@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="الفبا API — وضعیت دروازه‌ها و ثبت‌نام نسخهٔ دستورپذیر." />
   <meta name="theme-color" content="#f6f0e6" />
+  <meta name="robots" content="index, follow" />
   <title>API · الفبا</title>
+  <link rel="canonical" href="https://alefba-production.up.railway.app/api.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alefba-production.up.railway.app/api.html" />
+  <meta property="og:site_name" content="الفبا Alefbâ" />
+  <meta property="og:title" content="Alefbâ API" />
+  <meta property="og:description" content="Gate status and instruct API waitlist for Alefbâ Persian foundation model." />
+  <meta property="og:image" content="https://alefba-production.up.railway.app/og-share.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Alefbâ API" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700&family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/app.css?v=0.2.8.paper" />
@@ -39,6 +49,18 @@
       <p class="colophon"><a href="/api/v1/health">/api/v1/health</a> · <a href="/api/v1/status">/api/v1/status</a> · <a href="/receipts.html">Receipts</a></p>
     </div>
   </main>
+  <footer class="foot">
+    <nav class="foot-nav" aria-label="Site map">
+      <a href="/">خانه</a>
+      <a href="/white-paper.html">سند</a>
+      <a href="/corpus.html">پیکره</a>
+      <a href="/receipts.html">رسیدها</a>
+      <a href="/data-room.html">اتاق داده</a>
+      <a href="/press.html">رسانه</a>
+    </nav>
+    <p class="foot-meta"><strong>Alefbâ · الفبا</strong> API alpha</p>
+  </footer>
+  <script src="/seo.js?v=0.2.8.seo"></script>
   <script>
     (function () {
       const langBtn = document.getElementById("lang-btn");
@@ -49,6 +71,20 @@
       let lang = localStorage.getItem("alefba-lang") || "fa";
       document.documentElement.lang = lang === "fa" ? "fa" : "en";
       document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+
+      function applyApiSeo() {
+        if (!window.AlefbaSeo) return;
+        window.AlefbaSeo.applySeo({
+          path: "/api.html",
+          titles: { fa: "API · الفبا", en: "API · Alefbâ" },
+          descriptions: {
+            fa: "الفبا API — وضعیت دروازه‌ها و ثبت‌نام نسخهٔ دستورپذیر.",
+            en: "Alefbâ API — gate status and instruct MVP waitlist.",
+          },
+          ogImage: "/og-share.svg",
+        });
+      }
+      applyApiSeo();
 
       async function loadStatus() {
         try {
@@ -99,6 +135,7 @@
         document.documentElement.lang = lang === "fa" ? "fa" : "en";
         document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
         langBtn.textContent = lang === "fa" ? "EN" : "فا";
+        applyApiSeo();
         loadStatus();
       });
       langBtn.textContent = lang === "fa" ? "EN" : "فا";

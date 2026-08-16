@@ -5,6 +5,8 @@ const I18N = {
     brand: "Alefbâ",
     brandSub: "Persian from alphabet to books",
     pageTitle: "Alefbâ · Persian from alphabet to books",
+    pageDescription:
+      "Alefbâ builds a Persian foundation model from alphabet to books — licensed curriculum, transparent reports, invest · join · donate.",
     "nav.why": "Why now",
     "nav.proof": "Society",
     "nav.masters": "Literary masters",
@@ -326,6 +328,12 @@ const I18N = {
     "ask.submit": "Send my interest",
     "ask.thanks": "You are on the list. Interest saved — counters refresh from real receipts.",
     "foot.line": "Community-powered Persian foundation intelligence · invest · join · donate",
+    "foot.navPaper": "White paper",
+    "foot.navCorpus": "Corpus",
+    "foot.navReceipts": "Receipts",
+    "foot.navData": "Data room",
+    "foot.navPress": "Press",
+    "foot.navApi": "API",
     "products.kicker": "Product ladder",
     "products.title": "What we sell — four paths to revenue",
     "products.lede": "Research checkpoints, API access, Studio verticals, and Private deployments — each gated by scientific receipts.",
@@ -440,8 +448,10 @@ const I18N = {
   },
   fa: {
     brand: "الفبا",
-    brandSub: "از حرف تا کتاب، با هم",
-    pageTitle: "الفبا از حرف تا کتاب",
+    brandSub: "از الف تا کتاب، با هم",
+    pageTitle: "الفبا · از الف تا کتاب",
+    pageDescription:
+      "الفبا مدل فارسی می‌سازد که از الفبا آغاز می‌کند — کتاب با مجوز، گزارش شفاف، سرمایه · همراهی · حمایت.",
     "nav.why": "چرا الان؟",
     "nav.proof": "جمع ما",
     "nav.masters": "معلمان ادبی",
@@ -759,6 +769,12 @@ const I18N = {
     "ask.notePh": "دو خط بنویس، سرمایه، مهارت یا حمایت؟",
     "ask.submit": "ثبت کن",
     "foot.line": "مدل فارسی، سرمایه، همراهی، حمایت",
+    "foot.navPaper": "سند",
+    "foot.navCorpus": "پیکره",
+    "foot.navReceipts": "رسیدها",
+    "foot.navData": "اتاق داده",
+    "foot.navPress": "رسانه",
+    "foot.navApi": "API",
     "products.kicker": "نردبان محصول",
     "products.title": "چه می‌فروشیم، چهار مسیر درآمد",
     "products.lede": "چک‌پوینت پژوهش، API، استودیو و نصب خصوصی، هر کدام با رسید علمی.",
@@ -948,6 +964,14 @@ function applyLang(lang) {
   if (btn) btn.textContent = dict.langBtn;
 
   if (dict.pageTitle) document.title = dict.pageTitle;
+  if (window.AlefbaSeo && dict.pageDescription) {
+    window.AlefbaSeo.applySeo({
+      path: "/",
+      titles: { fa: I18N.fa.pageTitle, en: I18N.en.pageTitle },
+      descriptions: { fa: I18N.fa.pageDescription, en: I18N.en.pageDescription },
+      ogImage: "/og-share.svg",
+    });
+  }
 
   applyPersianNumeralsInDom();
 

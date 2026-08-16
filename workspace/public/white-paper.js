@@ -17,14 +17,16 @@ const WP = {
     "menu.close": "بستن",
     langBtn: "EN",
     title: "سند الفبا v0.2.8 · علم · جامعه · لنگر · تاریخ",
+    pageDescription:
+      "سند بنیادگذاری الفبا — طرح علمی، جامعهٔ علمی، لنگر نهادی، هوش بنیادین فارسی با گزارش شفاف.",
     "rail.title": "فهرست سند",
     "badge.v": "v0.2.8",
     "badge.deep": "طرح علمی",
     "badge.society": "جامعهٔ علمی",
-    "badge.gate": "رسید قبل از ادعا",
+    "badge.gate": "گزارش شفاف",
     "badge.epoch": "برنامهٔ باز",
     "mast.kicker": "طرح بنیادین علمی · جامعهٔ علمی · لنگر نهادی",
-    "mast.line": "سند علمی برای هوش بنیادین فارسی — اول نتیجه، بعد ادعا",
+    "mast.line": "سند علمی برای هوش بنیادین فارسی — با گزارش‌های شفاف و قابل سنجش",
     "hero.eyebrow": "سند بنیادگذاری · نسخه ۰٫۲٫۷ · ۲۰۲۶-۰۸-۰۹",
     "hero.title": "الفبا — هوش بنیادین فارسی",
     "hero.lede":
@@ -416,7 +418,7 @@ const WP = {
     "cta.open": "باز کردن مسیرهای جامعه",
     "cta.back": "خانه",
     "cta.meta": "SSOT: <code>ALEFBA/governance/WHITE_PAPER.md</code> · نسخه ۰٫۲",
-    foot: "سند ۰٫۲٫۷ — جامعهٔ علمی · لنگر · رسیدمحور · باز به توسعه‌دهندگان",
+    foot: "سند ۰٫۲٫۸ — جامعهٔ علمی · لنگر · گزارش شفاف · باز به توسعه‌دهندگان",
     cite:
       "Alefbâ / الفبا Founding Charter v0.2.8 (2026-08-09). Persian Foundation Intelligence — scientific charter · society · institutional anchor · open program.",
   },
@@ -436,14 +438,16 @@ const WP = {
     "menu.close": "Close",
     langBtn: "فا",
     title: "Alefbâ White Paper v0.2.8 · Scientific charter · Society · Anchor · History",
+    pageDescription:
+      "Alefbâ founding white paper — scientific charter, society, institutional anchor, Persian foundation intelligence.",
     "rail.title": "Charter contents",
     "badge.v": "v0.2.8",
     "badge.deep": "Scientific charter",
     "badge.society": "Scientific society",
-    "badge.gate": "Receipt before claim",
+    "badge.gate": "Transparent reports",
     "badge.epoch": "Open science",
     "mast.kicker": "Founding scientific charter · Scientific society · Institutional anchor",
-    "mast.line": "Scientific document for Persian foundation intelligence — receipt before claim",
+    "mast.line": "Scientific charter for Persian foundation intelligence — transparent, measurable reports",
     "hero.eyebrow": "Founding charter · v0.2.8 · 2026-08-09",
     "hero.title": "Alefbâ — Persian Foundation Intelligence",
     "hero.lede":
@@ -835,7 +839,7 @@ const WP = {
     "cta.open": "Open society lanes",
     "cta.back": "Home",
     "cta.meta": "SSOT: <code>ALEFBA/governance/WHITE_PAPER.md</code> · founding charter v0.2.8",
-    foot: "Founding charter v0.2.8 — scientific society · anchor · receipt-first · open to builders",
+    foot: "Founding charter v0.2.8 — scientific society · anchor · transparent reports · open to builders",
     cite:
       "Alefbâ / الفبا Founding White Paper v0.2.8 (2026-08-09). Persian Foundation Intelligence — scientific charter · society · institutional anchor · history-grade program.",
   },
@@ -860,6 +864,14 @@ function applyLang(lang) {
   const btn = document.getElementById("lang-btn");
   if (btn) btn.textContent = dict.langBtn;
   if (dict.title) document.title = dict.title;
+  if (window.AlefbaSeo && dict.pageDescription) {
+    window.AlefbaSeo.applySeo({
+      path: "/white-paper.html",
+      titles: { fa: WP.fa.title, en: WP.en.title },
+      descriptions: { fa: WP.fa.pageDescription, en: WP.en.pageDescription },
+      ogImage: "/og-share.svg",
+    });
+  }
   localStorage.setItem("alefba-lang", lang);
 }
 

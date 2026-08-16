@@ -30,6 +30,9 @@ async function main() {
     "/corpus.html",
     "/press.html",
     "/data-room.html",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/seo.js",
     "/app.js",
     "/app.css",
     "/persian-human.css",
@@ -86,6 +89,19 @@ async function main() {
   record("wp mobile TOC complete", ["#genesis", "#pattern", "#mix", "#gates", "#fail", "#glossary", "#cta"].every((a) => wp.text.includes(`href="${a}"`)));
   record("favicon linked both", home.text.includes("favicon.svg") && wp.text.includes("favicon.svg"));
   record("og:image both", home.text.includes("og-share.svg") && wp.text.includes("og-share.svg"));
+  record("home canonical SEO", home.text.includes("rel=\"canonical\"") && home.text.includes("alefba-production.up.railway.app"));
+  record("home JSON-LD", home.text.includes("application/ld+json") && home.text.includes("WebSite"));
+  record("home foot nav", home.text.includes("foot-nav") && home.text.includes("/corpus.html"));
+  record("home no receipt-before-claim meta", !home.text.includes("رسید قبل از ادعا"));
+  const robots = await get("/robots.txt");
+  record("robots.txt sitemap", robots.res.ok && robots.text.includes("Sitemap:") && robots.text.includes("sitemap.xml"));
+  const sitemap = await get("/sitemap.xml");
+  record(
+    "sitemap.xml urls",
+    sitemap.res.ok && sitemap.text.includes("<urlset") && sitemap.text.includes("/white-paper.html") && sitemap.text.includes("/corpus.html"),
+    `${sitemap.text.length}b`
+  );
+  record("seo.js helper", (await get("/seo.js")).text.includes("AlefbaSeo"));
 
   record("OG Alefbâ UTF-8", og.text.includes("Alefbâ") && og.text.includes("الفبا"));
   record("OG no mojibake", !og.text.includes("\uFFFD") && !og.text.includes("????"));

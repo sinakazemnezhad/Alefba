@@ -3,23 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="الفبا مدل فارسی است که از حرف شروع می‌کند. می‌خواهی سرمایه بگذاری، به تیم بیایی یا یک دور آموزش را حمایت کنی؟ شفاف و واقعی." />
+  <meta name="description" content="الفبا مدل فارسی است که از الفبا آغاز می‌کند. سرمایه، همراهی، حمایت — با کتاب واقعی و گزارش شفاف." />
   <meta name="theme-color" content="#f6f0e6" />
-  <title>الفبا از حرف تا کتاب</title>
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="application-name" content="Alefbâ" />
+  <title>الفبا · از الف تا کتاب</title>
+  <link rel="canonical" href="https://alefba-production.up.railway.app/" />
+  <link rel="alternate" hreflang="fa" href="https://alefba-production.up.railway.app/" />
+  <link rel="alternate" hreflang="en" href="https://alefba-production.up.railway.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://alefba-production.up.railway.app/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="الفبا، مدل فارسی از حرف تا کتاب" />
-  <meta property="og:description" content="مدل زبانی فارسی از الفبا تا کتاب. برنامه باز با گزارش‌های شفاف." />
-  <meta property="og:image" content="/og-share.svg" />
+  <meta property="og:url" content="https://alefba-production.up.railway.app/" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:site_name" content="الفبا Alefbâ" />
+  <meta property="og:title" content="الفبا · مدل فارسی از الف تا کتاب" />
+  <meta property="og:description" content="مدل زبانی فارسی از الفبا تا کتاب. طرح باز با گزارش‌های شفاف." />
+  <meta property="og:image" content="https://alefba-production.up.railway.app/og-share.svg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="الفبا، مدل فارسی از حرف تا کتاب" />
-  <meta name="twitter:description" content="مدل زبانی فارسی از الفبا تا کتاب. برنامه باز با گزارش‌های شفاف." />
-  <meta name="twitter:image" content="/og-share.svg" />
+  <meta name="twitter:title" content="الفبا · مدل فارسی از الف تا کتاب" />
+  <meta name="twitter:description" content="مدل زبانی فارسی از الفبا تا کتاب. طرح باز با گزارش‌های شفاف." />
+  <meta name="twitter:image" content="https://alefba-production.up.railway.app/og-share.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/app.css?v=0.2.8.paper" />
-  <link rel="stylesheet" href="/persian-human.css?v=0.2.8.paper" />
+  <link rel="stylesheet" href="/persian-human.css?v=0.2.8.seo" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://alefba-production.up.railway.app/#website",
+        "url": "https://alefba-production.up.railway.app/",
+        "name": "الفبا Alefbâ",
+        "description": "Persian foundation intelligence — from alphabet to books with transparent scientific reports.",
+        "inLanguage": ["fa", "en"],
+        "publisher": { "@id": "https://alefba-production.up.railway.app/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://alefba-production.up.railway.app/#organization",
+        "name": "Alefbâ",
+        "alternateName": "الفبا",
+        "url": "https://alefba-production.up.railway.app/",
+        "logo": "https://alefba-production.up.railway.app/favicon.svg",
+        "description": "Community-powered Persian foundation model — curriculum, tokenizer, gates, and open receipts."
+      },
+      {
+        "@type": "ResearchProject",
+        "name": "Alefbâ Persian Foundation Model",
+        "alternateName": "الفبا — هوش بنیادین فارسی",
+        "url": "https://alefba-production.up.railway.app/white-paper.html",
+        "description": "Persian-first curriculum, native tokenizer, scientific gates, and licensed bookshelf."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -674,7 +716,15 @@
   </main>
 
   <footer class="foot">
-    <p><strong>Alefbâ · الفبا</strong> <span data-i18n="foot.line">Community-powered Persian foundation intelligence · invest · join · donate</span></p>
+    <nav class="foot-nav" aria-label="Site map">
+      <a href="/white-paper.html" data-i18n="foot.navPaper">White paper</a>
+      <a href="/corpus.html" data-i18n="foot.navCorpus">Corpus</a>
+      <a href="/receipts.html" data-i18n="foot.navReceipts">Receipts</a>
+      <a href="/data-room.html" data-i18n="foot.navData">Data room</a>
+      <a href="/press.html" data-i18n="foot.navPress">Press</a>
+      <a href="/api.html" data-i18n="foot.navApi">API</a>
+    </nav>
+    <p class="foot-meta"><strong>Alefbâ · الفبا</strong> <span data-i18n="foot.line">Community-powered Persian foundation intelligence · invest · join · donate</span></p>
   </footer>
 
   <div class="dock" aria-label="Quick actions">
@@ -684,6 +734,7 @@
     <a class="dock-hot" href="/white-paper.html#pattern" data-i18n="dock.paper">Paper</a>
   </div>
 
-  <script src="/app.js?v=0.2.8.wall"></script>
+  <script src="/seo.js?v=0.2.8.seo"></script>
+  <script src="/app.js?v=0.2.8.seo"></script>
 </body>
 </html>

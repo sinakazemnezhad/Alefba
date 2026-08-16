@@ -1276,6 +1276,25 @@ html[dir="rtl"] .fund-row .bar i {
   font-size: 0.9rem;
 }
 
+.foot-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  margin-bottom: 0.85rem;
+  max-width: var(--max);
+}
+
+.foot-nav a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.foot-nav a:hover {
+  text-decoration: underline;
+}
+
+.foot-meta,
 .foot p {
   margin: 0;
   max-width: var(--max);

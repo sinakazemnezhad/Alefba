@@ -14,7 +14,7 @@
       "nav.commit": "Commit",
       "nav.pitch": "Pitch",
       langBtn: "فا",
-      "receipts.eyebrow": "v0.2.8 · Receipt before claim",
+      "receipts.eyebrow": "v0.2.8 · Transparent reports",
       "receipts.title": "Scientific receipts",
       "receipts.lede": "Gates G1–G4 and dated score cards. No capability claim without a receipt on disk.",
       "receipts.colophon": "Capital spends only after gates pass. Marketing cannot open a gate.",
@@ -129,6 +129,14 @@
       "data.d7s": "Version · SHA",
       "data.colophon": "Disk SSOT: ALEFBA/governance/WHITE_PAPER.md · COMMERCIAL_SCIENTIFIC_PLAN.md · CONCEPT_BRIEF.md",
       "data.print": "Print / PDF one-pager",
+      "foot.line": "Persian foundation intelligence · invest · join · donate",
+      "foot.home": "Home",
+      "foot.navPaper": "White paper",
+      "foot.navCorpus": "Corpus",
+      "foot.navReceipts": "Receipts",
+      "foot.navData": "Data room",
+      "foot.navPress": "Press",
+      "foot.navApi": "API",
     },
     fa: {
       brand: "الفبا",
@@ -143,7 +151,7 @@
       "nav.commit": "ثبت‌نام",
       "nav.pitch": "ارائه",
       langBtn: "EN",
-      "receipts.eyebrow": "نسخه ۰٫۲٫۱ · رسید قبل از ادعا",
+      "receipts.eyebrow": "نسخه ۰٫۲٫۸ · گزارش شفاف",
       "receipts.title": "رسیدهای علمی",
       "receipts.lede": "دروازه‌های G1 تا G4 و کارت‌های نمرهٔ تاریخ‌دار. هیچ ادعای توانمندی بدون رسید روی دیسک نیست.",
       "receipts.colophon": "سرمایه پس از عبور دروازه خرج می‌شود. بازاریابی دروازه‌ای را نمی‌گشاید.",
@@ -260,6 +268,49 @@
       "data.d7s": "نسخه · اثر انگشت",
       "data.colophon": "منبع واحد روی دیسک: ALEFBA/governance/WHITE_PAPER.md · COMMERCIAL_SCIENTIFIC_PLAN.md · CONCEPT_BRIEF.md",
       "data.print": "چاپ / PDF یک‌صفحه‌ای",
+      "foot.line": "مدل فارسی · سرمایه · همراهی · حمایت",
+      "foot.home": "خانه",
+      "foot.navPaper": "سند",
+      "foot.navCorpus": "پیکره",
+      "foot.navReceipts": "رسیدها",
+      "foot.navData": "اتاق داده",
+      "foot.navPress": "رسانه",
+      "foot.navApi": "API",
+    },
+  };
+
+  const PAGE_SEO = {
+    "/corpus.html": {
+      titles: { fa: "پیکره · الفبا", en: "Corpus · Alefbâ" },
+      descriptions: {
+        fa: "پیکره و برنامهٔ درسی الفبا — قفسهٔ مجوزدار از الفبا تا ادبیات.",
+        en: "Alefbâ corpus and curriculum — licensed bookshelf from alphabet through literature.",
+      },
+      ogImage: "/og-corpus.svg",
+    },
+    "/receipts.html": {
+      titles: { fa: "رسیدها · الفبا", en: "Receipts · Alefbâ" },
+      descriptions: {
+        fa: "رسیدهای علمی الفبا — دروازه‌های G1 تا G4 و کارت نمره با گزارش شفاف.",
+        en: "Alefbâ scientific receipts — G1–G4 gates and dated score cards.",
+      },
+      ogImage: "/og-receipts.svg",
+    },
+    "/data-room.html": {
+      titles: { fa: "اتاق داده · الفبا", en: "Data room · Alefbâ" },
+      descriptions: {
+        fa: "اتاق دادهٔ الفبا — طرح، رسیدها، پیکره، اسناد بنیادگذار.",
+        en: "Alefbâ data room — charter, receipts, corpus inventory, founding documents.",
+      },
+      ogImage: "/og-paper.svg",
+    },
+    "/press.html": {
+      titles: { fa: "رسانه · الفبا", en: "Press · Alefbâ" },
+      descriptions: {
+        fa: "کیت مطبوعاتی الفبا — متن پایه، بیوگرافی بنیان‌گذار، لوگو، استناد.",
+        en: "Alefbâ press kit — boilerplate, founder bio, logo, citation.",
+      },
+      ogImage: "/og-society.svg",
     },
   };
 
@@ -289,6 +340,36 @@
     if (x) x.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(pitch)}&url=${encodeURIComponent(url)}`;
   }
 
+  function injectFootNav() {
+    if (document.querySelector(".foot-nav")) return;
+    const foot = document.createElement("footer");
+    foot.className = "foot";
+    foot.innerHTML = `
+      <nav class="foot-nav" aria-label="Site map">
+        <a href="/" data-i18n="foot.home">Home</a>
+        <a href="/white-paper.html" data-i18n="foot.navPaper">White paper</a>
+        <a href="/corpus.html" data-i18n="foot.navCorpus">Corpus</a>
+        <a href="/receipts.html" data-i18n="foot.navReceipts">Receipts</a>
+        <a href="/data-room.html" data-i18n="foot.navData">Data room</a>
+        <a href="/press.html" data-i18n="foot.navPress">Press</a>
+        <a href="/api.html" data-i18n="foot.navApi">API</a>
+      </nav>
+      <p class="foot-meta"><strong>Alefbâ · الفبا</strong> <span data-i18n="foot.line">Persian foundation intelligence</span></p>
+    `;
+    document.body.appendChild(foot);
+  }
+
+  function applyPageSeo() {
+    const seo = PAGE_SEO[location.pathname];
+    if (!seo || !window.AlefbaSeo) return;
+    window.AlefbaSeo.applySeo({
+      path: location.pathname,
+      titles: seo.titles,
+      descriptions: seo.descriptions,
+      ogImage: seo.ogImage,
+    });
+  }
+
   function applyLang(lang) {
     const dict = dictFor(lang);
     document.documentElement.lang = lang === "fa" ? "fa" : "en";
@@ -300,6 +381,7 @@
     });
     const btn = document.getElementById("lang-btn");
     if (btn) btn.textContent = dict.langBtn;
+    applyPageSeo();
     localStorage.setItem("alefba-lang", lang);
     updatePressShare(lang);
     renderReceipts();
@@ -354,7 +436,7 @@
       }
       html += "</tbody></table>";
       if (!cards.length) {
-        html += `<p class="colophon">${lang === "fa" ? "هنوز کارت نمرهٔ منتشر نشده — رسید قبل از ادعا." : "No score cards published yet — receipt before claim."}</p>`;
+        html += `<p class="colophon">${lang === "fa" ? "هنوز کارت نمرهٔ منتشر نشده." : "No score cards published yet."}</p>`;
       } else {
         html += `<h3>${lang === "fa" ? "کارت‌های نمره" : "Score cards"}</h3><table class="receipt-table"><thead><tr><th>${thDate}</th><th>${thModel}</th><th>${thSplit}</th><th>${thNotes}</th></tr></thead><tbody>`;
         for (const c of cards) {
@@ -533,6 +615,7 @@
   }
 
   captureUtm();
+  injectFootNav();
   applyLang(localStorage.getItem("alefba-lang") || "fa");
   initMenu();
   initPressCopy();

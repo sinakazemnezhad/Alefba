@@ -84,12 +84,26 @@ async function main() {
   } catch {}
   record("release.json", release.res.ok && relJ.version === "0.2.8", relJ.sha || "");
 
-  for (const path of ["/", "/white-paper.html", "/corpus.html", "/receipts.html", "/data-room.html", "/press.html"]) {
+  for (const path of ["/", "/white-paper.html", "/corpus.html", "/receipts.html", "/data-room.html", "/press.html", "/api.html"]) {
     const p = await get(path);
     record(`page ${path}`, p.res.ok && p.text.length >= MIN_HTML, `${p.text.length}b`);
   }
 
+  const robots = await get("/robots.txt");
+  record("robots.txt", robots.res.ok && robots.text.includes("Sitemap:"), robots.text.slice(0, 80));
+  const sitemap = await get("/sitemap.xml");
+  record(
+    "sitemap.xml",
+    sitemap.res.ok && sitemap.text.includes("<urlset") && (sitemap.text.match(/<url>/g)?.length || 0) >= 7,
+    `${sitemap.text.length}b`
+  );
+
   const home = await get("/");
+  record(
+    "home SEO head",
+    home.text.includes("rel=\"canonical\"") && home.text.includes("application/ld+json"),
+    "canonical+ld+json"
+  );
   record(
     "frontend bundle linked",
     home.text.includes("/app.js") && home.text.includes("data-i18n"),
