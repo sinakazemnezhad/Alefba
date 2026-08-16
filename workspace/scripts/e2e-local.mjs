@@ -263,6 +263,47 @@ async function main() {
   }
   record("api/v1 health instruct not_live", v1Health.res.ok && v1Ok);
 
+  const chatDoc = await get("/api/v1/chat");
+  let chatDocOk = false;
+  try {
+    const cj = JSON.parse(chatDoc.text);
+    chatDocOk = cj.chatAlpha === "probe_only" && cj.route === "/api/v1/chat";
+  } catch {
+    chatDocOk = false;
+  }
+  record("api/v1 chat capability doc", chatDoc.res.ok && chatDocOk);
+
+  const chatBlocked = await fetch(`${BASE}/api/v1/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: [{ role: "user", content: "test" }] }),
+  });
+  let chatBlockedOk = false;
+  try {
+    const bj = JSON.parse(await chatBlocked.text());
+    chatBlockedOk = chatBlocked.status === 503 && bj.error === "instruct_not_live";
+  } catch {
+    chatBlockedOk = false;
+  }
+  record("api/v1 chat instruct not_live 503", chatBlockedOk);
+
+  const chatProbe = await fetch(`${BASE}/api/v1/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "alefba-probe-v1",
+      messages: [{ role: "user", content: "آسمان آبی است." }],
+    }),
+  });
+  let chatProbeOk = false;
+  try {
+    const pj = JSON.parse(await chatProbe.text());
+    chatProbeOk = chatProbe.status === 200 && pj.ok === true && pj.model === "alefba-probe-v1";
+  } catch {
+    chatProbeOk = false;
+  }
+  record("api/v1 chat probe echo", chatProbeOk);
+
   const fert = await get("/api/g1-tokenizer-receipt");
   let fertOk = false;
   try {

@@ -46,7 +46,14 @@
         <button type="submit" class="btn btn-primary">Join API waitlist</button>
         <p class="form-status" id="api-form-status" hidden></p>
       </form>
-      <p class="colophon"><a href="/api/v1/health">/api/v1/health</a> · <a href="/api/v1/status">/api/v1/status</a> · <a href="/receipts.html">Receipts</a></p>
+      <h2 id="chat-probe-title">Chat probe</h2>
+      <p class="section-lede" id="chat-probe-lede">Wiring test only — model <code>alefba-probe-v1</code> echoes curriculum probes. Not a trained instruct model.</p>
+      <form class="partner-form" id="api-chat-form">
+        <label><span>Message</span><input type="text" name="message" value="آسمان آبی است." required /></label>
+        <button type="submit" class="btn btn-ghost">Send probe</button>
+        <p class="form-status" id="api-chat-status" hidden></p>
+      </form>
+      <p class="colophon"><a href="/api/v1/health">/api/v1/health</a> · <a href="/api/v1/status">/api/v1/status</a> · <a href="/api/v1/chat">/api/v1/chat</a> · <a href="/receipts.html">Receipts</a></p>
     </div>
   </main>
   <footer class="foot">
@@ -68,6 +75,9 @@
       const lede = document.getElementById("api-lede");
       const form = document.getElementById("api-waitlist-form");
       const formStatus = document.getElementById("api-form-status");
+      const chatForm = document.getElementById("api-chat-form");
+      const chatStatus = document.getElementById("api-chat-status");
+      const chatLede = document.getElementById("chat-probe-lede");
       let lang = localStorage.getItem("alefba-lang") || "fa";
       document.documentElement.lang = lang === "fa" ? "fa" : "en";
       document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
@@ -94,7 +104,11 @@
             <tr><td>Version</td><td>${data.version}</td></tr>
             <tr><td>G1</td><td>${g1?.status || "pending"}</td></tr>
             <tr><td>Instruct MVP</td><td>${data.instructMvp}</td></tr>
-            <tr><td>Score cards</td><td>${data.scoreCards}</td></tr>
+            <tr><td>Chat alpha</td><td>${data.chatAlpha || "—"}</td></tr>
+            <tr><td>Waitlist rows</td><td>${data.waitlistRows ?? "—"}</td></tr>
+            <tr><td>Interest rows (D1)</td><td>${data.interestRows ?? "—"}</td></tr>
+            <tr><td>Design partners</td><td>${data.designPartnerRows ?? "—"}</td></tr>
+            <tr><td>Chat usage rows</td><td>${data.chatUsageRows ?? "—"}</td></tr>
           </tbody></table>`;
           if (lang === "fa") {
             lede.textContent = "نسخهٔ دستورپذیر هنوز live نیست — وضعیت دروازه‌ها صادق است.";
@@ -105,6 +119,27 @@
           statusRoot.textContent = lang === "fa" ? "وضعیت API در دسترس نیست." : "API status unavailable.";
         }
       }
+
+      chatForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fd = new FormData(chatForm);
+        const res = await fetch("/api/v1/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "alefba-probe-v1",
+            messages: [{ role: "user", content: fd.get("message") }],
+          }),
+        });
+        const data = await res.json();
+        chatStatus.hidden = false;
+        chatStatus.textContent =
+          data.ok && data.message?.content
+            ? data.message.content
+            : lang === "fa"
+              ? "پاسخ probe در دسترس نیست."
+              : "Probe response unavailable.";
+      });
 
       form?.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -136,6 +171,12 @@
         document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
         langBtn.textContent = lang === "fa" ? "EN" : "فا";
         applyApiSeo();
+        if (chatLede) {
+          chatLede.textContent =
+            lang === "fa"
+              ? "فقط برای wiring — مدل alefba-probe-v1 پاسخ curriculum probe می‌دهد. مدل instruct آموزش‌داده‌شده نیست."
+              : "Wiring test only — model alefba-probe-v1 echoes curriculum probes. Not a trained instruct model.";
+        }
         loadStatus();
       });
       langBtn.textContent = lang === "fa" ? "EN" : "فا";

@@ -188,6 +188,41 @@ async function main() {
   } catch {}
   record("waitlist POST", waitlist.status === 201 && waitJ.ok, waitJ.message || String(waitlist.status));
 
+  const chatDoc = await get("/api/v1/chat");
+  let chatDocOk = false;
+  try {
+    const cj = JSON.parse(chatDoc.text);
+    chatDocOk = cj.chatAlpha === "probe_only";
+  } catch {}
+  record("chat capability doc", chatDoc.res.ok && chatDocOk);
+
+  const chatBlocked = await fetch(`${BASE}/api/v1/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: [{ role: "user", content: "probe" }] }),
+  });
+  let blockedOk = false;
+  try {
+    const bj = JSON.parse(await chatBlocked.text());
+    blockedOk = chatBlocked.status === 503 && bj.error === "instruct_not_live";
+  } catch {}
+  record("chat instruct not_live", blockedOk);
+
+  const chatProbe = await fetch(`${BASE}/api/v1/chat`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "alefba-probe-v1",
+      messages: [{ role: "user", content: "آسمان آبی است." }],
+    }),
+  });
+  let probeOk = false;
+  try {
+    const pj = JSON.parse(await chatProbe.text());
+    probeOk = chatProbe.status === 200 && pj.ok === true;
+  } catch {}
+  record("chat probe echo", probeOk);
+
   const v1Status = await get("/api/v1/status");
   let statusJ = {};
   try {

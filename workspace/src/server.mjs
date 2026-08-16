@@ -6,6 +6,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { chatCapabilityDoc, handleChatPost } from "../lib/chat-v1.mjs";
+import { parseDesignPartner, validateDesignPartner } from "../lib/design-partner-v1.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "../public");
@@ -31,6 +33,7 @@ const G2_SCORE_CARD_FILE = path.join(DATA_DIR, "g2-score-card.json");
 const G2_ORTHO_REPORT_FILE = path.join(DATA_DIR, "g2-orthography-report.json");
 const TOKENIZER_MODEL_FILE = path.join(DATA_DIR, "tokenizer-v1-model.json");
 const API_WAITLIST_FILE = path.join(PERSIST_DIR, "api-waitlist.jsonl");
+const DESIGN_PARTNERS_FILE = path.join(PERSIST_DIR, "design-partners.jsonl");
 const HOST =
   process.env.ALEFBA_HOST ||
   (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
@@ -108,6 +111,8 @@ function ensureData() {
   fs.mkdirSync(PERSIST_DIR, { recursive: true });
   migrateLegacyLeads();
   if (!fs.existsSync(INTEREST_FILE)) fs.writeFileSync(INTEREST_FILE, "", "utf8");
+  if (!fs.existsSync(API_WAITLIST_FILE)) fs.writeFileSync(API_WAITLIST_FILE, "", "utf8");
+  if (!fs.existsSync(DESIGN_PARTNERS_FILE)) fs.writeFileSync(DESIGN_PARTNERS_FILE, "", "utf8");
   if (!fs.existsSync(RECEIPTS_FILE)) {
     fs.writeFileSync(
       RECEIPTS_FILE,
@@ -123,6 +128,7 @@ function migrateLegacyLeads() {
   const pairs = [
     [path.join(DATA_DIR, "interest.jsonl"), INTEREST_FILE],
     [path.join(DATA_DIR, "api-waitlist.jsonl"), API_WAITLIST_FILE],
+    [path.join(DATA_DIR, "design-partners.jsonl"), DESIGN_PARTNERS_FILE],
   ];
   for (const [legacy, target] of pairs) {
     if (fs.existsSync(target) && fs.statSync(target).size > 0) continue;
@@ -461,8 +467,60 @@ async function handleApi(req, res, pathname) {
       g1Status: g1?.status || "pending",
       instructMvp: "not_live",
       apiAlpha: "waitlist",
+      chatAlpha: "probe_only",
+      chatRoute: "/api/v1/chat",
       charter: `${req.headers.host ? `https://${req.headers.host}` : ""}/`,
     });
+    return true;
+  }
+
+  if (pathname === "/api/v1/chat" && req.method === "GET") {
+    sendJson(res, req, 200, chatCapabilityDoc(VERSION));
+    return true;
+  }
+
+  if (pathname === "/api/v1/chat" && req.method === "POST") {
+    try {
+      const raw = await readBody(req);
+      const data = JSON.parse(raw || "{}");
+      const result = handleChatPost(data, VERSION);
+      sendJson(res, req, result.status, result.body);
+    } catch (err) {
+      sendJson(res, req, 400, { ok: false, error: String(err.message || err) });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/v1/design-partners" && req.method === "POST") {
+    try {
+      const raw = await readBody(req);
+      const data = JSON.parse(raw || "{}");
+      const row = parseDesignPartner(data);
+      const err = validateDesignPartner(row);
+      if (err) {
+        sendJson(res, req, 400, { ok: false, error: err });
+        return true;
+      }
+      ensureData();
+      const saved = {
+        at: new Date().toISOString(),
+        orgName: row.orgName,
+        contactName: row.contactName,
+        contactEmail: row.contactEmail,
+        vertical: row.vertical,
+        notes: row.notes,
+        status: "prospect",
+      };
+      fs.appendFileSync(DESIGN_PARTNERS_FILE, `${JSON.stringify(saved)}\n`, "utf8");
+      sendJson(res, req, 201, {
+        ok: true,
+        persisted: true,
+        status: "prospect",
+        note: "Gate 3 requires 3 active design partners for instruct MVP.",
+      });
+    } catch (err) {
+      sendJson(res, req, 400, { ok: false, error: String(err.message || err) });
+    }
     return true;
   }
 
