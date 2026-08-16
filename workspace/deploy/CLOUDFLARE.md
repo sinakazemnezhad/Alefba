@@ -1,4 +1,6 @@
-# Cloudflare edge for Alefbâ (Railway origin)
+# Cloudflare edge for Alefbâ (Railway origin → G3 Workers)
+
+**Current:** Railway origin. **G3 target:** CF Pages (charter) + Workers (API) + D1. Spike: [g3-cloudflare/README.md](./g3-cloudflare/README.md).
 
 ## DNS
 

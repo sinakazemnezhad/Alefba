@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alefba-g3-api",
+  "main": "src/index.mjs",
+  "compatibility_date": "2025-03-01",
+  "workers_dev": true,
+  // Create remote DB: wrangler d1 create alefba-g3
+  // Replace database_id before first remote deploy.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "alefba-g3",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "vars": {
+    "ALEFBA_VERSION": "0.2.8",
+    "MIGRATION_PHASE": "g3_spike",
+    "INSTRUCT_MVP": "not_live"
+  }
+  // Optional G3 cutover — proxy charter static until CF Pages owns HTML:
+  // "routes": [{ "pattern": "alefba.example.com/api/*", "zone_name": "alefba.example.com" }]
+}

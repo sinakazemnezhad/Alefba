@@ -1,5 +1,93 @@
 # Ship checklist · v0.2.8
 
+## Phased hosting plan
+
+Aligned to **G1→G4 gates** and the **18‑month commercial roadmap** in `governance/COMMERCIAL_SCIENTIFIC_PLAN.md`.
+
+```text
+STATIC + RECEIPTS  → cheap edge (CF Pages / GitHub Pages for PLR only)
+LIGHT API + LEADS  → small origin (Railway) — current phase
+INSTRUCT API (G3)  → CF Workers + D1 + GPU elsewhere
+PRODUCT (G4)       → edge API + billing + optional Private VPC
+```
+
+| Phase | Months | Gate | Charter / API host | Persistence | Inference |
+|-------|--------|------|-------------------|-------------|-----------|
+| **P0 Charter** | 0–3 | G1 | **Railway** Node | Volume `PERSIST_DIR` | — |
+| **P1 Science** | 3–8 | G2 | Railway or CF Pages + Railway API | Volume + R2 backups | External GPU |
+| **P2 Instruct** | 8–12 | G3 | **CF Pages** + **Workers** | **D1** | Workers AI / rented API |
+| **P3 Vertical** | 12–18 | G4 | CF Pages + Workers | D1 + usage metering | Dedicated GPU if justified |
+| **Private (G4)** | 12+ | G4 | Customer VPC | Customer store | Customer or dedicated |
+
+### Phase 0 · Now (G1 pass · G2 in progress)
+
+**Live:** Railway `alefba-production.up.railway.app` · GHA `deploy-railway.yml` only.
+
+| Do now | Why |
+|--------|-----|
+| Custom domain + **Cloudflare** proxy | TLS, WAF, cache — see [CLOUDFLARE.md](./CLOUDFLARE.md) |
+| Set `ALEFBA_PUBLIC_ORIGIN` to custom domain | Canonical + sitemap + CORS |
+| CF cache: bypass `/api/*` | Leads and receipts must not stale |
+| Nightly lead backup → R2 | Survives origin migration |
+
+**Do not:** rewrite to serverless or D1 until G3 API is real.
+
+### Phase 1 · G2 base score card (M8)
+
+| Upgrade | Trigger |
+|---------|---------|
+| CF **Pages** for `public/` static | Site churn drops after G2 receipts stable |
+| **R2** for large artifacts | Checkpoints / manifests > few MB |
+| Training on **external GPU** | Never Railway — Modal / RunPod / bare GPU |
+| **One PLR row** | After published G2 score card (founder order) |
+
+PLR stays on **GitHub Pages** — separate product.
+
+### Phase 2 · G3 instruct MVP (M12)
+
+**Migration trigger:** real `/v1/chat` (or equivalent), API keys, 3 design partners.
+
+| Layer | Target |
+|-------|--------|
+| Edge API | **Cloudflare Workers** |
+| DB | **D1** (`interest_leads`, `api_waitlist`, `api_keys`, `api_usage`) |
+| Charter | **CF Pages** |
+| Inference | Workers AI (small) or external GPU API |
+
+**Spike (schema + Worker stub only):** [g3-cloudflare/](./g3-cloudflare/README.md)
+
+```text
+Customer → CF (WAF, Pages, Workers)
+              ├─ Pages: /, /white-paper.html, …
+              ├─ Worker: /api/v1/*, /api/interest
+              ├─ D1: leads, keys, usage
+              └─ GPU provider: inference (rented)
+```
+
+Railway demoted to zero or admin-only cron after cutover.
+
+### Phase 3 · G4 paid vertical (M18)
+
+- Studio surface: CF Pages + Workers (multi-tenant)
+- Usage metering + Stripe on Worker
+- **Alefbâ Private:** customer VPC bundle — not Railway public origin
+
+### Phase 4 · Post‑M18 scale
+
+Self-hosted inference, Vectorize/RAG, multi-region — only after G4 revenue proves economics.
+
+### Platform quick reference
+
+| Platform | Alefbâ fit |
+|----------|------------|
+| **GitHub Pages** | PLR only — not Alefbâ API |
+| **Railway** | Correct **now** — Node + volume |
+| **CF Workers + D1 + Pages** | Correct **at G3** |
+| **Vercel + Supabase** | Valid alternative at G3 if Postgres preferred |
+| **CF Workers alone** | Edge API — needs Pages for static charter |
+
+---
+
 ## Local preflight
 
 ```bash
@@ -60,4 +148,7 @@ Post-deploy gate (GHA `deploy-railway.yml`): `railway up` → `smoke:prod` with 
 | Gate | Status |
 |------|--------|
 | G1 | `pass` — probe + live BLOOM-560m HF fertility receipt |
-| G2–G4 | `pending` |
+| G2 | `in_progress` — proxy score card published |
+| G3–G4 | `pending` |
+
+**G3 spike:** [g3-cloudflare/README.md](./g3-cloudflare/README.md) (Workers stub + D1 schema — not production).
