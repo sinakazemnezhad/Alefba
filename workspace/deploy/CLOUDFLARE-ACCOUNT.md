@@ -27,7 +27,7 @@
 | **Account** | `0d0b967b77e2e5535455d39ff3dae72c` |
 | **D1** | `alefba-g3` · schema applied |
 
-Railway remains origin for `/api/interest` and science JSON (`RAILWAY_ORIGIN`).
+Railway remains backup origin for science JSON. **Interest + waitlist** persist on D1 at edge (`g3_interest_d1`).
 
 ## Deploy standalone edge
 
